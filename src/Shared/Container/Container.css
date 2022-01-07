@@ -1,0 +1,22 @@
+.container{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.container_banner{
+    width: 100%;
+}
+
+.container_products{
+    width: 80%;
+    height: calc(100% - 50px);
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.container_goals{
+    width: 20%;
+    height: calc(100% - 50px);
+}
