@@ -2,8 +2,8 @@ import React from "react";
 import "./Container.css";
 import { Router } from "react-router-dom";
 import Banner from "../Banner/Banner";
-import CardProduct from "../../ShoppingCart/CardProduct/CardProduct";
-import Goals from "../../ShoppingCart/Goals/Goals";
+import CardProduct from "../../Shopping/CardProduct/CardProduct";
+import Goals from "../../Shopping/Goals/Goals";
 
 function Container(props) {
   return (

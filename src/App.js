@@ -1,7 +1,7 @@
 import './App.css';
 import Navbar from './Shared/Navbar/Navbar';
 import Container from './Shared/Container/Container';
-import CardProduct from './ShoppingCart/CardProduct/CardProduct'
+import ShoppingCartContainer from './ShoppingCart/ShoppingCartContainer';
 import { Route, Routes } from "react-router-dom";
 function App() {
   return (
@@ -9,7 +9,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Container />}></Route>
-        <Route path="detail" element={<CardProduct />}></Route>
+        <Route path="shoppingCart" element={<ShoppingCartContainer />}></Route>
       </Routes>
     </>
   );
