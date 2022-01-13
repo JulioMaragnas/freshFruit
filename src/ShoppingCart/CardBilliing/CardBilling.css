@@ -1,0 +1,24 @@
+.card-billing{
+    width: 100%;
+    height: 100vh;
+    padding: 5px;
+}
+
+.card-billing_label{
+    opacity: 60%;
+    margin: 0
+}
+.card-billing_address,
+.card-billing_name,
+.card-billing_additional-info{
+    margin: 5px 0 40px;
+}
+
+.card-billing_value--center{
+    font-size: 90px;
+    text-align: center;
+    margin: 0 0 40px;
+}
+
+.card-biling_additional-info{
+}
