@@ -2,7 +2,6 @@
     width: 100%;
     display: flex;
     flex-direction: row;
-    height: 500px;
     margin-top: 5px;
 }
 
@@ -18,5 +17,6 @@
 .shopping-container_billing{
     width: 30%;
     height: 100%;
+    overflow: hidden;
     background-color: #EBEBEB;
 }

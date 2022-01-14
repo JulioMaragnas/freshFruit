@@ -1,5 +1,6 @@
 import React from "react";
-import './CardBilling.css'
+import './CardBilling.css';
+import sendIcon from '../../Assets/sendIcon.png';
 
 function CardBilling() {
 	return(
@@ -12,7 +13,12 @@ function CardBilling() {
 				<h2 className="card-billing_name"> Calle 21 # 37-60 </h2>
 				<h4 className="card-billing_label"> Informaci&oacute;n adicional </h4>
 				<textarea className="card-billing_additional-info" name="" id="" cols="50" rows="5"></textarea>
-				<button className="card-billing_send">Enviar pedido</button>
+				<div className="card-billing_button-container">
+					<button className="card-billing_send">
+						<img className="card-billing-send_icon" src={sendIcon} alt="send" />
+	                    <span> Generar pedido </span>
+					</button>
+				</div>
 			</section>
 		</div>
 	)

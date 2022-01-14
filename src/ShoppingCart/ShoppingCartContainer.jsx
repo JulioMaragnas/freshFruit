@@ -12,7 +12,7 @@ function ShoppingCartContainer (params) {
           <CardProductBuy />
         </div>
         <div className="shopping-container_billing">
-        <CardBilling />
+          <CardBilling />
         </div>
       </section>
     )
