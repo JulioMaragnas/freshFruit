@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./Container.css";
-import { Router } from "react-router-dom";
-import Banner from "../Banner/Banner";
-import CardProduct from "../../Shopping/CardProduct/CardProduct";
-import Goals from "../../Shopping/Goals/Goals";
+import Banner from "../../Shared/Banner/Banner";
+import CardProduct from "../CardProduct/CardProduct";
+import Goals from "../Goals/Goals";
 import { returnProducts } from "../../mocks";
 
 function Container(props) {
