@@ -1,9 +1,4 @@
 
-.progress-bar {
-    width: 100%;
-    background: #2979FF;
-    font-family: 'Roboto', sans-serif;
-  }
   
   .progress-bar_list {
     counter-reset: step;
@@ -47,10 +42,10 @@
   }
   
   .progress-bar_list li.progress-bar_item--active:before {
-    background: #2abcc0;
+    background: #4557bb;
     content: "✔";  
   }
   
   .progress-bar_list li.progress-bar_item--active + li:after {
-    background: #2abcc0;
+    background: #4557bb;
   }

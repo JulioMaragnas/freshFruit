@@ -1,13 +1,10 @@
 .card-billing{
-    width: 100%;
     padding:0 0 10px 10px;
     background-color: #EBEBEB;
 }
 
 .card-billing_button-container{
     width: calc(100% - 15px);
-    display: flex;
-    flex-direction: row;
     justify-content: flex-end;
 }
 
@@ -30,16 +27,4 @@
 
 .card-billing_additional-info{
     width: calc(100% - 25px);
-}
-
-.card-billing_send{
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.card-billing-send_icon{
-    width: 21px;
-    height: 21px;
-    margin-right: 5px;
-    opacity: 60%;
 }

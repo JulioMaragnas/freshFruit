@@ -20,17 +20,17 @@ function CardProduct ({product}) {
     
     return(
         <section className="card-product">
-             <img className="card-product_image--full" src={imageReference} alt="" />
+             <img className="w-100 image--br-5" src={imageReference} alt="" />
              <h3 className="card-product_code">COD {product.id}</h3>
              <p>{product.descripcion}</p>
-             <div className="card-product_button-container">
-                 <button className="card-product_button--info card-product_button--center card-product_button--style">
-                    <img className="card-product_icon" src={infoIcon} alt="" />
-                    <span className="card-product_button--title">Informaci&oacute;n</span>
+             <div className="w-100 mt-10 card-product_button-container">
+                 <button className="card-product_button--center container_button">
+                    <img src={infoIcon} alt="" />
+                    <span>Informaci&oacute;n</span>
                 </button>
-                <button className="card-product_button--add card-product_button--style" onClick={handleCart}>
-                    <img className="card-product_icon" src={carIcon} alt="" />  
-                    <span className="card-product_button--title">Agregar</span> 
+                <button className="card-product_button--add container_button" onClick={handleCart}>
+                    <img src={carIcon} alt="" />  
+                    <span>Agregar</span> 
                 </button>
              </div>
         </section>

@@ -1,0 +1,14 @@
+.manage-orders{
+    margin-top: 5px;
+}
+
+.manage-orders_menu{
+    width: 19%;
+    margin-right: 10px;
+    min-height: calc(100vh - 55px);
+    background-color: #EBEBEB;
+}
+
+.manage-orders_view{
+    width: 80%;
+}

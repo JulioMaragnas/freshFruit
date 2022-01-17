@@ -1,0 +1,11 @@
+.detail-order_controls{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.detail-order_footer{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}

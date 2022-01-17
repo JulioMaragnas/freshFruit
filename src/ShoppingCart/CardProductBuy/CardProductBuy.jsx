@@ -6,18 +6,18 @@ import deleteIcon from '../../Assets/deleteIcon.png'
 function CardProductBuy(params) {
   return(
     <div className="card-product-buy">
-      <img className="card-product-buy_image--full" src={imageReference} alt="" />
+      <img className="w-100 card-product-buy_image--full" src={imageReference} alt="" />
       <h3> COD #### </h3>
       <p> <span className="card-product-buy_label"> Cantidad: </span> {null} </p>
       <p> <span className="card-product-buy_label"> Precio unitario: </span> {null} </p>
-      <div className="card-product-buy_button-container">
+      <div className="display-flex-row card-product-buy_button-container">
         <div className="card-product-buy_button--add">
-          <button className="card-product-buy_button--circle">➕</button>
+          <button className="container_button card-product-buy_button--circle">➕</button>
           <span>##</span>
-          <button className="card-product-buy_button--circle" style={{marginLeft:'5px'}}> ➖ </button>
+          <button className="container_button card-product-buy_button--circle" style={{marginLeft:'5px'}}> ➖ </button>
         </div>
-        <button className="card-product-buy_button--delete">
-          <img className="card-product-buy_icon" src={deleteIcon} alt="delete" />
+        <button className="container_button">
+          <img src={deleteIcon} alt="delete" />
           <span> Eliminar </span>
         </button>
       </div>

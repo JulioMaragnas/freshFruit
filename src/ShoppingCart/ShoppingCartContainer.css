@@ -1,21 +1,14 @@
 .shopping-container{
-    width: 100%;
-    display: flex;
-    flex-direction: row;
     margin-top: 5px;
 }
 
 .shopping-container_product-container{
-    display: flex;
     flex-wrap: wrap;
     width: 70%;
-    height: 100%;
-    flex-direction: row;
     
 }
 
 .shopping-container_billing{
     width: 30%;
-    height: 100%;
     overflow: hidden;
 }

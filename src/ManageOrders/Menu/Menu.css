@@ -1,0 +1,38 @@
+.menu{
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.menu_header{
+    justify-content: space-between;
+}
+
+.menu_icon-profile{
+    width: 70px;
+    height: 70px;
+}
+
+.menu_user-logged > h5{
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+
+.menu_user-logged > h2{
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+
+
+.menu_steps{
+    margin-top: 50px;
+}
+
+.menu_steps ul > li{
+    list-style-type: square;  
+    opacity: 70%;
+    cursor: pointer;
+}
+
+.menu_step-item--active{
+    text-decoration: underline;
+}

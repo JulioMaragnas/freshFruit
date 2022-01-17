@@ -7,8 +7,8 @@ import ProgressBar from './ProgressBar/ProgressBar';
 function ShoppingCartContainer(params) {
   const [productsCar, setProductsCar] = useState([]);
   return (
-    <section className="shopping-container">
-      <div className="shopping-container_product-container">
+    <section className="w-100 display-flex-row shopping-container">
+      <div className="display-flex-row shopping-container_product-container">
         <CardProductBuy />
         <CardProductBuy />
         <CardProductBuy />

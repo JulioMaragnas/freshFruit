@@ -1,0 +1,21 @@
+.detail-order-card{
+    box-sizing: border-box;
+    width: 32%;
+    border-radius: 10px;
+    border: 1px;
+    margin: 5px 0px 5px 10px;
+    padding: 5px;
+    background-color: #EBEBEB;
+}
+
+.detail-order-card_image--border-radius{
+    border-radius: 10px;
+}
+
+.detail-order-card_check--right{
+    justify-content: flex-end;
+}
+.detail-order-card_check--right > input{
+    height: 30px;
+    width: 30px;
+}

@@ -1,0 +1,38 @@
+.order-card{
+    box-sizing: border-box;
+    padding: 0px 0px 5px 5px;
+    border:#d1d1d1 3px solid ;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+
+.order-card_header{
+    box-sizing: border-box;
+    padding: 10px;
+    justify-content: space-between;
+}
+
+.order-card_header--no-margin > h2,h4{
+    margin: 0;
+}
+
+.order-card_detail{
+    justify-content: space-between;
+}
+
+.order-card_info{
+    width: 33.3333%;
+    box-sizing: border-box;
+    padding: 10px;
+}
+.order-card_info--right{
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.order-card_icon{
+    width: 21px;
+    height: 21px;
+    bottom: 0;
+}

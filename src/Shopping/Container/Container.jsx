@@ -14,11 +14,11 @@ function Container(props) {
   },[])
 
   return (
-    <div className="container">
-      <section className="container_banner">
+    <div className="w-100 display-flex-row container">
+      <section className="w-100">
         <Banner></Banner>
       </section>
-      <section className="container_products">
+      <section className="display-flex-row container_products">
         {
           listProducts.map(product => (<CardProduct product={product} />))
         }

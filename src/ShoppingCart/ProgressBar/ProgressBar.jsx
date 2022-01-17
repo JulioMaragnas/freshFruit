@@ -3,10 +3,10 @@ import './ProgressBar.css'
 
 function ProgressBar(params) {
   return (
-    <div class="progress-bar">
-      <ul class="progress-bar_list">
-        <li class="progress-bar_item--active">Pedido recibido </li>
-        <li>Orden generada</li>
+    <div className="w-100">
+      <ul className="progress-bar_list">
+        <li className="progress-bar_item--active">Pedido recibido </li>
+        <li >Orden generada</li>
         <li>En proceso</li>
         <li>Entregado</li>
       </ul>
