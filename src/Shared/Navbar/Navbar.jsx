@@ -9,19 +9,19 @@ function Navbar(props) {
   return (
     <nav className="navbar">
       <Link to="/">
-          <div className="navbar_container navbar_container--left">
-            <img className="navbar_img--logo" src={logo} alt="logoFFS" />
-          </div>
+        <div className="navbar_container navbar_container--left">
+          <img className="navbar_img--logo" src={logo} alt="logoFFS" />
+        </div>
       </Link>
       <div className="navbar_container navbar_container--center">
         <h1 className="navbar_title"> Tienda FreshFruit </h1>
       </div>
-      <Link to="shoppingCart">
-        <div className="navbar_container navbar_container--right">
+      <div className="navbar_container navbar_container--right">
+        <Link to="shoppingCart">
           <img className="navbar_img--header" src={carIcon} alt="" />
-          <img className="navbar_img--header" src={user} alt="" />
-        </div>
-      </Link>
+        </Link>
+        <img className="navbar_img--header" src={user} alt="" />
+      </div>
     </nav>
   );
 }

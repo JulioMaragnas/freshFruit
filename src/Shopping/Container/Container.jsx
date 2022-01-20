@@ -3,13 +3,14 @@ import "./Container.css";
 import Banner from "../../Shared/Banner/Banner";
 import CardProduct from "../CardProduct/CardProduct";
 import Goals from "../Goals/Goals";
-import { returnProducts } from "../../mocks";
+import { returnProducts } from "../../requestInventory";
 
 function Container(props) {
   const [listProducts, setListProducts] = useState([]);
   
   useEffect( async ()=>{
-    const products = await returnProducts(null)
+    const products = await returnProducts()
+    debugger
     setListProducts(products)
   },[])
 
@@ -20,7 +21,7 @@ function Container(props) {
       </section>
       <section className="display-flex-row container_products">
         {
-          listProducts.map(product => (<CardProduct product={product} />))
+          listProducts.map(product => (<CardProduct product={product} key={product.id} />))
         }
       </section>
       <section className="container_goals">

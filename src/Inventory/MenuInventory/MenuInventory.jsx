@@ -1,8 +1,6 @@
 import React from "react";
 import "./MenuInventory.css";
-import ReactDOM from "react-dom";
-import "antd/dist/antd.css";
-import { Menu, Switch, Divider } from "antd";
+import { Menu } from "antd";
 import {
   MailOutlined,
   CalendarOutlined,

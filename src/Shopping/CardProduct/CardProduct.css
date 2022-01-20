@@ -14,11 +14,9 @@
 }
 
 .card-product_button-container{
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
-.card-product_button--center{
-    margin-right: 10%;
+.card-product_image--height{
+    height: 185px;
 }
