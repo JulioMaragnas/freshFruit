@@ -12,7 +12,7 @@ async function returnProducts(param) {
     {
       existencias: 10,
       id: 1,
-      idproducto: 0,
+      idproducto: 1,
       productos: {
         descripcion: "Pulpa de fresa",
         id: 1,
@@ -25,7 +25,7 @@ async function returnProducts(param) {
     {
       existencias: 10,
       id: 2,
-      idproducto: 0,
+      idproducto: 2,
       productos: {
         descripcion: "Pulpa de mango",
         id: 2,

@@ -11,9 +11,9 @@ function DetailOrderCard(params) {
                 <span>Descripcion:</span> Lorem ipsum dolor sit amet
             </p>
             <p> <span>Cantidad:</span> </p>
-            <div className="display-flex-row detail-order-card_check--right">
+            {/* <div className="display-flex-row detail-order-card_check--right">
                 <input type="checkbox" name="" id="" />
-            </div>
+            </div> */}
         </section>
     )
 }

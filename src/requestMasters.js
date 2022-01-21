@@ -12,32 +12,32 @@ async function getStates() {
   return [
     {
       id: 1,
-      codigo: 'CRTD',
+      codigo: 'CREADO',
       descripcion: 'CREADO'
     },
     {
       id: 2,
-      codigo: 'PRCS',
+      codigo: 'EN_PROCESO',
       descripcion: 'EN PROCESO'
     },
     {
       id: 3,
-      codigo: 'RJCTD',
+      codigo: 'RECHAZADO',
       descripcion: 'RECHAZADO'
     },
     {
       id: 4,
-      codigo: 'DSPTCH',
+      codigo: 'DESPACHADO',
       descripcion: 'DESPACHADO'
     },
     {
       id: 5,
-      codigo: 'DLVRD',
+      codigo: 'ENTREGADO',
       descripcion: 'ENTREGADO'
     },
     {
       id: 6,
-      codigo: 'NTKN',
+      codigo: 'DEVUELTO',
       descripcion: 'DEVUELTO'
     }
   ]

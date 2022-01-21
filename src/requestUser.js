@@ -13,9 +13,10 @@ async function getUserInfo() {
     id: 1,
     nombreUsuario: 'Cliente###',
     nombre: 'Julio Alberto Cano Lopez',
-    correoElectronico: '',
-    celular: '',
-    direccion: ''
+    nombreTienda: 'Legumbrería paraíso',
+    correoElectronico: 'julioalbertocano@gmail.com',
+    celular: '3217717939',
+    direccion: 'calle 61 # 56-51'
   }
 }
 

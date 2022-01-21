@@ -14,12 +14,15 @@ import InventoryContainer from './Inventory/InventoryContainer';
 
 function App() {
 
-  useEffect(async ()=>{
-    const states = await getStates();
-    sessionStorage.setItem('purchaseState', JSON.stringify(states))
-    
-    const user = await getUserInfo();
-    sessionStorage.setItem('userInfo', JSON.stringify(user))
+  useEffect(()=>{
+    async function getData(){
+      const states = await getStates();
+      sessionStorage.setItem('purchaseState', JSON.stringify(states))
+      
+      const user = await getUserInfo();
+      sessionStorage.setItem('userInfo', JSON.stringify(user))
+    }
+    getData();
   },[])
   
   return (

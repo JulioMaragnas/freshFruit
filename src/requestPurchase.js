@@ -29,9 +29,19 @@ async function getPurchaseByStateId(stateId) {
       idestado: 1,
       idusuariorepartidor: 12,
       notas:'',
+      usuario:{
+        idestado:'',
+		    idrol:'',
+		    nombreusuario:'',
+		    nombre:'',
+		    clave:'',
+		    correoelectronico:'',
+		    celular:'',
+		    direccion:'',
+      }
     },
     {
-      id: 1,
+      id: 2,
       idusuario: 1,
       fecha: "2021-01-10",
       valortotal: "64500",
@@ -41,7 +51,7 @@ async function getPurchaseByStateId(stateId) {
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem officiis libero dicta accusamus optio omnis rerum asperiores",
     },
     {
-      id: 1,
+      id: 3,
       idusuario: 1,
       fecha: "2021-01-10",
       valortotal: "64500",
@@ -51,7 +61,7 @@ async function getPurchaseByStateId(stateId) {
         "",
     },
     {
-      id: 1,
+      id: 4,
       idusuario: 1,
       fecha: "2021-01-10",
       valortotal: "64500",
