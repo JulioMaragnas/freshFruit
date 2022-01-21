@@ -26,11 +26,13 @@ nav.navbar {
 }
 
 .navbar_img--header{
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     color: black;
     opacity: 0.69;
-    margin-top: 7px;
+    margin-top: 10px;
+    margin-right: 10px;
+    cursor: pointer;
 }
 
 .navbar_img--logo{

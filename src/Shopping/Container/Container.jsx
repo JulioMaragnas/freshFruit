@@ -9,8 +9,7 @@ function Container(props) {
   const [listProducts, setListProducts] = useState([]);
   
   useEffect( async ()=>{
-    const products = await returnProducts()
-    debugger
+    const products = await returnProducts()  || [];
     setListProducts(products)
   },[])
 
@@ -20,6 +19,7 @@ function Container(props) {
         <Banner></Banner>
       </section>
       <section className="display-flex-row container_products">
+      
         {
           listProducts.map(product => (<CardProduct product={product} key={product.id} />))
         }

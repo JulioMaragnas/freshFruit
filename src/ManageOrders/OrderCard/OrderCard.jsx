@@ -4,21 +4,21 @@ import './OrderCard.css'
 import sendIcon from '../../Assets/sendIcon.png';
 import detailOrderIcon from '../../Assets/detailOrderIcon.png';
 
-function OrderCard(params) {
+function OrderCard({order}) {
     return(
         <section className="w-100 order-card">
             <div className="w-100 display-flex-row order-card_header order-card_header--no-margin">
-                <h4> Julio Alberto Cano Lopez - Pan y pedazo </h4>
-                <h2> Estado </h2>
+                <h4> { order.nombreUsuario } - { order.nombreTienda } </h4>
+                <h2> {order.estado} </h2>
             </div>
             <div className="w-100 display-flex-row order-card_detail">
                 <div className="order-card_info">
-                    <h3> Calle 21 # 33-14 piso 2 </h3>
-                    <h3> 2022-01-15 </h3>
+                    <h3> { order.direccion } </h3>
+                    <h3> {order.fecha} </h3>
                 </div>
                 <div className="order-card_info">
-                    <h3>Notas</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At impedit dicta harum hic mollitia animi vel cumque dolores ex. </p>
+                    <h3> { order.notas && 'Notas' } </h3>
+                    <p>{order.notas} </p>
                 </div>
                 <div className="display-flex-row order-card_info order-card_info--right">
                     <button className="container_button mr-10">

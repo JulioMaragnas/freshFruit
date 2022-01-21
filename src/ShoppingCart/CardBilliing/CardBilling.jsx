@@ -1,15 +1,19 @@
 import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import './CardBilling.css';
 import sendIcon from '../../Assets/sendIcon.png';
-import {CartContext} from '../../PerformaceHooks/useCart';
+import { CartContext } from '../../PerformaceHooks/useCart';
 import { createPurchase } from '../../requestPurchase';
 
 function CardBilling() {
 	const [ cart, setCart ] = useContext(CartContext);
+  
+	const navigate = useNavigate();
 	const handlePurchase = async ()=>{
-		debugger
 		await createPurchase(cart);
-		alert('La venta se ha creado correctamente')
+		alert('La venta se ha creado correctamente');
+		setCart({...cart, products: [], total:0});
+		navigate('/')
 	}
 
 	return(

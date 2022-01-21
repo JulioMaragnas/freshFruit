@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter, Route, Link, Routes } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import {CartProvider} from './PerformaceHooks/useCart'
 
 ReactDOM.render(

@@ -23,10 +23,10 @@ function MenuOrders() {
             Pedidos pendientes
           </Menu.Item>
           <Menu.Item key="2" icon={< InfoCircleFilled />}>
-            Pedidos con orden generada
+            Pedidos en proceso
           </Menu.Item>
           <Menu.Item key="3" icon={< InfoCircleFilled />}>
-            Pedidos en proceso
+            Pedidos despachados
           </Menu.Item>
           <Menu.Item key="4" icon={< InfoCircleFilled />}>
             Pedidos entregados
