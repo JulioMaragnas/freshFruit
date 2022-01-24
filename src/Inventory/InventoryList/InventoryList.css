@@ -1,8 +1,0 @@
-.inventory-list_button--create{
-    justify-content: flex-end;
-}
-
-button.container_button>span>svg[data-icon="plus"]{
-    width: 21px;
-    height: 21px;
-}

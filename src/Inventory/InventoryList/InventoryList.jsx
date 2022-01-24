@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import "./InventoryList.css";
 import { Table, Tag, Space } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
-import { returnProducts, movementProduct } from '../../requestInventory';
+import { getListInventory, movementProduct } from '../../requestInventory';
 
 
 function InventoryList(params) {
@@ -12,7 +12,7 @@ function InventoryList(params) {
   
   useEffect(()=>{
     async function init() {
-      const res = await returnProducts();
+      const res = await getListInventory();
       const dataSource = res.map(product => (
         {
           ...product, 
@@ -60,8 +60,8 @@ function InventoryList(params) {
       key: 'action',
       render: (text, record) => (
         <Space size="middle">
-          <a onClick={()=> handleEditInventory(record.id)}> Editar </a>
-          <a onClick={()=> handleMovement(record.id)}> Inactivar </a>
+          <a key="edit" onClick={()=> handleEditInventory(record.id)}> Editar </a>
+          <a key="inactivate" onClick={()=> handleMovement(record.id)}> Inactivar </a>
         </Space>
       ),
     },
@@ -69,12 +69,6 @@ function InventoryList(params) {
   
   return (
     <div className="w-100">
-      <div className="w-100 display-flex-row inventory-list_button--create">
-        <button className="container_button">
-          <PlusOutlined />
-          <span> Crear producto </span>
-        </button>
-      </div>
       <Table columns={columns} dataSource={inventoryList} />
     </div>
   );

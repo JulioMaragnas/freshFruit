@@ -11,6 +11,7 @@ import OrderCardList from './ManageOrders/OrderCardList/OrderCardList';
 import DetailOrder from './ManageOrders/DetailOrder/DetailOrder';
 import InventoryList from './Inventory/InventoryList/InventoryList';
 import Movements from './Inventory/Movements/Movements';
+import ProductList from './Product/ProductList/ProductList';
 import ProductDetail from './Product/ProductDetail/ProductDetail';
 
 function App() {
@@ -34,7 +35,8 @@ function App() {
           <Route path="detail/:detailId" element={<DetailOrder />}></Route>
           <Route path="inventory" element={<InventoryList />}></Route>
           <Route path="inventoryDetail/:inventoryId" element={<Movements />}></Route>
-          <Route path="product/:productId" element={<ProductDetail />}></Route>
+          <Route path="products" element={<ProductList />}></Route>
+          <Route path="productDetail/:productId" element={<ProductDetail />}></Route>
         </Route>
       </Routes>
       <Outlet />

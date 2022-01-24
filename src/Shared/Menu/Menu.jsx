@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Menu.css";
-import profileIcon from "../../Assets/profileIcon.png";
+import profileIcon from '../../Assets/profileIcon.png';
 import { Menu } from "antd";
 import { InfoCircleFilled, AppstoreOutlined } from "@ant-design/icons";
 import { StatePurchaseContext } from "../../PerformaceHooks/useStatePurchase";
@@ -15,8 +15,12 @@ function MenuOrders() {
     navigate("listOrders");
   };
   const handleInventory = () => navigate("inventory");
-  const handleMasters = (value) =>{
-    navigate()
+  const handleMasters = (route) =>{
+    const sw = {
+      products: ()=> navigate('products'),
+      master:()=> navigate('master')
+    }
+    sw[route] && sw[route]();
   }
 
   return (
@@ -73,9 +77,6 @@ function MenuOrders() {
             <Menu.Item key="i1" icon={<InfoCircleFilled />}>
               <span onClick={handleInventory}>Inventarios</span>
             </Menu.Item>
-            <Menu.Item key="i2" icon={<InfoCircleFilled />}>
-              <span>Movimientos</span>
-            </Menu.Item>
           </Menu.SubMenu>
           <Menu.SubMenu
             key="masters"
@@ -88,16 +89,10 @@ function MenuOrders() {
             icon={<AppstoreOutlined />}
           >
             <Menu.Item key="m1" icon={<InfoCircleFilled />}>
-              <span> Productos </span>
+              <span onClick={()=> handleMasters('products')}> Productos </span>
             </Menu.Item>
             <Menu.Item key="m2" icon={<InfoCircleFilled />}>
-              <span> Estados </span>
-            </Menu.Item>
-            <Menu.Item key="m3" icon={<InfoCircleFilled />}>
-              <span> Tipos de estado </span>
-            </Menu.Item>
-            <Menu.Item key="m4" icon={<InfoCircleFilled />}>
-              <span> Motivos </span>
+              <span onClick={()=> handleMasters('master')}> Maestros </span>
             </Menu.Item>
           </Menu.SubMenu>
         </Menu>

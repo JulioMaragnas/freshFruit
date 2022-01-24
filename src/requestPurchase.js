@@ -97,7 +97,12 @@ async function getPurchaseByStateId(stateId) {
   ];
 }
 
+async function checkStatePurchase(params) {
+  
+}
+
 export { 
   createPurchase,
-  getPurchaseByStateId
+  getPurchaseByStateId,
+  checkStatePurchase
 };

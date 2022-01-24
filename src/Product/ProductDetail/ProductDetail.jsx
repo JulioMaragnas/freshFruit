@@ -1,21 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams  } from 'react-router-dom';
 import "./ProductDetail.css";
 import { Form, Input, InputNumber, Button, Upload, message } from "antd";
 import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
+import { getProductById } from '../../requestInventory';
+;
+
 
 function ProductDetail(props) {
   const [form] = Form.useForm();
   const {productId} = useParams();
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState("");
-
-  const uploadButton = (
-    <div>
-      {loading ? <LoadingOutlined /> : <PlusOutlined />}
-      <div style={{ marginTop: 8 }}>Upload</div>
-    </div>
-  );
   const validateMessages = {
     required: "${label} es requerido!",
     types: {
@@ -25,25 +21,40 @@ function ProductDetail(props) {
       range: "${label} debe estar entre ${min} y ${max}",
     },
   };
+  const uploadButton = (
+    <div>
+      {loading ? <LoadingOutlined /> : <PlusOutlined />}
+      <div style={{ marginTop: 8 }}>Upload</div>
+    </div>
+  );
+  
+  useEffect(()=>{
+    async function init(){
+      const res = await getProductById(productId);
+      form.setFieldsValue(res);
+    }
+    productId != 0 && init()
+  }, [])
+  
 
   const getBase64 = (img, callback) => {
     const reader = new FileReader();
     reader.addEventListener("load", () => callback(reader.result));
     reader.readAsDataURL(img);
-    debugger;
   };
+  
   const beforeUpload = (file) => {
     const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
     if (!isJpgOrPng) {
-      message.error("You can only upload JPG/PNG file!");
+      message.error("Solo puedes cargar imagenes JPG/PNG ");
     }
     const isLt2M = file.size / 1024 / 1024 < 2;
     if (!isLt2M) {
-      message.error("Image must smaller than 2MB!");
+      message.error("La imagen debe ser menor a 2MB!");
     }
-    debugger;
     return isJpgOrPng && isLt2M;
   };
+  
   const handleChange = (info) => {
     if (info.file.status === "uploading") {
       setLoading(true);
@@ -56,6 +67,7 @@ function ProductDetail(props) {
       });
     }
   };
+  
   const handleOnFinish = (product) => {
     if (!imageUrl) {
       alert("Para crear el producto debes cargar la imagen de referencia");
@@ -66,7 +78,7 @@ function ProductDetail(props) {
   return (
     <div className="w-100 mt-10 display-flex-row  product-detail">
       <div className="w-100 product-detail_container">
-        <h2 className="product-detail_title--center">{ `${productId !== 0 ? 'Modificar': 'Crear'} producto` }</h2>
+        <h2 className="product-detail_title--center">{ `${Number(productId) !== 0 ? 'Modificar': 'Crear'} producto` }</h2>
         <div className="product-detail_form">
           <Form
             form={form}
@@ -78,7 +90,7 @@ function ProductDetail(props) {
           >
             <Form.Item
               label="Nombre"
-              name="name"
+              name="nombre"
               rules={[
                 {
                   required: true,
@@ -100,7 +112,7 @@ function ProductDetail(props) {
             </Form.Item>
             <Form.Item
               label="Precio de venta"
-              name="price"
+              name="precio"
               rules={[
                 {
                   required: true,
@@ -114,7 +126,7 @@ function ProductDetail(props) {
             </Form.Item>
             <Form.Item
               label="Valor de producción unitario"
-              name="value"
+              name="valorproduccionunitario"
               rules={[
                 {
                   required: true,

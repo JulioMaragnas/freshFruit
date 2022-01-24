@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Container.css";
 
-import { returnProducts } from "../../requestInventory";
+import { getListInventory } from "../../requestInventory";
 import { getUserInfo } from '../../requestUser';
 
 
@@ -14,7 +14,7 @@ function Container(props) {
   
   useEffect(()=>{
     async function init(){
-      const products = await returnProducts()  || [];
+      const products = await getListInventory()  || [];
       setListProducts(products)
       
       const user = await getUserInfo();

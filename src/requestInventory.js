@@ -1,6 +1,6 @@
 import { HeaderParameters } from './Utils/HeaderParameters'
 
-async function returnProducts(param) {
+async function getListInventory(param) {
 
   const params = HeaderParameters('GET')
 
@@ -38,6 +38,16 @@ async function returnProducts(param) {
   ];
 }
 
+async function movementProduct(){
+  const params = HeaderParameters('GET')
+
+  // return fetch('http://localhost:8088/freshfruitinventory/api/inventarios/', params)
+  //   .then(res => res.json())
+  //   .catch(err => console.log('err', err))
+  
+  return true;
+}
+
 async function getInventoryById(inventoryId){
   const params = HeaderParameters('GET')
 
@@ -60,21 +70,42 @@ async function getInventoryById(inventoryId){
   }
 }
 
-async function movementProduct(){
-  const params = HeaderParameters('GET')
-
-  // return fetch('http://localhost:8088/freshfruitinventory/api/inventarios/', params)
-  //   .then(res => res.json())
-  //   .catch(err => console.log('err', err))
-  
-  return true;
+async function getListProducts(){
+  return[
+    {
+      descripcion: "Pulpa de fresa",
+      id: 1,
+      imagen: null,
+      nombre: 'Fresa',
+      precio: 4600,
+      valorproduccionunitario: 2500
+    },
+    {
+      descripcion: "Pulpa de mango",
+      id: 2,
+      imagen: null,
+      nombre: "Mango",
+      precio: 5300,
+      valorproduccionunitario: 2500
+    }
+  ]
 }
 
-
-
+async function getProductById(productId) {
+  return {
+    descripcion: "Pulpa de fresa",
+    id: 1,
+    imagen: null,
+    nombre: "Fresa",
+    precio: 4600,
+    valorproduccionunitario: 2500
+  }
+}
 
 export { 
-  returnProducts,
+  getListInventory,
   movementProduct,
-  getInventoryById
+  getInventoryById,
+  getListProducts,
+  getProductById
 } 

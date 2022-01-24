@@ -11,8 +11,8 @@ function OrderCardList() {
   
   useEffect(()=>{
     console.log(purchaseStateId);
-    async function loadInitialData(){
-      const states = sessionStorage.getItem('purchaseState') ? JSON.parse(sessionStorage.getItem('purchaseState')) : {};
+    async function init(){
+      const states = sessionStorage.getItem('purchaseState') ? JSON.parse(sessionStorage.getItem('purchaseState')) : [];
       const res = await getPurchaseByStateId(purchaseStateId);
       const orderList = res.map(purchase => (
         {
@@ -23,7 +23,7 @@ function OrderCardList() {
         )
       setOrders(orderList);
     }
-    loadInitialData();
+    init();
   },[purchaseStateId])
   
   return (

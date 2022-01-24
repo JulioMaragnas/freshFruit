@@ -18,7 +18,7 @@ async function getStates() {
     {
       id: 2,
       codigo: 'EN_PROCESO',
-      descripcion: 'EN PROCESO'
+      descripcion: 'EN_PROCESO'
     },
     {
       id: 3,
