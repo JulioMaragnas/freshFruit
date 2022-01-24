@@ -13,7 +13,7 @@ function DetailOrder(params) {
     return(
         <section className="w-100 detail-order">
             <div className="w-100 detail-order_controls">
-                <Link to="../list">
+                <Link to="../listOrders">
                     <button className="container_button">
                         <img src={goBackIcon} alt="volver a la lista" />
                         <span> volver a la lista </span>

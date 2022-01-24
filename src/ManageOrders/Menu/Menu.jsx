@@ -1,15 +1,24 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Menu.css";
 import profileIcon from "../../Assets/profileIcon.png";
 import { Menu } from "antd";
-import { InfoCircleFilled } from "@ant-design/icons";
-import { StatePurchaseContext } from '../../PerformaceHooks/useStatePurchase';
+import { InfoCircleFilled, AppstoreOutlined } from "@ant-design/icons";
+import { StatePurchaseContext } from "../../PerformaceHooks/useStatePurchase";
 
 function MenuOrders() {
+  const navigate = useNavigate();
+  const [purchaseStateId, setPurchaseStateId] =
+    useContext(StatePurchaseContext);
+  const handleSetStateId = (stateId) => {
+    setPurchaseStateId(stateId);
+    navigate("listOrders");
+  };
+  const handleInventory = () => navigate("inventory");
+  const handleMasters = (value) =>{
+    navigate()
+  }
 
-  const [purchaseStateId, setPurchaseStateId] = useContext(StatePurchaseContext);
-  const handleSetStateId = (stateId)=> setPurchaseStateId(stateId);
-  
   return (
     <section className="w-100 menu">
       <div className="display-flex-row menu_header">
@@ -22,24 +31,75 @@ function MenuOrders() {
       <div className="menu_steps">
         <Menu
           style={{ width: "100%", height: "100%", backgroundColor: "#EBEBEB" }}
-          defaultSelectedKeys={["1"]}
+          defaultSelectedKeys={["p1"]}
+          mode="inline"
         >
-          <Menu.Item key="1" icon={< InfoCircleFilled />}>
-            <span onClick={()=> handleSetStateId(1)}> Pedidos pendientes </span>
-          </Menu.Item>
-          <Menu.Item key="2" icon={< InfoCircleFilled />}>
-            <span onClick={()=> handleSetStateId(2)}> Pedidos en proceso </span>
-          </Menu.Item>
-          <Menu.Item key="3" icon={< InfoCircleFilled />}>
-            <span onClick={()=> handleSetStateId(3)}> Pedidos despachados </span>
-          </Menu.Item>
-          <Menu.Item key="4" icon={< InfoCircleFilled />}>
-            <span onClick={()=> handleSetStateId(4)}> Pedidos entregados </span>
-          </Menu.Item>
-          <Menu.Item key="" icon={< InfoCircleFilled />}>
-            <span onClick={()=> handleSetStateId(5)}> Pedidos rechazados y/o devueltos </span>
-          </Menu.Item>
-          
+          <Menu.SubMenu
+            key="purchase"
+            title="Administración de compras"
+            style={{
+              width: "100%",
+              height: "100%",
+              backgroundColor: "#EBEBEB",
+            }}
+            icon={<AppstoreOutlined />}
+          >
+            <Menu.Item key="p1" icon={<InfoCircleFilled />}>
+              <span onClick={() => handleSetStateId(1)}> Pedidos pendientes </span>
+            </Menu.Item>
+            <Menu.Item key="p2" icon={<InfoCircleFilled />}>
+              <span onClick={() => handleSetStateId(2)}>Pedidos en proceso</span>
+            </Menu.Item>
+            <Menu.Item key="p3" icon={<InfoCircleFilled />}>
+              <span onClick={() => handleSetStateId(3)}>Pedidos despachados</span>
+            </Menu.Item>
+            <Menu.Item key="p4" icon={<InfoCircleFilled />}>
+              <span onClick={() => handleSetStateId(4)}>Pedidos entregados</span>
+            </Menu.Item>
+            <Menu.Item key="p5" icon={<InfoCircleFilled />}>
+              <span onClick={() => handleSetStateId(5)}>Pedidos rechazados y/o devueltos</span>
+            </Menu.Item>
+          </Menu.SubMenu>
+          <Menu.SubMenu
+            key="inventory"
+            title="Administración de inventario"
+            style={{
+              width: "100%",
+              height: "100%",
+              backgroundColor: "#EBEBEB",
+            }}
+            icon={<AppstoreOutlined />}
+          >
+            <Menu.Item key="i1" icon={<InfoCircleFilled />}>
+              <span onClick={handleInventory}>Inventarios</span>
+            </Menu.Item>
+            <Menu.Item key="i2" icon={<InfoCircleFilled />}>
+              <span>Movimientos</span>
+            </Menu.Item>
+          </Menu.SubMenu>
+          <Menu.SubMenu
+            key="masters"
+            title="Administración de maestros"
+            style={{
+              width: "100%",
+              height: "100%",
+              backgroundColor: "#EBEBEB",
+            }}
+            icon={<AppstoreOutlined />}
+          >
+            <Menu.Item key="m1" icon={<InfoCircleFilled />}>
+              <span> Productos </span>
+            </Menu.Item>
+            <Menu.Item key="m2" icon={<InfoCircleFilled />}>
+              <span> Estados </span>
+            </Menu.Item>
+            <Menu.Item key="m3" icon={<InfoCircleFilled />}>
+              <span> Tipos de estado </span>
+            </Menu.Item>
+            <Menu.Item key="m4" icon={<InfoCircleFilled />}>
+              <span> Motivos </span>
+            </Menu.Item>
+          </Menu.SubMenu>
         </Menu>
       </div>
     </section>

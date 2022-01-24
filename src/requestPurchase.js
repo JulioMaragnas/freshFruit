@@ -28,16 +28,15 @@ async function getPurchaseByStateId(stateId) {
       valortotal: "64500",
       idestado: 1,
       idusuariorepartidor: 12,
-      notas:'',
+      notas:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem officiis libero dicta accusamus optio omnis rerum asperiores',
       usuario:{
         idestado:'',
 		    idrol:'',
-		    nombreusuario:'',
-		    nombre:'',
-		    clave:'',
+		    nombreusuario:'JulioCano',
+		    nombre:'Julio Alberto Cano Lopez',
 		    correoelectronico:'',
 		    celular:'',
-		    direccion:'',
+		    direccion:'calle 62',
       }
     },
     {
@@ -49,6 +48,15 @@ async function getPurchaseByStateId(stateId) {
       idusuariorepartidor: 12,
       notas:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem officiis libero dicta accusamus optio omnis rerum asperiores",
+        usuario:{
+          idestado:'',
+          idrol:'',
+          nombreusuario:'JulioCano',
+          nombre:'Julio Alberto Cano Lopez',
+          correoelectronico:'',
+          celular:'',
+          direccion:'calle 62',
+        }
     },
     {
       id: 3,
@@ -57,8 +65,16 @@ async function getPurchaseByStateId(stateId) {
       valortotal: "64500",
       idestado: 1,
       idusuariorepartidor: 12,
-      notas:
-        "",
+      notas:"",
+      usuario:{
+        idestado:'',
+		    idrol:'',
+		    nombreusuario:'JulioCano',
+		    nombre:'Julio Alberto Cano Lopez',
+		    correoelectronico:'',
+		    celular:'',
+		    direccion:'calle 62',
+      }
     },
     {
       id: 4,
@@ -67,8 +83,16 @@ async function getPurchaseByStateId(stateId) {
       valortotal: "64500",
       idestado: 1,
       idusuariorepartidor: 12,
-      notas:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem officiis libero dicta accusamus optio omnis rerum asperiores",
+      notas: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem officiis libero dicta accusamus optio omnis rerum asperiores",
+      usuario:{
+        idestado:'',
+		    idrol:'',
+		    nombreusuario:'JulioCano',
+		    nombre:'Julio Alberto Cano Lopez',
+		    correoelectronico:'',
+		    celular:'',
+		    direccion:'calle 62',
+      }
     },
   ];
 }

@@ -1,0 +1,19 @@
+.product-detail{
+    justify-content: center;
+}
+
+.product-detail_container{
+    width: 50%;
+}
+
+.product-detail_title--center{
+    text-align: center;
+}
+
+.product-detail_form{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    border:#d1d1d1 3px solid ;
+    border-radius: 10px;
+}

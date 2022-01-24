@@ -26,8 +26,8 @@ function Navbar(props) {
   const [cart, setCart] = useContext(CartContext);
   const navigate = useNavigate();
   const handleRoute = () => {
-    cart && cart.length && navigate("shoppingCart");
-    !(cart && cart.length) && window.alert("El carrito est\xE1 vac\xEDo");
+    cart && cart.products.length && navigate("shoppingCart");
+    !(cart && cart.products.length) && window.alert("El carrito est\xE1 vac\xEDo");
   };
 
   return (

@@ -38,9 +38,43 @@ async function returnProducts(param) {
   ];
 }
 
+async function getInventoryById(inventoryId){
+  const params = HeaderParameters('GET')
+
+  // return fetch(`http://localhost:8088/freshfruitinventory/api/inventarios/${inventoryId}`, params)
+  //   .then(res => res.json() ? res.json(): {})
+  //   .catch(err => console.log('err', err))
+  
+  return {
+    existencias: 10,
+    id: 1,
+    idproducto: 1,
+    productos: {
+      descripcion: "Pulpa de fresa",
+      id: 1,
+      imagen: null,
+      nombre: "Fresa",
+      precio: 4600,
+      valorproduccionunitario: 2500
+    }
+  }
+}
+
+async function movementProduct(){
+  const params = HeaderParameters('GET')
+
+  // return fetch('http://localhost:8088/freshfruitinventory/api/inventarios/', params)
+  //   .then(res => res.json())
+  //   .catch(err => console.log('err', err))
+  
+  return true;
+}
+
 
 
 
 export { 
-  returnProducts
+  returnProducts,
+  movementProduct,
+  getInventoryById
 } 

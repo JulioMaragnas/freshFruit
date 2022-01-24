@@ -11,11 +11,17 @@ function CardProduct({ product }) {
   const navigate = useNavigate();
 
   const handleCart = () => {
+  debugger
     const productAdded = cart.products.find(p=> p.id === product.id);
     let newCart = cart.products.map(p => ({...p}));
     if(productAdded && (quantity + productAdded.cantidadAgregada) <= product.existencias) {  
       newCart = cart.products.map(p => p.id === productAdded.id ? {...p, cantidadAgregada: quantity + p.cantidadAgregada} : p)
-    } 
+    }
+    
+    if(productAdded &&(quantity + productAdded.cantidadAgregada) > product.existencias){
+      alert('has superado la cantidad maxima de existencias');
+    }
+    
     if (!productAdded) {
       newCart = [...cart.products, {...product, cantidadAgregada : quantity}]
     }
