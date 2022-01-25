@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from "react-router-dom";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
-import { Modal, Button } from 'antd';
+import { Modal } from 'antd';
+import { checkStatePurchase } from '../../requestPurchase';
 import './OrderCard.css'
 import sendIcon from '../../Assets/sendIcon.png';
 import detailOrderIcon from '../../Assets/detailOrderIcon.png';
 
-function OrderCard({order}) {
+function OrderCard({order, setPurchaseState, purchaseState}) {
     const { confirm:confirmModal  } = Modal;
     const navigate = useNavigate();
     const [buttontitle, setButtontitle] = useState('');
@@ -28,33 +29,43 @@ function OrderCard({order}) {
             icon: <ExclamationCircleOutlined />,
             content: '',
             onOk() {
-              console.log('OK');
+              const { idMotivo, nextState } = getNextStateId(order.estado.codigo)
+              const payload ={
+                idVenta: order.id,
+                idmetausuario: null,
+                idusuariorepartidor: null,
+                idMotivo
+              }
+              checkStatePurchase(payload, nextState);
+              setPurchaseState(purchaseState + 1)
+              setPurchaseState(purchaseState -1)
             },
             onCancel() {
               console.log('Cancel');
             },
           });
     }
-    // const getNextStateId = (stateCode)=>{
-    //     const swStateId ={
-    //         ['CREADO']: ()=> findId('EN_PROCESO'),
-    //         ['EN_PROCESO']: ()=> findId('DESPACHADO'),
-    //         ['DESPACHADO']: ()=> findId('ENTREGADO')
-    //     }
-    //     if (swStateCode[stateCode]) return swStateCode[stateCode]();
-    // }
-    // const findId = (stateCode)=> {
-    //     const states = sessionStorage.getItem('purchaseState') ? JSON.parse(sessionStorage.getItem('purchaseState')) : [];
-    //     const { id } = states.find(state => state.codigo === stateCode);
-    //     return id
-    // }
+    const getNextStateId = (stateCode)=>{
+        const swStateId ={
+            ['CREADO']: ()=> findId('motivo 1', 'EN_PROCESO'),
+            ['EN_PROCESO']: ()=> findId('motivo 1', 'DESPACHADO'),
+            ['DESPACHADO']: ()=> findId('motivo 1', 'DESPACHADO')
+        }
+        if (swStateId[stateCode]) return swStateId[stateCode]();
+    }
+    const findId = (reasonByState, nextState)=> {
+        const reasons = sessionStorage.getItem('reasons') ? JSON.parse(sessionStorage.getItem('reasons')) : [];
+        const { id } = reasons.find(reason => reason.descripcion === reasonByState);
+        
+        return { id, nextState }
+    }
     
     
     return(
         <section className="w-100 order-card">
             <div className="w-100 display-flex-row order-card_header order-card_header--no-margin">
                 <h4> { order.usuario.nombre } - { order.usuario.nombreTienda } </h4>
-                <h2> {order.estado.descripcion} </h2>
+                <h2 className='order-card_label--blue'> {order.estado.descripcion} </h2>
             </div>
             <div className="w-100 display-flex-row order-card_detail">
                 <div className="order-card_info">
@@ -62,7 +73,7 @@ function OrderCard({order}) {
                     <h3> {order.fecha} </h3>
                 </div>
                 <div className="order-card_info">
-                    <h3> { order.notas && 'Notas' } </h3>
+                    <h3 className='order-card_label--blue'> { order.notas && 'Notas' } </h3>
                     <p>{order.notas} </p>
                 </div>
                 <div className="display-flex-row order-card_info order-card_info--right">

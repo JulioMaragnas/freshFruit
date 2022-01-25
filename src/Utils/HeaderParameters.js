@@ -4,7 +4,7 @@ function HeaderParameters(method, payload) {
   const params = {
     headers: {
       Accept: "application/json",
-      Authorization: token
+      Authorization: `Bearer ${token}`
     },
     method,
   };

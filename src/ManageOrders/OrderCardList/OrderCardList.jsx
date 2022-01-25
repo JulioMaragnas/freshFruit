@@ -12,6 +12,7 @@ function OrderCardList() {
   useEffect(()=>{
     console.log(purchaseStateId);
     async function init(){
+      debugger
       const states = sessionStorage.getItem('purchaseState') ? JSON.parse(sessionStorage.getItem('purchaseState')) : [];
       const res = await getPurchaseByStateId(purchaseStateId);
       const orderList = res.map(purchase => (
@@ -29,7 +30,7 @@ function OrderCardList() {
   return (
     <div className="w-100">
       {
-        orders.map(order => (<OrderCard order={order} key={order.id} />))
+        orders.map(order => (<OrderCard order={order} setPurchaseState={setPurchaseStateId} purchaseState={purchaseStateId} key={order.id} />))
       }
     </div>
   );

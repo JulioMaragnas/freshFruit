@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Route, Routes, Outlet } from "react-router-dom";
-import { getStates } from './requestMasters';
+import { getStates, getReasons } from './requestMasters';
 import './App.css';
 import "antd/dist/antd.css";
 import Navbar from './Shared/Navbar/Navbar';
@@ -20,6 +20,11 @@ function App() {
     async function init(){
       const states = await getStates();
       sessionStorage.setItem('purchaseState', JSON.stringify(states));
+      
+      const reasons = await getReasons();
+      sessionStorage.setItem('reasons', JSON.stringify(reasons));
+      
+      sessionStorage.setItem('token', 'eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJmcmVzaEZydWl0IiwiYXV0aG9yaXRpZXMiOlsiUk9MX0FETUlOIl0sImlhdCI6MTY0MzA3OTU2MCwiZXhwIjoxNjQ0Mjc5NTYwfQ.kxXFtn_1Hz9XXzLtEO-LGOw_K_qopKnPDBlQ7YOyRieoLilC8AAnKi5zlfoAmwNUhB6TNrnKKcWKDf5ErKOuEQ')
     }
     init()
   },[])
