@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { CartContext } from "../../PerformaceHooks/useCart";
-import { Menu, Dropdown, Button, Space } from "antd";
+import { Menu, Dropdown, message, Space } from "antd";
 import "./Navbar.css";
 import logo from "../../Assets/logoFFS.png";
 import user from "../../Assets/userFFS.png";
@@ -27,7 +27,7 @@ function Navbar(props) {
   const navigate = useNavigate();
   const handleRoute = () => {
     cart && cart.products.length && navigate("shoppingCart");
-    !(cart && cart.products.length) && window.alert("El carrito est\xE1 vac\xEDo");
+    !(cart && cart.products.length) && message.info("El carrito est\xE1 vac\xEDo", 0.6);
   };
 
   return (

@@ -3,7 +3,7 @@ import { useParams  } from 'react-router-dom';
 import "./ProductDetail.css";
 import { Form, Input, InputNumber, Button, Upload, message } from "antd";
 import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
-import { getProductById } from '../../requestInventory';
+import { getProductById, createAndUpdateProduct } from '../../requestInventory';
 ;
 
 
@@ -32,6 +32,7 @@ function ProductDetail(props) {
     async function init(){
       const res = await getProductById(productId);
       form.setFieldsValue(res);
+      setImageUrl(res.imagen);
     }
     productId != 0 && init()
   }, [])
@@ -61,19 +62,25 @@ function ProductDetail(props) {
       return;
     }
     if (info.file.status === "done") {
-      getBase64(info.file.originFileObj, (imageUrl) => {
+      getBase64(info.file.originFileObj, (image) => {
         setLoading(false);
-        setImageUrl(imageUrl);
+        setImageUrl(image);
       });
     }
   };
   
   const handleOnFinish = (product) => {
     if (!imageUrl) {
-      alert("Para crear el producto debes cargar la imagen de referencia");
+      message.warning("Para crear el producto debes cargar la imagen de referencia");
       return;
     }
-    
+    debugger
+    const isUpdate = productId != 0;
+    if (isUpdate) {
+      product.id = productId
+    }
+    const res = createAndUpdateProduct({...product, imagen: imageUrl}, isUpdate);
+    message.success(`Producto ${productId != 0 ? 'actualizado': 'creado'} correctamente`);
   };
   return (
     <div className="w-100 mt-10 display-flex-row  product-detail">
@@ -144,7 +151,7 @@ function ProductDetail(props) {
                 listType="picture-card"
                 className="avatar-uploader"
                 showUploadList={false}
-                action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                action="https://run.mocky.io/v3/840df47a-3a7d-4b5e-8b57-ef2a09c636a0"
                 beforeUpload={beforeUpload}
                 onChange={handleChange}
               >

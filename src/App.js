@@ -24,7 +24,7 @@ function App() {
       const reasons = await getReasons();
       sessionStorage.setItem('reasons', JSON.stringify(reasons));
       
-      sessionStorage.setItem('token', 'eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJmcmVzaEZydWl0IiwiYXV0aG9yaXRpZXMiOlsiUk9MX0FETUlOIl0sImlhdCI6MTY0MzA3OTU2MCwiZXhwIjoxNjQ0Mjc5NTYwfQ.kxXFtn_1Hz9XXzLtEO-LGOw_K_qopKnPDBlQ7YOyRieoLilC8AAnKi5zlfoAmwNUhB6TNrnKKcWKDf5ErKOuEQ')
+      sessionStorage.setItem('token', 'eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJmcmVzaEZydWl0IiwiYXV0aG9yaXRpZXMiOlsiUk9MX0FETUlOIl0sImlhdCI6MTY0MzA3NDQyNSwiZXhwIjoxNjQ0Mjc0NDI1fQ.-RL2b42qo7mgo7qR6hvL3Fx_e3pX_oIE5n_He2ytrXQx-ExU2eHvGLqZhg7beFWD0J_ViF-bjZ41J75Vysvc6g')
     }
     init()
   },[])

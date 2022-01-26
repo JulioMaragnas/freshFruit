@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Table, Tag, Space } from "antd";
+import { Table, Space } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import './ProductList.css';
 import { getListProducts } from '../../requestInventory';
@@ -19,18 +19,20 @@ function ProductList(){
     },
     {
       title: "Descripci\xF3n",
-      dataIndex: "nombre",
-      key: "nombre",
+      dataIndex: "descripcion",
+      key: "descripcion",
     },
     {
       title: "Valor de producci\xF3n",
       dataIndex: "valorproduccionunitario",
       key: "valorproduccionunitario",
+      render: (text, record) => `$${text || 0}`
     },
     {
-      title: "Precio",
+      title: "Precio de venta",
       dataIndex: "precio",
       key: "precio",
+      render: (text, record) => `$${text || 0}`
     },
     {
       title: 'Acciones',

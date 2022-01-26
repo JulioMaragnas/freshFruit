@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { message } from 'antd';
 import "./CardProduct.css";
 import carIcon from "../../Assets/carIcon.png";
 import {CartContext} from '../../PerformaceHooks/useCart'
@@ -19,7 +20,8 @@ function CardProduct({ product }) {
     }
     
     if(productAdded &&(quantity + productAdded.cantidadAgregada) > product.existencias){
-      alert('has superado la cantidad maxima de existencias');
+      message.warning('has superado la cantidad maxima de existencias');
+      return;
     }
     
     if (!productAdded) {
@@ -28,10 +30,11 @@ function CardProduct({ product }) {
     
     setQuantiy(1);
     setCart({...cart, products:newCart});
+    message.success('El producto se ha agregado al carrito', 0.6);
     
-    if(window.confirm(`la ${product.productos.descripcion} se ha agregado al carrito, Quieres ir al carrito?`) === true){
-      navigate('shoppingCart')
-    }
+    // if(window.confirm(`la ${product.productos.descripcion} se ha agregado al carrito, Quieres ir al carrito?`) === true){
+    //   navigate('shoppingCart')
+    // }
   };
 
   return (

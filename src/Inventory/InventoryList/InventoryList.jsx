@@ -16,7 +16,7 @@ function InventoryList(params) {
       const dataSource = res.map(product => (
         {
           ...product, 
-          productDescription: product.productos.descripcion,
+          productDescription: `${product.productos.nombre} - ${product.productos.descripcion}`,
           valUnitario: product.productos.valorproduccionunitario
         }))
       setInventoryList(dataSource);
@@ -36,7 +36,7 @@ function InventoryList(params) {
 
   const columns = [
     {
-      title: "C\xF3digo",
+      title: "C\xF3digo inventario",
       dataIndex: "id",
       key: "id",
     },
@@ -69,6 +69,12 @@ function InventoryList(params) {
   
   return (
     <div className="w-100">
+      <div className="w-100 display-flex-row inventory-list_button--create">
+        <button onClick={()=> handleEditInventory(0)} className="container_button">
+          <PlusOutlined />
+          <span> Crear inventario </span>
+        </button>
+      </div>
       <Table columns={columns} dataSource={inventoryList} />
     </div>
   );
