@@ -17,7 +17,7 @@ function CardProductBuy({ product }) {
     <div className="card-product-buy">
       <img
         className="w-100 image--br-5 card-product-buy_image--full"
-        src={`/assets/${imagen}`}
+        src={`${imagen}`}
         alt=""
       />
       <h3> COD {product.id} </h3>

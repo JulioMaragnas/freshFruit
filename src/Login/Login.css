@@ -1,0 +1,20 @@
+.login{
+    height: calc(100vh - 50px);
+    justify-content: center;
+    align-items: center;
+}
+.login_container{
+    border: 1px solid #d4d4d4;
+    border-radius: 10px;
+    width: 25%;
+}
+.login_image--center{
+    justify-content: center;
+}
+.login_image--center>img{
+    width: 40%;
+}
+.login_form{
+    box-sizing: border-box;
+    padding: 0px 10px;
+}

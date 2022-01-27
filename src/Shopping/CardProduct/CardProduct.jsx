@@ -12,7 +12,6 @@ function CardProduct({ product }) {
   const navigate = useNavigate();
 
   const handleCart = () => {
-  debugger
     const productAdded = cart.products.find(p=> p.id === product.id);
     let newCart = cart.products.map(p => ({...p}));
     if(productAdded && (quantity + productAdded.cantidadAgregada) <= product.existencias) {  
@@ -41,7 +40,7 @@ function CardProduct({ product }) {
     <section className="card-product" key={product.id}>
       <img
         className="w-100 image--br-5 card-product_image--height"
-        src={`/assets/${imagen}`}
+        src={`${imagen}`}
         alt=""
       />
       <h3 className="card-product_code">COD {product.id}</h3>

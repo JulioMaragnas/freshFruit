@@ -3,7 +3,7 @@ import { HeaderParameters } from "./Utils/HeaderParameters";
 async function createPurchase(purchase) {
   debugger
   const listaProductos = purchase.products.map(
-    ({ idproducto: id, cantidadAgregada: cantidad }) => ({ id, cantidad })
+    ({ idproducto, cantidadAgregada: cantidad }) => ({ idproducto, cantidad })
   );
 
   const params = HeaderParameters("POST", { idMotivo: 1, listaProductos });
@@ -17,11 +17,9 @@ async function createPurchase(purchase) {
 
 async function getPurchaseByStateId(stateId) {
   const params = HeaderParameters("GET");
-  return fetch(`http://localhost:8089/freshfruitventas/api/obtenerListaVentasPorEstado/${stateId}?paginaActual=1&paginacion=10000`, params)
-    .then(purchaseList => {
-      const {lista} = purchaseList.json();
-      return lista;
-    })
+  return fetch(`http://localhost:8089/freshfruitventas/api/ventas/obtenerListaVentasPorEstado/${stateId}?paginaActual=0&paginacion=10000`, params)
+    .then(data => data.json())
+    .then(([{lista}]) => lista)
     .catch((err) => []);
 
   // return [

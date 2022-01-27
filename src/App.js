@@ -4,6 +4,7 @@ import { getStates, getReasons } from './requestMasters';
 import './App.css';
 import "antd/dist/antd.css";
 import Navbar from './Shared/Navbar/Navbar';
+import Login from './Login/Login';
 import Container from './Shopping/Container/Container';
 import ShoppingCartContainer from './ShoppingCart/ShoppingCartContainer';
 import ManageOrdersContainer from './ManageOrders/ManageOrdersContainer';
@@ -33,7 +34,8 @@ function App() {
     <>
       <Navbar />
       <Routes>
-        <Route path="/" index element={<Container />}></Route>
+        <Route path="/"element={<Container />}></Route>
+        <Route path="login" index element={<Login />}></Route>
         <Route path="shoppingCart" element={<ShoppingCartContainer />}></Route>
         <Route path="manageOrders" element={ <ManageOrdersContainer /> }>
           <Route path="listOrders" index element={<OrderCardList />}></Route>

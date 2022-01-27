@@ -20,6 +20,17 @@ async function getUserInfo() {
   }
 }
 
+async function login(userInfo){
+  const params = HeaderParameters("POST", userInfo);
+  return fetch(
+    `http://localhost:8090/freshfruitusuarios/api/usuarios/login`,
+    params
+  )
+  .then((res) => res.text())
+  .catch((err) => console.log("error", err));
+}
+
 export {
-    getUserInfo 
+    getUserInfo,
+    login
 }
