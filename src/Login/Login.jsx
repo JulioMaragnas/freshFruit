@@ -6,15 +6,16 @@ import profileIcon from "../Assets/profileIcon.png";
 import { login } from '../requestUser';
 
 
-function Login(props) {
+function Login() {
+  const [form] = Form.useForm();
   const navigate = useNavigate();
+  
   const onFinish = async (userInfo) => {
     const res = await login(userInfo);
-    if(!res){
-      message.warning('Usuario o clave no validos!');
+    if(!res) {
+      form.setFieldsValue({});
       return
-    }
-    sessionStorage.setItem('token',res);
+    };
     navigate('/')
     
   };
@@ -30,10 +31,8 @@ function Login(props) {
         </div>
         <div className="w-100 mt-10 login_form">
           <Form
+            form={form}
             layout="vertical"
-            initialValues={{
-              remember: true,
-            }}
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
             autoComplete="off"
@@ -44,7 +43,7 @@ function Login(props) {
               rules={[
                 {
                   required: true,
-                  type: 'email',
+                  //type: 'email',
                   message: "Por favor ingresa tu usuario!",
                 },
               ]}

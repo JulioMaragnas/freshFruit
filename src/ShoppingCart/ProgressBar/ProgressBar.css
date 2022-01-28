@@ -1,51 +1,49 @@
+.progress-bar_list {
+  counter-reset: step;
+}
 
-  
-  .progress-bar_list {
-    counter-reset: step;
-  }
-  
-  .progress-bar_list li {
-    position: relative;
-    list-style: none;
-    float: left;
-    width: 23%;
-    text-align: center;
-  }
-  
-  .progress-bar_list li:before {
-    content: counter(step);
-    counter-increment: step;
-    width: 40px;
-    height: 40px;
-    border: 1px solid #2979FF;
-    display: block;
-    text-align: center;
-    margin: 0 auto 10px auto;
-    border-radius: 50%;
-    background-color: #bfbfbf;
-    line-height: 39px;
-  }
-  
-  .progress-bar_list li:after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 1px;
-    background: #bfbfbf ;
-    top: 20px;
-    left: -50%;
-    z-index: -1;
-  }
-  
-  .progress-bar_list li:first-child:after {
-    content: none;
-  }
-  
-  .progress-bar_list li.progress-bar_item--active:before {
-    background: #4557bb;
-    content: "✔";  
-  }
-  
-  .progress-bar_list li.progress-bar_item--active + li:after {
-    background: #4557bb;
-  }
+.progress-bar_list li {
+  position: relative;
+  list-style: none;
+  float: left;
+  width: 23%;
+  text-align: center;
+}
+
+.progress-bar_list li:before {
+  content: counter(step);
+  counter-increment: step;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #2979ff;
+  display: block;
+  text-align: center;
+  margin: 0 auto 10px auto;
+  border-radius: 50%;
+  background-color: #bfbfbf;
+  line-height: 39px;
+}
+
+.progress-bar_list li:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background: #bfbfbf;
+  top: 20px;
+  left: -50%;
+  z-index: -1;
+}
+
+.progress-bar_list li:first-child:after {
+  content: none;
+}
+
+.progress-bar_list li.progress-bar_item--active:before {
+  background: #4557bb;
+  content: "✔";
+}
+
+.progress-bar_list li.progress-bar_item--active + li:after {
+  background: #4557bb;
+}

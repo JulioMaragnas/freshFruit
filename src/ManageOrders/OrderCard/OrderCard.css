@@ -9,7 +9,7 @@
 
 .order-card_header{
     box-sizing: border-box;
-    padding: 10px;
+    padding: 10px 10px 0px 10px;
     justify-content: space-between;
 }
 
@@ -28,7 +28,7 @@
 .order-card_info{
     width: 33.3333%;
     box-sizing: border-box;
-    padding: 10px;
+    padding: 0px 10px 10px 10px;
 }
 .order-card_info--right{
     justify-content: flex-end;

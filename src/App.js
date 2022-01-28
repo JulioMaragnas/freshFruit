@@ -19,13 +19,15 @@ function App() {
 
   useEffect( ()=>{
     async function init(){
+      // const userlogged = JSON.parse(sessionStorage.getItem('userlogged'));
+      // if (!userlogged) {
+      //   const res = await getTemporalToken();
+      // }
       const states = await getStates();
       sessionStorage.setItem('purchaseState', JSON.stringify(states));
       
       const reasons = await getReasons();
       sessionStorage.setItem('reasons', JSON.stringify(reasons));
-      
-      sessionStorage.setItem('token', 'eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJmcmVzaEZydWl0IiwiYXV0aG9yaXRpZXMiOlsiUk9MX0FETUlOIl0sImlhdCI6MTY0MzA3NDQyNSwiZXhwIjoxNjQ0Mjc0NDI1fQ.-RL2b42qo7mgo7qR6hvL3Fx_e3pX_oIE5n_He2ytrXQx-ExU2eHvGLqZhg7beFWD0J_ViF-bjZ41J75Vysvc6g')
     }
     init()
   },[])

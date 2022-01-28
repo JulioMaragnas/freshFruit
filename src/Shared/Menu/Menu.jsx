@@ -49,19 +49,19 @@ function MenuOrders() {
             icon={<AppstoreOutlined />}
           >
             <Menu.Item key="p1" icon={<InfoCircleFilled />}>
-              <span onClick={() => handleSetStateId(1)}> Pedidos pendientes </span>
+              <span onClick={() => handleSetStateId(2)}> Pedidos pendientes </span>
             </Menu.Item>
             <Menu.Item key="p2" icon={<InfoCircleFilled />}>
-              <span onClick={() => handleSetStateId(2)}>Pedidos en proceso</span>
+              <span onClick={() => handleSetStateId(1)}>Pedidos en proceso</span>
             </Menu.Item>
             <Menu.Item key="p3" icon={<InfoCircleFilled />}>
-              <span onClick={() => handleSetStateId(3)}>Pedidos despachados</span>
+              <span onClick={() => handleSetStateId(4)}>Pedidos despachados</span>
             </Menu.Item>
             <Menu.Item key="p4" icon={<InfoCircleFilled />}>
-              <span onClick={() => handleSetStateId(4)}>Pedidos entregados</span>
+              <span onClick={() => handleSetStateId(5)}>Pedidos entregados</span>
             </Menu.Item>
             <Menu.Item key="p5" icon={<InfoCircleFilled />}>
-              <span onClick={() => handleSetStateId(5)}>Pedidos rechazados y/o devueltos</span>
+              <span onClick={() => handleSetStateId(6)}>Pedidos rechazados y/o devueltos</span>
             </Menu.Item>
           </Menu.SubMenu>
           <Menu.SubMenu

@@ -64,13 +64,13 @@ function OrderCard({order, setPurchaseState, purchaseState}) {
     return(
         <section className="w-100 order-card">
             <div className="w-100 display-flex-row order-card_header order-card_header--no-margin">
-                <h4> { order.usuario.nombre } - { order.usuario.nombreTienda } </h4>
+                <h4><span className='order-card_label--blue'> Pedido #{order.id} </span> | { order.usuario.nombre } - { order.usuario.nombreTienda } </h4>
                 <h2 className='order-card_label--blue'> {order.estado.descripcion} </h2>
             </div>
             <div className="w-100 display-flex-row order-card_detail">
                 <div className="order-card_info">
-                    <h3> { order.usuario.direccion } </h3>
-                    <h3> {order.fecha} </h3>
+                    <h3>Direcci&oacute;n: { order.usuario.direccion } </h3>
+                    <h3>Fecha del pedido: {order.fecha} </h3>
                 </div>
                 <div className="order-card_info">
                     <h3 className='order-card_label--blue'> { order.notas && 'Notas' } </h3>

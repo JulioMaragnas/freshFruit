@@ -1,6 +1,7 @@
 .card-billing{
     padding:0 0 10px 10px;
     background-color: #EBEBEB;
+    border-radius: 10px;
 }
 
 .card-billing_button-container{

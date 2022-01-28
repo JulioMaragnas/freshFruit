@@ -54,6 +54,7 @@ function InventoryList(params) {
       title: "Valor unitario",
       dataIndex: "valUnitario",
       key: "valUnitario",
+      render: (text, record)=> `$${text}`
     },
     {
       title: 'Action',
