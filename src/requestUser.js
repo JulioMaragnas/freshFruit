@@ -12,16 +12,6 @@ async function getUserInfo() {
       sessionStorage.setItem('userInfo', JSON.stringify(user))
     })
     .catch((err) => console.log("error", err));
-  
-  return {
-    id: 1,
-    nombreUsuario: 'Cliente###',
-    nombre: 'Julio Alberto Cano Lopez',
-    nombreTienda: 'Legumbrería paraíso',
-    correoElectronico: 'julioalbertocano@gmail.com',
-    celular: '3217717939',
-    direccion: 'calle 61 # 56-51'
-  }
 }
 
 async function getTemporalToken() {
@@ -61,7 +51,6 @@ async function login(userInfo){
   )
   .then((res) => res.text())
   .then(token =>{
-    debugger;
     try {
       const { status, message: text } = JSON.parse(token);
       status === 400 && (message.warning(text));
@@ -76,8 +65,56 @@ async function login(userInfo){
   .catch((err) => console.log("error", err));
 }
 
+async function getDelivers() {
+  return [
+    {
+      id: 1,
+      idestado: 0,
+      idrol: 0,
+      nombre: "Deliver 1",
+    },
+    {
+      id: 2,
+      idestado: 0,
+      idrol: 0,
+      nombre: "Deliver 2",
+    },
+    {
+      id: 3,
+      idestado: 0,
+      idrol: 0,
+      nombre: "Deliver 3",
+    },
+    {
+      id: 4,
+      idestado: 0,
+      idrol: 0,
+      nombre: "Deliver 4",
+    },
+    {
+      id: 5,
+      idestado: 0,
+      idrol: 0,
+      nombre: "Deliver 5",
+    },
+    {
+      id: 6,
+      idestado: 0,
+      idrol: 0,
+      nombre: "Deliver 6",
+    },
+    {
+      id: 7,
+      idestado: 0,
+      idrol: 0,
+      nombre: "Deliver 7",
+    }
+  ]
+}
+
 export {
     getUserInfo,
     getTemporalToken,
-    login
+    login,
+    getDelivers
 }

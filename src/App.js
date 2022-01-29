@@ -19,10 +19,6 @@ function App() {
 
   useEffect( ()=>{
     async function init(){
-      // const userlogged = JSON.parse(sessionStorage.getItem('userlogged'));
-      // if (!userlogged) {
-      //   const res = await getTemporalToken();
-      // }
       const states = await getStates();
       sessionStorage.setItem('purchaseState', JSON.stringify(states));
       

@@ -2,18 +2,14 @@ import React from 'react';
 import './DetailOrderCard.css';
 import imageReference from '../../../Assets/imageReference.png';
 
-function DetailOrderCard(params) {
+function DetailOrderCard({detailData}) {
     return(
         <section className="detail-order-card">
-            <img className="w-100 detail-order-card_image--border-radius" src={imageReference} alt="" />
-            <h3>COD ###</h3>
-            <p>
-                <span>Descripcion:</span> Lorem ipsum dolor sit amet
-            </p>
-            <p> <span>Cantidad:</span> </p>
-            {/* <div className="display-flex-row detail-order-card_check--right">
-                <input type="checkbox" name="" id="" />
-            </div> */}
+            <img className="w-100 detail-order-card_image--border-radius" src={detailData.productos.imagen} alt={detailData.productos.nombre} />
+            <h3>COD {detailData.idproducto}</h3>
+            <p> <span>Nombre:</span> {detailData.productos.nombre} </p>
+            <p> <span>Descripcion:</span> {detailData.productos.descripcion} </p>
+            <p> <span>Cantidad:</span> {detailData.cantidad} </p>
         </section>
     )
 }

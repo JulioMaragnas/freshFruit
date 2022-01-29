@@ -19,20 +19,18 @@ function OrderCardList() {
           ...purchase, 
           estado : states.find(state => state.id ===  purchase.idestado) || null
         })
-        
-        )
+      )
       setOrders(orderList);
     }
     init();
   },[purchaseStateId])
   
   return (
-    <div className="w-100">
+    <div className="w-100 order-list">
       {
         orders.map(order => (<OrderCard order={order} setPurchaseState={setPurchaseStateId} purchaseState={purchaseStateId} key={order.id} />))
       }
     </div>
   );
 }
-
 export default OrderCardList;

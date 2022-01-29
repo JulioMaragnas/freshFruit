@@ -12,3 +12,16 @@
 .manage-orders_view{
     width: 80%;
 }
+
+.order-list{
+    height: calc(100vh - 60px);
+    overflow: scroll;
+}
+.order-list::-webkit-scrollbar {
+    width: 12px;
+  }
+  .order-list::-webkit-scrollbar-thumb {
+    background-color: #a0a0a0;    /* color of the scroll thumb */
+    border-radius: 20px;       /* roundness of the scroll thumb */
+    border: 3px solid #fff8ea;  /* creates padding around scroll thumb */
+  }

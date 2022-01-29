@@ -22,89 +22,11 @@ async function getPurchaseByStateId(stateId) {
     .then(data => data.json())
     .then(({lista}) => lista)
     .catch((err) => []);
-
-  // return [
-  //   {
-  //     id: 1,
-  //     idusuario: 1,
-  //     fecha: "2021-01-10",
-  //     valortotal: "64500",
-  //     idestado: 1,
-  //     idusuariorepartidor: 12,
-  //     notas:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem officiis libero dicta accusamus optio omnis rerum asperiores',
-  //     usuario:{
-  //       idestado:'',
-	// 	    idrol:'',
-	// 	    nombreusuario:'JulioCano',
-	// 	    nombre:'Julio Alberto Cano Lopez',
-	// 	    correoelectronico:'',
-	// 	    celular:'',
-	// 	    direccion:'calle 62',
-  //     }
-  //   },
-  //   {
-  //     id: 2,
-  //     idusuario: 1,
-  //     fecha: "2021-01-10",
-  //     valortotal: "64500",
-  //     idestado: 1,
-  //     idusuariorepartidor: 12,
-  //     notas:
-  //       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem officiis libero dicta accusamus optio omnis rerum asperiores",
-  //       usuario:{
-  //         idestado:'',
-  //         idrol:'',
-  //         nombreusuario:'JulioCano',
-  //         nombre:'Julio Alberto Cano Lopez',
-  //         correoelectronico:'',
-  //         celular:'',
-  //         direccion:'calle 62',
-  //       }
-  //   },
-  //   {
-  //     id: 3,
-  //     idusuario: 1,
-  //     fecha: "2021-01-10",
-  //     valortotal: "64500",
-  //     idestado: 1,
-  //     idusuariorepartidor: 12,
-  //     notas:"",
-  //     usuario:{
-  //       idestado:'',
-	// 	    idrol:'',
-	// 	    nombreusuario:'JulioCano',
-	// 	    nombre:'Julio Alberto Cano Lopez',
-	// 	    correoelectronico:'',
-	// 	    celular:'',
-	// 	    direccion:'calle 62',
-  //     }
-  //   },
-  //   {
-  //     id: 4,
-  //     idusuario: 1,
-  //     fecha: "2021-01-10",
-  //     valortotal: "64500",
-  //     idestado: 1,
-  //     idusuariorepartidor: 12,
-  //     notas: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem officiis libero dicta accusamus optio omnis rerum asperiores",
-  //     usuario:{
-  //       idestado:'',
-	// 	    idrol:'',
-	// 	    nombreusuario:'JulioCano',
-	// 	    nombre:'Julio Alberto Cano Lopez',
-	// 	    correoelectronico:'',
-	// 	    celular:'',
-	// 	    direccion:'calle 62',
-  //     }
-  //   },
-  // ];
 }
 
 async function checkStatePurchase(purchase, nextState = 'EN_PROCESO') {
-  debugger;
   const request = (endpoint, payload)=>{ 
     const params = HeaderParameters("PUT", payload);
-
     return fetch(
       `http://localhost:8089/freshfruitventas/api${endpoint}`,
       params
@@ -121,8 +43,22 @@ async function checkStatePurchase(purchase, nextState = 'EN_PROCESO') {
   return swState[nextState]()
 }
 
+async function getDetailPurchase(detailId) {
+  const params = HeaderParameters("GET");
+  return fetch(
+    `http://localhost:8089/freshfruitventas/api/ventas/obtenerDetallesVenta/${detailId}`,
+    params
+  ).then(res => res.json())
+  .then(detail =>{
+    return detail
+  })
+  .catch(err => console.log('error',err));
+  
+}
+
 export { 
   createPurchase,
   getPurchaseByStateId,
+  getDetailPurchase,
   checkStatePurchase
 };
