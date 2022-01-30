@@ -25,7 +25,9 @@ function Container(props) {
       <section className="display-flex-row container_products">
       
         {
-          listProducts.map(product => (<CardProduct product={product} key={product.id} />))
+          listProducts
+            .filter(product => product.existencias >  0)
+            .map(product => (<CardProduct product={product} key={product.id} />))
         }
       </section>
       <section className="container_goals">

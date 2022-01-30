@@ -69,7 +69,7 @@ function ProductDetail(props) {
     }
   };
   
-  const handleOnFinish = (product) => {
+  const handleOnFinish = async (product) => {
     if (!imageUrl) {
       message.warning("Para crear el producto debes cargar la imagen de referencia");
       return;
@@ -79,8 +79,8 @@ function ProductDetail(props) {
     if (isUpdate) {
       product.id = productId
     }
-    const res = createAndUpdateProduct({...product, imagen: imageUrl}, isUpdate);
-    message.success(`Producto ${productId != 0 ? 'actualizado': 'creado'} correctamente`);
+    const res = await createAndUpdateProduct({...product, imagen: imageUrl}, isUpdate);
+    res && message.success(`Producto ${productId != 0 ? 'actualizado': 'creado'} correctamente`);
   };
   return (
     <div className="w-100 mt-10 display-flex-row  product-detail">

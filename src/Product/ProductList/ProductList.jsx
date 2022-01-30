@@ -46,15 +46,24 @@ function ProductList(){
   ]
   
   const [productList, setProductList] = useState([]);
+  const [originalList, setOriginalList] = useState([]);
+  const [searchParam, setSearchParam] = useState('');
   const navigate = useNavigate();
   const handleEditProduct = (inventoryId)=>{
     navigate(`../productDetail/${inventoryId}`)
+  }
+  const handleSearchChange = ({target: { value }})=> {
+    setSearchParam(value.trim());
+    const param = value.trim().toLowerCase();
+    value.length && setProductList(originalList.filter(product => product.nombre.toLowerCase().indexOf(param) >= 0 || product.descripcion.toLowerCase().indexOf(param) >= 0))
+    !value.length && setProductList(originalList.map(product => product))
   }
   
   useEffect(()=>{
     async function init(){
       const res = await getListProducts();
       setProductList(res);
+      setOriginalList(res)
     }
     init();
   },[])
@@ -62,6 +71,7 @@ function ProductList(){
   return(
     <div className="w-100">
       <div className="w-100 display-flex-row product-list_button--create">
+        <input className='product-list_search--margin-right' type="text" placeholder='Busca el producto' value={searchParam} onChange={handleSearchChange}/>
         <button onClick={()=> handleEditProduct(0)} className="container_button">
           <PlusOutlined />
           <span> Crear producto </span>

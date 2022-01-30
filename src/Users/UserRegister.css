@@ -1,0 +1,19 @@
+.user-register{
+	justify-content: center;
+}
+
+.user-register_container{
+	width: 50%;
+}
+
+.user-register_title--center{
+	text-align: center;
+}
+
+.user-register_form{
+	width: 100%;
+	box-sizing: border-box;
+	padding: 10px;
+	border:#d1d1d1 3px solid ;
+	border-radius: 10px;
+}

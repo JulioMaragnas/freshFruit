@@ -6,3 +6,8 @@ button.container_button>span>svg[data-icon="plus"]{
   width: 21px;
   height: 21px;
 }
+
+.product-list_search--margin-right{
+  margin-right: 10px;
+  border-radius: 5px;
+}

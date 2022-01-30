@@ -17,7 +17,6 @@ function Login() {
       return
     };
     navigate('/')
-    
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -74,6 +73,9 @@ function Login() {
               </Button>
             </Form.Item>
           </Form>
+        </div>
+        <div className="login_register">
+          <a onClick={()=> navigate('../registerUser')}> Registrate! </a>
         </div>
       </div>
     </section>

@@ -2,16 +2,24 @@ import React, { useState, useContext, useEffect } from "react";
 import "./CardProductBuy.css";
 import deleteIcon from "../../Assets/deleteIcon.png";
 import { CartContext } from '../../PerformaceHooks/useCart';
+import { useNavigate } from "react-router-dom";
 
 function CardProductBuy({ product }) {
   const [aditionalQuantiy, setAditionalQuantiy] = useState(product.cantidadAgregada);
   const [ cart, setCart ] = useContext(CartContext);
+  const navigate = useNavigate()
   
   useEffect(()=>{
     const newTotal = cart.products.length ? cart.products.reduce((accum, curr) => accum + (curr.id === product.id ? (aditionalQuantiy * curr.productos.precio): (curr.cantidadAgregada * curr.productos.precio)),0): 0;
     setCart({...cart, total: newTotal})
-  },[aditionalQuantiy])
-
+  },[aditionalQuantiy]);
+  
+  const removeProduct = (productId)=> {
+    const products = cart.products.filter(product => product.id !== productId);
+    const newTotal = products.reduce((accum, curr) => accum + (curr.id === product.id ? (aditionalQuantiy * curr.productos.precio): (curr.cantidadAgregada * curr.productos.precio)),0);
+    setCart({products, total: newTotal });
+    !products.length && navigate('/');
+  }
   const {productos: { imagen }} = product;
   return (
     <div className="card-product-buy">
@@ -21,6 +29,7 @@ function CardProductBuy({ product }) {
         alt=""
       />
       <h3> COD {product.id} </h3>
+      <p>{product.productos.descripcion}</p>
       <p>
         <span className="card-product-buy_label"> Cantidad: </span>
         {product.cantidadAgregada}
@@ -46,7 +55,9 @@ function CardProductBuy({ product }) {
             ➖
           </button>
         </div>
-        <button className="container_button">
+        <button 
+          className="container_button"
+          onClick={()=> removeProduct(product.id)}>
           <img src={deleteIcon} alt="delete" />
           <span> Eliminar </span>
         </button>
