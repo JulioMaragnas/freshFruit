@@ -18,7 +18,9 @@ function MenuOrders() {
   const handleMasters = (route) =>{
     const sw = {
       products: ()=> navigate('products'),
-      master:()=> navigate('master')
+      master:()=> navigate('master'),
+      pendingApprovals: ()=> navigate('pendingApprovals'),
+      ['registerUser/1']: ()=> navigate('registerUser/1')
     }
     sw[route] && sw[route]();
   }
@@ -76,6 +78,23 @@ function MenuOrders() {
           >
             <Menu.Item key="i1" icon={<InfoCircleFilled />}>
               <span onClick={handleInventory}>Inventarios</span>
+            </Menu.Item>
+          </Menu.SubMenu>
+          <Menu.SubMenu
+            key="users"
+            title="Administración de usuarios"
+            style={{
+              width: "100%",
+              height: "100%",
+              backgroundColor: "#EBEBEB",
+            }}
+            icon={<AppstoreOutlined />}
+          >
+            <Menu.Item key="u1" icon={<InfoCircleFilled />}>
+              <span onClick={()=> handleMasters('pendingApprovals')}> Aprobaciones pendientes </span>
+            </Menu.Item>
+            <Menu.Item key="u2" icon={<InfoCircleFilled />}>
+              <span onClick={()=> handleMasters('registerUser/1')}> Crear usuarios </span>
             </Menu.Item>
           </Menu.SubMenu>
           <Menu.SubMenu

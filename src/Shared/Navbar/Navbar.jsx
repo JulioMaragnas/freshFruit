@@ -7,28 +7,19 @@ import logo from "../../Assets/logoFFS.png";
 import user from "../../Assets/userFFS.png";
 import carIcon from "../../Assets/carIcon.png";
 
-
-const menu = (
-  <Menu>
-    <Menu.Item key="1">
-      <a> Perfil </a>
-    </Menu.Item>
-    <Menu.Item key="2">
-      <a> Mis compras </a> 
-    </Menu.Item>
-    <Menu.Item key="3">
-      <a> Cerrar Sesi&oacute;n </a>
-    </Menu.Item>
-  </Menu>
-);
-
 function Navbar(props) {
-  const [cart, setCart] = useContext(CartContext);
   const navigate = useNavigate();
+  const [cart, setCart] = useContext(CartContext);
+  
   const handleRoute = () => {
     cart && cart.products.length && navigate("shoppingCart");
     !(cart && cart.products.length) && message.info("El carrito est\xE1 vac\xEDo", 0.6);
   };
+  
+  const logoff = ()=>{
+    sessionStorage.setItem('userlogged', false);
+    navigate('/login')
+  }
 
   return (
     <nav className="navbar">
@@ -49,7 +40,19 @@ function Navbar(props) {
         />
         <Space direction="vertical">
           <Space wrap>
-            <Dropdown overlay={menu} placement="bottomLeft">
+            <Dropdown overlay={
+              <Menu>
+              <Menu.Item key="1">
+                <a> Perfil </a>
+              </Menu.Item>
+              <Menu.Item key="2">
+                <a> Mis compras </a> 
+              </Menu.Item>
+              <Menu.Item key="3">
+                <a onClick={logoff}> Cerrar Sesi&oacute;n </a>
+              </Menu.Item>
+            </Menu>
+            } placement="bottomLeft">
               <img className="navbar_img--header" src={user} alt="" />
             </Dropdown>
           </Space>

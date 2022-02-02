@@ -4,8 +4,8 @@ import { getStates, getReasons } from './requestMasters';
 import './App.css';
 import "antd/dist/antd.css";
 import Navbar from './Shared/Navbar/Navbar';
-import Login from './Login/Login';
-import UserRegister from './Users/UserRegister';
+import Login from './Users/Login/Login';
+import UserRegister from './Users/UserRegister/UserRegister';
 import Container from './Shopping/Container/Container';
 import ShoppingCartContainer from './ShoppingCart/ShoppingCartContainer';
 import ManageOrdersContainer from './ManageOrders/ManageOrdersContainer';
@@ -15,6 +15,7 @@ import InventoryList from './Inventory/InventoryList/InventoryList';
 import Movements from './Inventory/Movements/Movements';
 import ProductList from './Product/ProductList/ProductList';
 import ProductDetail from './Product/ProductDetail/ProductDetail';
+import PendingApprovals from './Users/PendingApprovals/PendingApprovals';
 
 function App() {
 
@@ -35,7 +36,7 @@ function App() {
       <Routes>
         <Route path="/"element={<Container />}></Route>
         <Route path="login" index element={<Login />}></Route>
-        <Route path="registerUser" index element={<UserRegister />}></Route>
+        <Route path="registerClient/:isAdminCreator" index element={<UserRegister />}></Route>
         <Route path="shoppingCart" element={<ShoppingCartContainer />}></Route>
         <Route path="manageOrders" element={ <ManageOrdersContainer /> }>
           <Route path="listOrders" index element={<OrderCardList />}></Route>
@@ -44,6 +45,8 @@ function App() {
           <Route path="inventoryDetail/:inventoryId" element={<Movements />}></Route>
           <Route path="products" element={<ProductList />}></Route>
           <Route path="productDetail/:productId" element={<ProductDetail />}></Route>
+          <Route path="pendingApprovals" element={<PendingApprovals />}></Route>
+          <Route path="registerUser/:isAdminCreator" index element={<UserRegister />}></Route>
         </Route>
       </Routes>
       <Outlet />

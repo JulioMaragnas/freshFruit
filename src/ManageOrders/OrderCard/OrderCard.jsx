@@ -7,8 +7,8 @@ import { Modal} from 'antd';
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import { checkStatePurchase } from '../../requestPurchase';
 import { getDelivers } from '../../requestUser';
-
 import ModalDeliver from '../../Shared/Modal/Modal';
+
 
 function OrderCard({order, setPurchaseState, purchaseState}) {
     const { confirm:confirmModal  } = Modal;

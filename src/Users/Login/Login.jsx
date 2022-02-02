@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Form, Input, Button, message } from "antd";
 import "./Login.css";
-import profileIcon from "../Assets/profileIcon.png";
-import { login } from '../requestUser';
-
+import profileIcon from "../../Assets/profileIcon.png";
+import { login, getUserInfo } from '../../requestUser';
+import TermsAndConditions from '../TermsAndConditions/TermsAndConditionsModal';
 
 function Login() {
   const [form] = Form.useForm();
   const navigate = useNavigate();
+  const [visible, setVisible] = useState(false);
   
   const onFinish = async (userInfo) => {
     const res = await login(userInfo);
@@ -16,7 +17,10 @@ function Login() {
       form.setFieldsValue({});
       return
     };
-    navigate('/')
+    const {roles: { codigo }} = await getUserInfo();
+    codigo === 'CLIENTE' && navigate('/')
+    codigo !== 'CLIENTE' && navigate('../manageOrders')
+    
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -75,9 +79,11 @@ function Login() {
           </Form>
         </div>
         <div className="login_register">
-          <a onClick={()=> navigate('../registerUser')}> Registrate! </a>
+          <a onClick={()=> navigate('../registerClient/0')}> Registrate! </a> <p />
+          <a onClick={()=> setVisible(true)}> Leer T&eacute;rminos y condiciones </a>
         </div>
       </div>
+      <TermsAndConditions visible={visible} setVisible={setVisible}></TermsAndConditions>
     </section>
   );
 }

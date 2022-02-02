@@ -8,7 +8,7 @@ function HeaderParameters(method, payload) {
     },
     method,
   };
-  if (methods.some((m) => m === method)) {
+  if (methods.some((m) => m === method) && payload) {
     params.headers["Content-Type"] = "application/json";
     params.body = JSON.stringify(payload);
   }

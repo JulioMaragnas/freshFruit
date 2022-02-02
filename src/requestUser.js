@@ -10,6 +10,7 @@ async function getUserInfo() {
     .then((res) => res.json())
     .then(user => {
       sessionStorage.setItem('userInfo', JSON.stringify(user))
+      return user;
     })
     .catch((err) => console.log("error", err));
 }
@@ -59,10 +60,76 @@ async function login(userInfo){
     const [,part] = token.split(' ');
     sessionStorage.setItem('token',part);
     sessionStorage.setItem('userlogged',true);
-    getUserInfo();
     return true
   })
   .catch((err) => console.log("error", err));
+}
+
+async function createNewClient(newClient) {
+  const params = HeaderParameters("POST", newClient);
+  return fetch(
+    `http://localhost:8090/freshfruitusuarios/api/usuarios/insertarCliente`,
+    params
+  )
+    .then((res) => res.text())
+    .then(res => {
+      try {
+        const { status, message: text } = JSON.parse(res);
+        status === 400 && (message.warning(text));
+        return false;
+      } catch (error) {}
+      return true
+    })
+    .catch((err) => console.log("error", err));
+}
+
+async function createNewUser(newUser) {
+  const params = HeaderParameters("POST", newUser);
+  return fetch(
+    `http://localhost:8090/freshfruitusuarios/api/usuarios/`,
+    params
+  )
+    .then((res) => res.text())
+    .then(res => {
+      try {
+        const { status, message: text } = JSON.parse(res);
+        status === 400 && (message.warning(text));
+        return false;
+      } catch (error) {}
+      return true
+    })
+    .catch((err) => console.log("error", err));
+}
+
+async function updateStateClient(action, userId) {
+  const params = HeaderParameters("PUT");
+  return fetch(
+    `http://localhost:8090/freshfruitusuarios/api/usuarios/${action}/${userId}`,
+    params
+  )
+    .then((res) => res.text())
+    .then(res => {
+      try {
+        const { status, message: text } = JSON.parse(res);
+        status === 400 && (message.warning(text));
+        return false;
+      } catch (error) {}
+      return true
+    })
+    .catch((err) => console.log("error", err));
+  
+}
+
+async function getPendingApprovals() {
+  const params = HeaderParameters("GET");
+  return fetch(
+    `http://localhost:8090/freshfruitusuarios/api/usuarios/obtenerListaPendientes?paginaActual=0&paginacion=1000`,
+    params
+  )
+    .then((res) => res.json())
+    .then(({lista}) => lista)
+    .catch((err) => console.log("error", err));
+  
 }
 
 async function getDelivers() {
@@ -116,5 +183,9 @@ export {
     getUserInfo,
     getTemporalToken,
     login,
+    createNewClient,
+    updateStateClient,
+    createNewUser,
+    getPendingApprovals,
     getDelivers
 }
