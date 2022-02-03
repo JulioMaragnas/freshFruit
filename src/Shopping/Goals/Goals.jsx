@@ -10,7 +10,6 @@ function Goals(props) {
     const islogged = JSON.parse(sessionStorage.getItem("userlogged")) || false;
     async function init(params) {
       const res = await getGoalsByUser();
-      //TODO: se debe agupar por fechas y mostrarlo
     }
     islogged && init();
   }, []);
