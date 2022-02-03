@@ -37,6 +37,7 @@ function App() {
         <Route path="/"element={<Container />}></Route>
         <Route path="login" index element={<Login />}></Route>
         <Route path="registerClient/:isAdminCreator" index element={<UserRegister />}></Route>
+        <Route path="infoClient/:isAdminCreator" index element={<UserRegister />}></Route>
         <Route path="shoppingCart" element={<ShoppingCartContainer />}></Route>
         <Route path="manageOrders" element={ <ManageOrdersContainer /> }>
           <Route path="listOrders" index element={<OrderCardList />}></Route>

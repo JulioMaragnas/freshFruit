@@ -129,7 +129,17 @@ async function getPendingApprovals() {
     .then((res) => res.json())
     .then(({lista}) => lista)
     .catch((err) => console.log("error", err));
-  
+}
+
+async function getGoalsByUser() {
+  const params = HeaderParameters("GET");
+  return fetch(
+    `http://localhost:8090/freshfruitusuarios/api/usuarios/obtenerMetasUsuarioSesion`,
+    params
+  )
+    .then((res) => res.json())
+    .then(lista => lista)
+    .catch((err) => console.log("error", err));
 }
 
 async function getDelivers() {
@@ -187,5 +197,6 @@ export {
     updateStateClient,
     createNewUser,
     getPendingApprovals,
+    getGoalsByUser,
     getDelivers
 }

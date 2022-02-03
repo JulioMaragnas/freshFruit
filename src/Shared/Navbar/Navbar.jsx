@@ -20,6 +20,12 @@ function Navbar(props) {
     sessionStorage.setItem('userlogged', false);
     navigate('/login')
   }
+  
+  const handleGetProfile = ()=>{
+    const islogged = JSON.parse(sessionStorage.getItem('userlogged')) || false;
+    !islogged && navigate('/login');
+    islogged && navigate('/infoClient/0')
+  }
 
   return (
     <nav className="navbar">
@@ -43,7 +49,7 @@ function Navbar(props) {
             <Dropdown overlay={
               <Menu>
               <Menu.Item key="1">
-                <a> Perfil </a>
+                <a onClick={handleGetProfile}> Perfil </a>
               </Menu.Item>
               <Menu.Item key="2">
                 <a> Mis compras </a> 

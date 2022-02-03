@@ -19,7 +19,7 @@ function Login() {
     };
     const {roles: { codigo }} = await getUserInfo();
     codigo === 'CLIENTE' && navigate('/')
-    codigo !== 'CLIENTE' && navigate('../manageOrders')
+    codigo === 'ADMIN' && navigate('../manageOrders')
     
   };
 

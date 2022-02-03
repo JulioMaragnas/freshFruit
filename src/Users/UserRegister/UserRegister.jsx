@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "./UserRegister.css";
 import { Form, Input, Button, Checkbox, Select, message } from "antd";
-import { createNewClient, createNewUser } from "../../requestUser";
+import { createNewClient, createNewUser, getUserInfo } from "../../requestUser";
 
 const { Option } = Select;
 function UserRegister() {
@@ -10,6 +10,15 @@ function UserRegister() {
   const navigation = useNavigate();
   const [form] = Form.useForm();
   const [registerType, setRegisterType] = useState(3);
+  
+  useEffect(() => {
+    async function init(){
+      const res = await getUserInfo()
+      form.setFieldsValue(res);
+    }
+    isAdminCreator == 0 && init();
+  }, []);
+  
   
   const handleSelectRol = (idRol)=> setRegisterType(idRol);
   const registerUser = async (user) => {
@@ -37,7 +46,6 @@ function UserRegister() {
       const res = await createNewUser(newUser);
       res && message.success("El registro se ha creado exitosamente", 2);
       res && navigation("pendingApprovals");
-      // TODO: se debe corregir el id de los roles para que no estalle en base de datos
     }
   };
   return (

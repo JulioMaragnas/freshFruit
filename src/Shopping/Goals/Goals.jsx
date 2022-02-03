@@ -1,80 +1,89 @@
-import React from "react";
-import './Goals.css'
+import React, { useState, useEffect } from "react";
+import { getGoalsByUser } from "../../requestUser";
+import "./Goals.css";
+import { Progress } from "antd";
 
 function Goals(props) {
+  const [goalsUser, setGoalsUser] = useState([]);
+
+  useEffect(() => {
+    const islogged = JSON.parse(sessionStorage.getItem("userlogged")) || false;
+    async function init(params) {
+      const res = await getGoalsByUser();
+      //TODO: se debe agupar por fechas y mostrarlo
+    }
+    islogged && init();
+  }, []);
+
   return (
     <div className="page">
       <div className="timeline">
         <div className="timeline__group">
           <span className="timeline__year time" aria-hidden="true">
-            2008
+            2022
           </span>
           <div className="timeline__cards">
             <div className="timeline__card card">
               <header className="card__header">
                 <time className="time" dateTime="2008-02-02">
-                  <span className="time__day">2</span>
-                  <span className="time__month">Feb</span>
+                  {/* <span className="time__day">2</span> */}
+                  <span className="time__month">Febrero</span>
                 </time>
               </header>
               <div className="card__content">
-                <p>
-                  Attends the Philadelphia Museum
-                </p>
+                <p> Peras y manzanas </p>
+                <Progress percent={1} size="small" />
+              </div>
+              <div className="card__content">
+                <p> Cosecha de kiwi </p>
+                <Progress percent={78} size="small" />
+              </div>
+            </div>
+            <div className="timeline__card card">
+              <header className="card__header">
+                <time className="time" dateTime="2008-02-02">
+                  {/* <span className="time__day">2</span> */}
+                  <span className="time__month">Enero</span>
+                </time>
+              </header>
+              <div className="card__content">
+                <p> Lluvia de fresas </p>
+                <Progress percent={30} size="small" />
+              </div>
+              <div className="card__content">
+                <p> Cosecha de kiwi </p>
+                <Progress percent={78} size="small" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="timeline__group">
+          <span className="timeline__year time" aria-hidden="true">
+            2021
+          </span>
+          <div className="timeline__cards">
+            <div className="timeline__card card">
+              <header className="card__header">
+                <time className="time" dateTime="2008-09-01">
+                  <span className="time__day"></span>
+                  <span className="time__month">Diciembre</span>
+                </time>
+              </header>
+              <div className="card__content">
+                <p> Fiesta de mango tommy </p>
+                <Progress percent={100} size="small" />
               </div>
             </div>
             <div className="timeline__card card">
               <header className="card__header">
                 <time className="time" dateTime="2008-09-01">
-                  <span className="time__day">1</span>
-                  <span className="time__month">Sept</span>
+                  <span className="time__day"></span>
+                  <span className="time__month">Noviembre</span>
                 </time>
               </header>
               <div className="card__content">
-                <p>
-                  Started from University of Pennsylvania.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="timeline__group">
-          <span className="timeline__year time" aria-hidden="true">
-            2014
-          </span>
-          <div className="timeline__cards">
-            <div className="timeline__card card">
-              <header className="card__header">
-                <time className="time" dateTime="2008-07-14">
-                  <span className="time__day">14</span>
-                  <span className="time__month">Jul</span>
-                </time>
-              </header>
-              <div className="card__content">
-                <p>
-                  Travels to France, Italy, Spain, and Peru. 
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="timeline__group">
-          <span className="timeline__year time" aria-hidden="true">
-            2016
-          </span>
-          <div className="timeline__cards">
-            <div className="timeline__card card">
-              <header className="card__header">
-                <time className="time" dateTime="2008-08-18">
-                  <span className="time__day">28</span>
-                  <span className="time__month">Aug</span>
-                </time>
-              </header>
-              <div className="card__content">
-                <p>
-                  Upon moving to Brooklyn that summer, I began photographing
-                  weddings in Chicago
-                </p>
+                <p> Noviembre de la pi&ntilde;a </p>
+                <Progress percent={90} size="small" status="exception" />
               </div>
             </div>
           </div>
@@ -84,4 +93,4 @@ function Goals(props) {
   );
 }
 
-export default Goals
+export default Goals;
