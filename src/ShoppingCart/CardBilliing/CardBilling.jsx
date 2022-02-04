@@ -25,7 +25,7 @@ function CardBilling() {
 
 	return(
 		<div className="w-100 card-billing">
-			<h1 className="card-billing_value--center">{`$ ${cart.total}`}</h1>
+			<h5 className="card-billing_value--center">{`Valor Total: $ ${cart.total}`}</h5>
 			<section className="card-billing_detail">
 			    {
 			      userlogged && (
