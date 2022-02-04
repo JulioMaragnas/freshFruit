@@ -1,10 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700&&display=swap');
+
 body {
   margin: 0;
-  font-family: Lato, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
-    "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-  -webkit-font-smoothing: antialiased;
+  /* font-family: Lato, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+    "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif; */
+    font-family: 'Nunito Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #e3e3e3;
 }
+
+h1, h2, h3, h4, h5, h6{
+
+}
+
 .w-100{
   width: 100%;
 }
@@ -39,9 +48,13 @@ body {
 }
 
 .container_button {
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
-  border: 1px solid #1890ff;
+  border: none;
+  padding: 10px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
 }
 
 button.container_button > img {

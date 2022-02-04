@@ -10,5 +10,5 @@
 
 .shopping-container_billing{
     width: 30%;
-    overflow: hidden;
+    box-sizing: border-box;
 }

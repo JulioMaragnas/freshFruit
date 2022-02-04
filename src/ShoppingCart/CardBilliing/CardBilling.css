@@ -1,6 +1,6 @@
 .card-billing{
-    padding:0 0 10px 10px;
-    background-color: #EBEBEB;
+    padding:10px;
+    background-color: #f3f3f3;
     border-radius: 10px;
 }
 
@@ -9,10 +9,11 @@
     justify-content: flex-end;
 }
 
-.card-billing_label{
-    opacity: 60%;
+.card-billing_label{    
+    color: white;
+    background: #8f971b;
     margin: 0
-}
+}+
 .card-billing_address,
 .card-billing_name,
 .card-billing_additional-info{
@@ -20,7 +21,7 @@
 }
 
 .card-billing_value--center{
-    font-size: 90px;
+    font-size: 65px;
     text-align: center;
     margin: 0 0 40px;
     width: calc(100% - 10px);
