@@ -4,8 +4,8 @@ import { CartContext } from "../../PerformaceHooks/useCart";
 import { Menu, Dropdown, message, Space } from "antd";
 import "./Navbar.css";
 import logo from "../../Assets/logoFFS.png";
-import user from "../../Assets/userFFS.png";
-import carIcon from "../../Assets/carIcon.png";
+import user from "../../Assets/userFFS.svg";
+import carIcon from "../../Assets/shopping-cart.svg";
 
 function Navbar(props) {
   const navigate = useNavigate();
@@ -35,7 +35,7 @@ function Navbar(props) {
         </div>
       </Link>
       <div className="navbar_container navbar_container--center">
-        <h1 className="navbar_title"> Tienda FreshFruit </h1>
+        
       </div>
       <div className="navbar_container navbar_container--right">
         <img

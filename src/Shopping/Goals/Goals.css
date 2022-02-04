@@ -1,7 +1,7 @@
  p:not([className]){
-    line-height: var(--cssTypographyLineHeight, 1.78);
+    /* line-height: var(--cssTypographyLineHeight, 1.78);
     margin-top: var(--cssTypographyBasicMargin, 1em);
-    margin-bottom: 0;
+    margin-bottom: 0; */
   }
   
   p:not([className]):first-child{
@@ -28,7 +28,6 @@
   .time{
     padding: var(--timePadding, .25rem 1.25rem .25rem);
     background-color: var(--timeBackgroundColor, #f0f0f0);
-  
     font-size: var(--timeFontSize, .75rem);
     font-weight: var(--timeFontWeight, 700);
     text-transform: var(--timeTextTransform, uppercase);
@@ -82,7 +81,7 @@
   
   .timeline{
     --uiTimelineMainColor: var(--timelineMainColor, #222);
-    --uiTimelineSecondaryColor: var(--timelineSecondaryColor, #fff);
+    --uiTimelineSecondaryColor: var(--timelineSecondaryColor, rgb(0, 0, 0));
   
     border-left: var(--timelineLineWidth, 3px) solid var(--timelineLineBackgroundColor, var(--uiTimelineMainColor));
     padding-top: 1rem;
@@ -93,7 +92,8 @@
     --timePadding: var(--timelineYearPadding, .5rem 1.5rem);
     --timeColor: var(--uiTimelineSecondaryColor);
     --timeBackgroundColor: var(--uiTimelineMainColor);
-    --timeFontWeight: var(--timelineYearFontWeight, 400);
+    --timeFontWeight: var(--timelineYearFontWeight, 700);
+    font-size: 0.75rem
   }
   
   .timeline__card{
@@ -129,7 +129,7 @@
   */
   /**/
   .timeline{
-    --timelineMainColor: #4557bb;
+    --timelineMainColor: #d8caa7;
   }
   
   p{

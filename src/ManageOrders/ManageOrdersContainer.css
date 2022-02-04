@@ -5,8 +5,8 @@
 .manage-orders_menu{
     width: 19%;
     margin-right: 10px;
-    min-height: calc(100vh - 55px);
-    background-color: #EBEBEB;
+    min-height: calc(100vh - 60px);
+    background-color: #f3f3f3;
 }
 
 .manage-orders_view{
