@@ -6,7 +6,7 @@ function Banner() {
     <section className="banner" style={{backgroundImage: 'url(/assets/banner004.png)'}}>
       <div className="bg"></div>
       <div className="title">
-        Tienda Fresh Fruit
+        Fresh Fruit
       </div>
     </section>
   );

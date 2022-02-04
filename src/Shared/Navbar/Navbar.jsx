@@ -32,7 +32,6 @@ function Navbar(props) {
       <Link to="/">
         <div className="navbar_container navbar_container--left">
           <img className="navbar_img--logo" src={logo} alt="logoFFS" />
-          <h1 className="navbar_title"> FreshFruit </h1>
         </div>
       </Link>
       <div className="navbar_container navbar_container--center">

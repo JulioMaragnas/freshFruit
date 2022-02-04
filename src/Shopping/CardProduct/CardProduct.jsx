@@ -46,7 +46,11 @@ function CardProduct({ product }) {
         alt=""
       />
       <h3 className="card-product_code">COD {product.id}</h3>
-      <p><h3>Precio:</h3> ${product.productos.precio}</p>
+      <p className="product-price">
+        {
+          myFormat(product.productos.precio)
+        }
+      </p>
       <p><h3>Descripci&oacute;n: </h3>{product.productos.descripcion}</p>
       <div className="w-100 mt-10 display-flex-row card-product_button-container">
         <div className="">

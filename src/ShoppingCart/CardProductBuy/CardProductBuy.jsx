@@ -3,11 +3,13 @@ import "./CardProductBuy.css";
 import deleteIcon from "../../Assets/deleteIcon.png";
 import { CartContext } from '../../PerformaceHooks/useCart';
 import { useNavigate } from "react-router-dom";
+import format from 'format-number';
+var myFormat = format({ prefix: '$' });
 
 function CardProductBuy({ product }) {
   const [aditionalQuantiy, setAditionalQuantiy] = useState(product.cantidadAgregada);
   const [ cart, setCart ] = useContext(CartContext);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   
   useEffect(()=>{
     const newTotal = cart.products.length ? cart.products.reduce((accum, curr) => accum + (curr.id === product.id ? (aditionalQuantiy * curr.productos.precio): (curr.cantidadAgregada * curr.productos.precio)),0): 0;
@@ -28,7 +30,7 @@ function CardProductBuy({ product }) {
         src={`${imagen}`}
         alt=""
       />
-      <h3> COD {product.id} </h3>
+      <h3 className="card-product_code">COD {product.id}</h3>
       <p>{product.productos.descripcion}</p>
       <p>
         <span className="card-product-buy_label"> Cantidad: </span>
@@ -36,7 +38,7 @@ function CardProductBuy({ product }) {
       </p>
       <p>
         <span className="card-product-buy_label"> Precio unitario: </span>
-        {product.productos.precio}
+        {myFormat(product.productos.precio)}
       </p>
       <div className="display-flex-row card-product-buy_button-container">
         <div className="card-product-buy_button--add">
