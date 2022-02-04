@@ -1,7 +1,7 @@
  p:not([className]){
-    line-height: var(--cssTypographyLineHeight, 1.78);
+    /* line-height: var(--cssTypographyLineHeight, 1.78);
     margin-top: var(--cssTypographyBasicMargin, 1em);
-    margin-bottom: 0;
+    margin-bottom: 0; */
   }
   
   p:not([className]):first-child{

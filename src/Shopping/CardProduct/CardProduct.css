@@ -1,4 +1,4 @@
-.card-product{
+.card-product {
     box-sizing: border-box;
     width: 24%;
     border-radius: 10px;
@@ -6,17 +6,40 @@
     overflow: hidden;
     margin: 5px 0px 5px 10px;
     padding: 5px;
-    background-color: #EBEBEB;
+    background-color: #f9f9f9;
+    box-shadow: 2px 3px 5px #c3c3c34d;
+    position: relative;
+}
+
+.card-product > * {
+    margin: 0;
 }
 
 .card-product_code{
-    margin-top: 0px;
+    position: absolute;
+    top: 10px;
+    z-index: 5;
+    left: 5px;
+    font-size: 10px;
+    color: white;
+    background: #8f971b;
+    padding: 2px 6px;
+    border-radius: 0 4px 4px 0;
 }
 
-.card-product_button-container{
+.card-product_button-container {
     justify-content: space-between;
+    margin-top: 20px;
 }
 
-.card-product_image--height{
+.card-product_image--height {
     height: 185px;
+}
+
+p {
+    margin-top: 0;
+}
+
+.product-price{
+    margin-top: 10px;
 }
