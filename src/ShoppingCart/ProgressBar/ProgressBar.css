@@ -15,7 +15,7 @@
   counter-increment: step;
   width: 40px;
   height: 40px;
-  border: 1px solid #2979ff;
+  border: 1px solid #FFE298;
   display: block;
   text-align: center;
   margin: 0 auto 10px auto;
@@ -40,8 +40,9 @@
 }
 
 .progress-bar_list li.progress-bar_item--active:before {
-  background: #4557bb;
+  background: #C8FFAA;
   content: "✔";
+  color: #ffffff;
 }
 
 .progress-bar_list li.progress-bar_item--active + li:after {
