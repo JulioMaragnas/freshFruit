@@ -4,7 +4,7 @@ import {message } from "antd";
 async function getUserInfo() {
   const params = HeaderParameters("GET");
   return fetch(
-    `http://localhost:8090/freshfruitusuarios/api/usuarios/obtenerUsuarioSesion`,
+    `http://freshfruitusers-env.eba-tma2vuyz.us-east-1.elasticbeanstalk.com/usuarios/obtenerUsuarioSesion`,
     params
   )
     .then((res) => res.json())
@@ -25,7 +25,7 @@ async function getTemporalToken() {
   };
   
   return fetch(
-    `http://localhost:8088/freshfruitinventory/api/usuarios/login`,
+    `http://freshfruitinventary.us-east-1.elasticbeanstalk.com/usuarios/login`,
     params
   )
     .then((data) => data.text())
@@ -47,7 +47,7 @@ async function login(userInfo){
     body: JSON.stringify(userInfo)
   }
   return fetch(
-    `http://localhost:8090/freshfruitusuarios/api/usuarios/login`,
+    `http://freshfruitusers-env.eba-tma2vuyz.us-east-1.elasticbeanstalk.com/usuarios/login`,
     params
   )
   .then((res) => res.text())
@@ -68,7 +68,7 @@ async function login(userInfo){
 async function createNewClient(newClient) {
   const params = HeaderParameters("POST", newClient);
   return fetch(
-    `http://localhost:8090/freshfruitusuarios/api/usuarios/insertarCliente`,
+    `http://freshfruitusers-env.eba-tma2vuyz.us-east-1.elasticbeanstalk.com/usuarios/insertarCliente`,
     params
   )
     .then((res) => res.text())
@@ -104,7 +104,7 @@ async function createNewUser(newUser) {
 async function updateStateClient(action, userId) {
   const params = HeaderParameters("PUT");
   return fetch(
-    `http://localhost:8090/freshfruitusuarios/api/usuarios/${action}/${userId}`,
+    `http://freshfruitusers-env.eba-tma2vuyz.us-east-1.elasticbeanstalk.com/usuarios/${action}/${userId}`,
     params
   )
     .then((res) => res.text())
@@ -123,7 +123,7 @@ async function updateStateClient(action, userId) {
 async function getPendingApprovals() {
   const params = HeaderParameters("GET");
   return fetch(
-    `http://localhost:8090/freshfruitusuarios/api/usuarios/obtenerListaPendientes?paginaActual=0&paginacion=1000`,
+    `http://freshfruitusers-env.eba-tma2vuyz.us-east-1.elasticbeanstalk.com/usuarios/obtenerListaPendientes?paginaActual=0&paginacion=1000`,
     params
   )
     .then((res) => res.json())
@@ -134,7 +134,7 @@ async function getPendingApprovals() {
 async function getGoalsByUser() {
   const params = HeaderParameters("GET");
   return fetch(
-    `http://localhost:8090/freshfruitusuarios/api/usuarios/obtenerMetasUsuarioSesion`,
+    `http://freshfruitusers-env.eba-tma2vuyz.us-east-1.elasticbeanstalk.com/usuarios/obtenerMetasUsuarioSesion`,
     params
   )
     .then((res) => res.json())

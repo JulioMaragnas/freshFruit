@@ -5,7 +5,7 @@ async function getListInventory(param) {
 
   const params = HeaderParameters('GET')
 
-  return fetch('http://localhost:8088/freshfruitinventory/api/inventarios/', params)
+  return fetch('http://freshfruitinventary.us-east-1.elasticbeanstalk.com/inventarios/', params)
     .then(res => res.json())
     .catch(err => console.log('err', err))
 }
@@ -13,7 +13,7 @@ async function getListInventory(param) {
 async function movementProduct(movement){
   const params = HeaderParameters('POST', movement)
 
-  return fetch('http://localhost:8088/freshfruitinventory/api/inventarios/', params)
+  return fetch('http://freshfruitinventary.us-east-1.elasticbeanstalk.com/inventarios/', params)
     .then(res => res.json())
     .catch(err => console.log('err', err));
 }
@@ -21,7 +21,7 @@ async function movementProduct(movement){
 async function getInventoryById(inventoryId){
   const params = HeaderParameters('GET')
 
-  return fetch(`http://localhost:8088/freshfruitinventory/api/inventarios/${inventoryId}`, params)
+  return fetch(`http://freshfruitinventary.us-east-1.elasticbeanstalk.com/inventarios/${inventoryId}`, params)
     .then(res => res.json())
     .then(res => {
       if(res.status) return {};
@@ -33,7 +33,7 @@ async function getInventoryById(inventoryId){
 async function getListProducts(){
   const params = HeaderParameters('GET')
 
-  return fetch(`http://localhost:8088/freshfruitinventory/api/productos/?paginaActual=0&paginacion=1000`, params)
+  return fetch(`http://freshfruitinventary.us-east-1.elasticbeanstalk.com/productos/?paginaActual=0&paginacion=1000`, params)
     .then(res => res.json())
     .then(({lista}) => lista)
     .catch(err => console.log('err', err));
@@ -42,7 +42,7 @@ async function getListProducts(){
 async function getProductById(productId) {
   const params = HeaderParameters('GET')
 
-  return fetch(`http://localhost:8088/freshfruitinventory/api/productos/${productId}`, params)
+  return fetch(`http://freshfruitinventary.us-east-1.elasticbeanstalk.com/productos/${productId}`, params)
   .then(res => res.json())
   .then((res) => res)
   .catch(err => console.log('err', err));
@@ -51,7 +51,7 @@ async function getProductById(productId) {
 async function createAndUpdateProduct(product, isUpdate) {
   const params = HeaderParameters(isUpdate ? 'PUT' : 'POST',product)
 
-  return fetch(`http://localhost:8088/freshfruitinventory/api/productos/`, params)
+  return fetch(`http://freshfruitinventary.us-east-1.elasticbeanstalk.com/productos/`, params)
   .then(res => res.text())
   .then((res) => {
     try {

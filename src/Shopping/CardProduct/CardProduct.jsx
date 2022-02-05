@@ -51,7 +51,7 @@ function CardProduct({ product }) {
           myFormat(product.productos.precio)
         }
       </p>
-      <p><h3>Descripci&oacute;n: </h3>{product.productos.descripcion}</p>
+      <p><span style={{ 'display': 'block', 'fontSize': '1.17em', 'fontWeight': 500}}>Descripci&oacute;n: </span>{product.productos.descripcion}</p>
       <div className="w-100 mt-10 display-flex-row card-product_button-container">
         <div className="">
           <button

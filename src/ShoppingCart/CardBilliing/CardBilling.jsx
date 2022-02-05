@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { message } from "antd";
 import './CardBilling.css';
@@ -13,18 +13,21 @@ function CardBilling() {
 	const userlogged = JSON.parse(sessionStorage.getItem('userlogged'));
 	const userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
 	const [ cart, setCart ] = useContext(CartContext);
+	const [notes, setNotes] = useState('');
   
 	const navigate = useNavigate();
 	const handlePurchase = async ()=>{
-	  if (!userlogged) {
-      navigate('../login');
-      return
-    }
-		const resPurchase = await createPurchase(cart);
+	    if (!userlogged) {
+	      navigate('../login');
+	      return
+	    }
+		const resPurchase = await createPurchase(cart, notes);
 		message.success(resPurchase);
 		setCart({...cart, products: [], total:0});
 		navigate('/')
 	}
+	
+	const handleNotesChange = ({target:{ value }})=> setNotes(value)
 
 	return(
 		<div className="w-100 card-billing">
@@ -33,12 +36,12 @@ function CardBilling() {
 			    {
 			      userlogged && (
 			        <div>
-                <h4 className="card-billing_label"> Direcci&oacute;n de env&iacute;o </h4>
-                <h2 className="card-billing_address"> { userInfo.direccion } </h2>
-                <h4 className="card-billing_label"> Pedido a nombre de </h4>
-                <h2 className="card-billing_name"> {`${userInfo.nombre} - ${userInfo.nombretienda || ''}`} </h2>
-                <h4 className="card-billing_label"> Informaci&oacute;n adicional </h4>
-                <textarea className="mt-10 card-billing_additional-info" name="" id="" cols="50" rows="5"></textarea>
+		                <h4 className="card-billing_label"> Direcci&oacute;n de env&iacute;o </h4>
+		                <h2 className="card-billing_address"> { userInfo.direccion } </h2>
+		                <h4 className="card-billing_label"> Pedido a nombre de </h4>
+		                <h2 className="card-billing_name"> {`${userInfo.nombre} - ${userInfo.nombretienda || ''}`} </h2>
+		                <h4 className="card-billing_label"> Informaci&oacute;n adicional </h4>
+		                <textarea className="mt-10 card-billing_additional-info" name="" id="" cols="50" rows="5" onChange={handleNotesChange} value={notes}></textarea>
 			        </div>
 			      )
 			    }
