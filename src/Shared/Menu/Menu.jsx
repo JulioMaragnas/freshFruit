@@ -114,6 +114,23 @@ function MenuOrders() {
               <span onClick={()=> handleMasters('master')}> Maestros </span>
             </Menu.Item>
           </Menu.SubMenu>
+          <Menu.SubMenu
+            key="promociones"
+            title="Administración de promociones"
+            style={{
+              width: "100%",
+              height: "100%",
+              backgroundColor: "#EBEBEB",
+            }}
+            icon={<AppstoreOutlined />}
+          >
+            <Menu.Item key="pr1" icon={<InfoCircleFilled />}>
+              <span onClick={()=> handleMasters('products')}> Productos </span>
+            </Menu.Item>
+            <Menu.Item key="pr2" icon={<InfoCircleFilled />}>
+              <span onClick={()=> handleMasters('master')}> Maestros </span>
+            </Menu.Item>
+          </Menu.SubMenu>
         </Menu>
       </div>
     </section>

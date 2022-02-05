@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { message } from 'antd';
 import "./CardProduct.css";
-import carIcon from "../../Assets/carIcon.png";
+import carIcon from "../../Assets/shopping-cart.svg";
 import { CartContext } from '../../PerformaceHooks/useCart'
 import format from 'format-number'
 

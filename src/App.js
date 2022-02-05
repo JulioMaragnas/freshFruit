@@ -16,6 +16,9 @@ import Movements from './Inventory/Movements/Movements';
 import ProductList from './Product/ProductList/ProductList';
 import ProductDetail from './Product/ProductDetail/ProductDetail';
 import PendingApprovals from './Users/PendingApprovals/PendingApprovals';
+import ChartsContainer from './Charts/ChartsContainer';
+;
+
 
 function App() {
 
@@ -48,6 +51,7 @@ function App() {
           <Route path="productDetail/:productId" element={<ProductDetail />}></Route>
           <Route path="pendingApprovals" element={<PendingApprovals />}></Route>
           <Route path="registerUser/:isAdminCreator" index element={<UserRegister />}></Route>
+          <Route path="charts" index element={<ChartsContainer />}></Route>
         </Route>
       </Routes>
       <Outlet />

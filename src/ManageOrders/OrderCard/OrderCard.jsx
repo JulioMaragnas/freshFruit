@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from "react-router-dom";
 import './OrderCard.css';
-import sendIcon from '../../Assets/sendIcon.png';
-import detailOrderIcon from '../../Assets/detailOrderIcon.png';
+import sendIcon from '../../Assets/sendIcon.svg';
+import detailOrderIcon from '../../Assets/detailOrderIcon.svg';
 import { Modal} from 'antd';
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import { checkStatePurchase } from '../../requestPurchase';

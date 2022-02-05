@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { message } from "antd";
 import './CardBilling.css';
-import sendIcon from '../../Assets/sendIcon.png';
+import sendIcon from '../../Assets/sendIcon.svg';
 import { CartContext } from '../../PerformaceHooks/useCart';
 import { createPurchase } from '../../requestPurchase';
 import format from 'format-number'

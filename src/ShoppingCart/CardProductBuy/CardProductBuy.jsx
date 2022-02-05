@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import "./CardProductBuy.css";
-import deleteIcon from "../../Assets/deleteIcon.png";
+import deleteIcon from "../../Assets/deleteIcon.svg";
 import { CartContext } from '../../PerformaceHooks/useCart';
 import { useNavigate } from "react-router-dom";
 import format from 'format-number';

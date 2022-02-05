@@ -28,8 +28,7 @@
 }
 
 .menu_steps ul > li{
-    list-style-type: square;  
-    opacity: 70%;
+    list-style-type: square;
     cursor: pointer;
 }
 

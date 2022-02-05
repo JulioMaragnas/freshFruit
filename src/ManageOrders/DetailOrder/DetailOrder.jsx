@@ -2,9 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { getDetailPurchase } from '../../requestPurchase';
 import "./DetailOrder.css";
-import goBackIcon from "../../Assets/goBackIcon.png";
-import sendIcon from "../../Assets/sendIcon.png";
-import cancelIcon from "../../Assets/cancelIcon.png";
+import goBackIcon from "../../Assets/goBackIcon.svg";
 import DetailOrderCard from "./DetailOrderCard/DetailOrderCard";
 
 function DetailOrder() {

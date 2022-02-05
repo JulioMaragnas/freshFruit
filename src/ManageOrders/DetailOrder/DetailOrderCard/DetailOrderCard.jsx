@@ -1,6 +1,5 @@
 import React from 'react';
 import './DetailOrderCard.css';
-import imageReference from '../../../Assets/imageReference.png';
 
 function DetailOrderCard({detailData}) {
     return(
