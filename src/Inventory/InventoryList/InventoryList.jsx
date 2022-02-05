@@ -2,12 +2,17 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import "./InventoryList.css";
 import { Table, Tag, Space } from "antd";
-import { PlusOutlined } from "@ant-design/icons";
+import { PlusOutlined, PlusSquareOutlined, MinusSquareOutlined, CloseSquareOutlined, EyeOutlined } from "@ant-design/icons";
 import { getListInventory, movementProduct } from '../../requestInventory';
+import ModalMovementDetail from '../MovementDetail/MovementDetail';
+;
+
 
 
 function InventoryList(params) {
   const [inventoryList, setInventoryList] = useState([]);
+  const [inventoryId, setInventoryId] = useState(0);
+  const [isMovementsVisible, setIsMovementsVisible] = useState(false);
   const navigate = useNavigate();
   
   useEffect(()=>{
@@ -33,6 +38,14 @@ function InventoryList(params) {
     }
     inactivateInventory();
   }
+  
+  const handleShowDetail = (id)=>{
+    debugger
+    setInventoryId(id)
+    setIsMovementsVisible(true)
+  }
+  
+  const handleModal = ()=> setIsMovementsVisible(false)
 
   const columns = [
     {
@@ -61,8 +74,9 @@ function InventoryList(params) {
       key: 'action',
       render: (text, record) => (
         <Space size="middle">
-          <a key="edit" onClick={()=> handleEditInventory(record.id)}> Editar </a>
-          <a key="inactivate" onClick={()=> handleMovement(record.id)}> Inactivar </a>
+          <a key="inactivate" onClick={()=> handleShowDetail(record.id)}> <EyeOutlined /> </a>
+          <a key="edit" onClick={()=> handleEditInventory(record.id)}> <MinusSquareOutlined /> </a>
+          <a key="inactivate" onClick={()=> handleMovement(record.id)}> <CloseSquareOutlined /> </a>
         </Space>
       ),
     },
@@ -77,6 +91,7 @@ function InventoryList(params) {
         </button>
       </div>
       <Table columns={columns} dataSource={inventoryList} />
+      <ModalMovementDetail inventoryId={inventoryId} isVisible={isMovementsVisible} handleModal={handleModal}/>
     </div>
   );
 }

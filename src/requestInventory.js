@@ -69,6 +69,16 @@ function findErrorCode(code){
   return httpCodes.some(src => src === code)
 }
 
+function getListMovementsById(inventoryId) {
+  const params = HeaderParameters('GET')
+
+  return fetch(`http://freshfruitinventary.us-east-1.elasticbeanstalk.com/inventarios/obtenerListaMovimientosInventario/${inventoryId}`, params)
+  .then(res => res.json())
+  .then((res) => res)
+  .catch(err => console.log('err', err));
+  
+}
+
 
 export { 
   getListInventory,
@@ -76,5 +86,6 @@ export {
   getInventoryById,
   getListProducts,
   getProductById,
-  createAndUpdateProduct
+  createAndUpdateProduct,
+  getListMovementsById
 } 

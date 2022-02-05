@@ -12,18 +12,42 @@ import {
   Legend,
 } from "chart.js";
 import { Bar, Line, Doughnut } from "react-chartjs-2";
+import format from 'format-number'
 import "./ChartsContainer.css";
 
 function ChartsContainer() {
+  var myFormat = format({ prefix: '$' });
   return (
-    <section className="w-100 display-flex-row charts-container">
-      <div className="charts-container_chart charts-container_chart--double charts-container_chart--center">
+    <section className="w-100 display-flex-row charts">
+      <div className="w-100 mb-10 display-flex-row charts_chart charts_chart--cards">
+        <div className="charts_card shadow">
+          <h1>Total de ventas</h1>
+          <p> {myFormat(19850900)} </p>
+        </div>
+        <div className="charts_card shadow">
+          <h1>Venta max por pedido</h1>
+          <p> {myFormat(290750)} </p>
+        </div>
+        <div className="charts_card shadow">
+          <h1>Pulpas vendidas</h1>
+          <p> 1830 <span>und</span></p>
+        </div>
+        <div className="charts_card shadow">
+          <h1> Redenciones </h1>
+          <p> 50 <span>vales</span></p>
+        </div>
+        <div className="charts_card shadow">
+          <h1>Devoluciones</h1>
+          <p> 1830 <span>pedidos</span></p>
+        </div>
+      </div>
+      <div className="charts_chart charts_chart--double shadow">
         <QuantiySalesByMonth />
       </div>
-      <div className="charts-container_chart charts-container_chart--single">
+      <div className="charts_chart charts_chart--single shadow">
         <InventoryByProducts />
       </div>
-      <div className="charts-container_chart charts-container_chart--double">
+      <div className="charts_chart charts_chart--double shadow">
         <PurchaseBarChart />
       </div>
     </section>

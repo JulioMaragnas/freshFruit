@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { getInventoryById, getListProducts, movementProduct } from "../../requestInventory";
+import { useParams, Link } from "react-router-dom";
+import {
+  getInventoryById,
+  getListProducts,
+  movementProduct,
+} from "../../requestInventory";
 import "./Movements.css";
 import { Form, InputNumber, Button, Select, message } from "antd";
+import { RollbackOutlined } from "@ant-design/icons";
 
 function Movements(props) {
   const [form] = Form.useForm();
@@ -14,7 +19,9 @@ function Movements(props) {
 
   useEffect(() => {
     async function init() {
-      const { id, idproducto, productos, existencias } = await getInventoryById(inventoryId);
+      const { id, idproducto, productos, existencias } = await getInventoryById(
+        inventoryId
+      );
       const { nombre, imagen } = productos || {};
       const res = await getListProducts();
       setMovement({ id, idproducto, nombre, imagen, existencias });
@@ -23,7 +30,7 @@ function Movements(props) {
       setProducts(res);
     }
     init();
-  }, []);  
+  }, []);
 
   const validateMessages = {
     required: "${label} es requerido!",
@@ -35,28 +42,37 @@ function Movements(props) {
     },
   };
 
-  const handleOnFinish = ({idproducto, existencias}) => {
-    let payload = { 
+  const handleOnFinish = ({ idproducto, existencias }) => {
+    let payload = {
       idproducto,
       existencias,
-      idMotivo: 1
+      idMotivo: 1,
+    };
+    if (inventoryId != 0) {
+      payload.id = inventoryId;
     }
-    if (inventoryId != 0 ) {
-      payload.id = inventoryId
-    }
-    const res = movementProduct(payload)
-    message.success('Se ha creado el inventario exitosamente');
+    const res = movementProduct(payload);
+    message.success("Se ha creado el inventario exitosamente");
   };
-  
-  const handleSelectChange = (idProduct)=>{
-    const {imagen} = products.find(p => p.id === idProduct);
-    setImage(imagen)
-  }
+
+  const handleSelectChange = (idProduct) => {
+    const { imagen } = products.find((p) => p.id === idProduct);
+    setImage(imagen);
+  };
 
   return (
     <div className="w-100 mt-10 display-flex-row  movements">
+      <Link to="../inventory">
+        <button className="container_button">
+          <RollbackOutlined />
+          <span> volver a la lista </span>
+        </button>
+      </Link>
       <div className="movements_container">
-        <h2 className="movements_title--center"> { inventoryId !=0 ? 'Modificar inventario' :'Crear inventario' } </h2>
+        <h2 className="movements_title--center">
+          {" "}
+          {inventoryId != 0 ? "Modificar inventario" : "Crear inventario"}{" "}
+        </h2>
         <div className="movements_form">
           <div className="w-100 mb-10 display-flex-row movements_image--header">
             <img src={image || "/assets/cancelIcon.png"} alt="" />
@@ -72,7 +88,7 @@ function Movements(props) {
             <Form.Item label="Producto" name="idproducto">
               <Select
                 showSearch
-                style={{ width: '100%' }}
+                style={{ width: "100%" }}
                 placeholder="Search to Select"
                 optionFilterProp="children"
                 filterOption={(input, option) =>
@@ -87,7 +103,12 @@ function Movements(props) {
                 onChange={handleSelectChange}
                 disabled={inventoryId != 0}
               >
-                { products.map(p => (<Option key={p.id} value={p.id}> { p.nombre } </Option>)) }
+                {products.map((p) => (
+                  <Option key={p.id} value={p.id}>
+                    {" "}
+                    {p.nombre}{" "}
+                  </Option>
+                ))}
               </Select>
             </Form.Item>
             <Form.Item

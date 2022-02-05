@@ -1,20 +1,43 @@
-.charts-container {
+.charts {
   justify-content: flex-start;
   flex-wrap: wrap;
 }
-.charts-container_chart{
+
+.shadow{
+  border: 1px solid #cfcfcf80;
+  box-shadow: 5px 5px #dbdbdb;
+  border-radius: 10px;
+}
+
+.charts_chart{
   margin-right: 10px;
   margin-bottom: 10px;
-  border: 1px solid #8f971b;
 }
-.charts-container_chart--single{
-  width: 32%;
+
+.charts_chart--cards{
+  box-sizing: border-box;
+  border: none;
+}
+
+.charts_card{ 
+  width: 20%;
+  padding: 10px;
+  margin-right: 10px;
+  text-align: center;
+}
+.charts_card > p{
+  font-size: xx-large;
+  font-weight: 700;
+}
+.charts_card > p > span{
+  font-size: medium;
+  font-weight: 100;
+}
+.charts_chart--single{
+  width: 33.79%;
   
 }
 
-.charts-container_chart--double{
+.charts_chart--double{
   width: 64%;
-}
-.charts-container_chart--center{
-  padding-top: 67px;
 }
