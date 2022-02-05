@@ -9,6 +9,7 @@ function ManageOrdersContainer() {
   useEffect(() => {
     const userlogged = JSON.parse(sessionStorage.getItem('userlogged'));
     !userlogged && navigate('../login')
+    userlogged && navigate('charts')
   }, []);
   
   return (

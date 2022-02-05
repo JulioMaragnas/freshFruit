@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Route, Routes, Outlet } from "react-router-dom";
+import { HashRouter, Route, Routes, Outlet } from "react-router-dom";
 import { getStates, getReasons } from './requestMasters';
 import './App.css';
 import "antd/dist/antd.css";
@@ -17,8 +17,6 @@ import ProductList from './Product/ProductList/ProductList';
 import ProductDetail from './Product/ProductDetail/ProductDetail';
 import PendingApprovals from './Users/PendingApprovals/PendingApprovals';
 import ChartsContainer from './Charts/ChartsContainer';
-;
-
 
 function App() {
 
@@ -34,28 +32,28 @@ function App() {
   },[])
   
   return (
-    <>
+    <HashRouter>
       <Navbar />
       <Routes>
         <Route path="/"element={<Container />}></Route>
-        <Route path="login" index element={<Login />}></Route>
-        <Route path="registerClient/:isAdminCreator" index element={<UserRegister />}></Route>
-        <Route path="infoClient/:isAdminCreator" index element={<UserRegister />}></Route>
+        <Route path="login" element={<Login />}></Route>
+        <Route path="registerClient/:isAdminCreator" element={<UserRegister />}></Route>
+        <Route path="infoClient/:isAdminCreator" element={<UserRegister />}></Route>
         <Route path="shoppingCart" element={<ShoppingCartContainer />}></Route>
         <Route path="manageOrders" element={ <ManageOrdersContainer /> }>
-          <Route path="listOrders" index element={<OrderCardList />}></Route>
+          <Route path="charts" index element={<ChartsContainer />}></Route>
+          <Route path="listOrders" element={<OrderCardList />}></Route>
           <Route path="detail/:detailId" element={<DetailOrder />}></Route>
           <Route path="inventory" element={<InventoryList />}></Route>
           <Route path="inventoryDetail/:inventoryId" element={<Movements />}></Route>
           <Route path="products" element={<ProductList />}></Route>
           <Route path="productDetail/:productId" element={<ProductDetail />}></Route>
           <Route path="pendingApprovals" element={<PendingApprovals />}></Route>
-          <Route path="registerUser/:isAdminCreator" index element={<UserRegister />}></Route>
-          <Route path="charts" index element={<ChartsContainer />}></Route>
+          <Route path="registerUser/:isAdminCreator" element={<UserRegister />}></Route>
         </Route>
       </Routes>
       <Outlet />
-    </>
+    </HashRouter>
   );
 }
 export default App;

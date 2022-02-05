@@ -20,7 +20,8 @@ function MenuOrders() {
       products: ()=> navigate('products'),
       master:()=> navigate('master'),
       pendingApprovals: ()=> navigate('pendingApprovals'),
-      ['registerUser/1']: ()=> navigate('registerUser/1')
+      ['registerUser/1']: ()=> navigate('registerUser/1'),
+      charts: ()=> navigate('charts'),
     }
     sw[route] && sw[route]();
   }
@@ -125,11 +126,8 @@ function MenuOrders() {
             icon={<AppstoreOutlined />}
           >
             <Menu.Item key="pr1" icon={<InfoCircleFilled />}>
-              <span onClick={()=> handleMasters('products')}> Productos </span>
-            </Menu.Item>
-            <Menu.Item key="pr2" icon={<InfoCircleFilled />}>
-              <span onClick={()=> handleMasters('master')}> Maestros </span>
-            </Menu.Item>
+              <span onClick={()=> handleMasters('charts')}> Dashboard </span>
+            </Menu.Item>            
           </Menu.SubMenu>
         </Menu>
       </div>
