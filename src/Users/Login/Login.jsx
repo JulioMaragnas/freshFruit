@@ -24,6 +24,7 @@ function Login() {
     const {roles: { codigo }} = await getUserInfo();
     codigo === 'CLIENTE' && navigate('/')
     codigo === 'ADMIN' && navigate('../manageOrders')
+    codigo === 'REPARTIDOR' && navigate('../manageOrdersDelivery/listOrders')
     setCart({...cart, logged: true, role: codigo })
     
   };
