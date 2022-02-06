@@ -21,6 +21,8 @@ import OrderUserList from './ManageOrdersUser/OrderUser/OrderUserList';
 import ManageOrdersUserContainer from './ManageOrdersUser/ManageOrdersUserContainer';
 import ManageOrdersDeliveryContainer from './ManageOrdersDelivery/ManageOrdersDeliveryContainer';
 import OrderDeliveryList from './ManageOrdersDelivery/OrderDelivery/OrderDeliveryList';
+import GoalsList from './Users/GoalsList/GoalsList';
+import GoalsByUser from './Users/GoalsByUser/GoalsByUser';
 
 function App() {
 
@@ -54,6 +56,8 @@ function App() {
           <Route path="productDetail/:productId" element={<ProductDetail />}></Route>
           <Route path="pendingApprovals" element={<PendingApprovals />}></Route>
           <Route path="registerUser/:isAdminCreator" element={<UserRegister />}></Route>
+          <Route path="goals" element={<GoalsList />}></Route>
+          <Route path="goalDetail" element={<GoalsByUser />}></Route>
         </Route>
         <Route path="manageOrdersUser" element={ <ManageOrdersUserContainer /> }>
           <Route path="listOrders" element={<OrderUserList />}> </Route>

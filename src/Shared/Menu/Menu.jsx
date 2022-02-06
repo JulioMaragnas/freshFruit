@@ -32,6 +32,7 @@ function MenuOrders() {
       pendingApprovals: ()=> navigate('pendingApprovals'),
       ['registerUser/1']: ()=> navigate('registerUser/1'),
       charts: ()=> navigate('charts'),
+      goals: ()=> navigate('goals'),
     }
     sw[route] && sw[route]();
   }
@@ -137,7 +138,10 @@ function MenuOrders() {
           >
             <Menu.Item key="pr1" icon={<InfoCircleFilled />}>
               <span onClick={()=> handleMasters('charts')}> Dashboard </span>
-            </Menu.Item>            
+            </Menu.Item>
+            <Menu.Item key="pr2" icon={<InfoCircleFilled />}>
+              <span onClick={()=> handleMasters('goals')}> Metas por usuario </span>
+            </Menu.Item>
           </Menu.SubMenu>
         </Menu>
       </div>

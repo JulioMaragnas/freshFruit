@@ -1,6 +1,6 @@
 .card-product {
     box-sizing: border-box;
-    width: 24%;
+    width: 23.5%;
     border-radius: 10px;
     border: 2px solid #c2c2c2;
     overflow: hidden;
@@ -29,7 +29,7 @@
     height: 185px;
 }
 
-p, {
+p {
     margin-top: 0;
 }
 

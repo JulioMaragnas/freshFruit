@@ -1,5 +1,6 @@
 import { HeaderParameters } from "./Utils/HeaderParameters";
 import {message } from "antd";
+import { OrderMonths } from './Utils/OrderMonths';
 
 async function getUserInfo() {
   const params = HeaderParameters("GET");
@@ -138,7 +139,42 @@ async function getGoalsByUser() {
     params
   )
     .then((res) => res.json())
-    .then(lista => lista)
+    .then(lista => {
+      const years = lista.map(goal => {
+        const dateGoal = new Date(goal.fechaInicio);
+        return dateGoal.getFullYear()
+      })
+      .filter((year, index, self)=> self.indexOf(year) === index);
+      
+      const goalsByYear = years.map(year => {
+        const months = lista.filter(x => {
+          const date = new Date(x.fechaInicio);
+          return date.getFullYear() === year;
+        })
+        .map(month => {
+          const date = new Date(month.fechaInicio)
+          return OrderMonths.find(m => m.order === (date.getMonth() + 1))
+        });
+        const resultMonths = [...new Map(months.map(item => [item['code'], item])).values()];
+        return ({
+          year,
+          months : resultMonths
+        })        
+      });
+      
+      return goalsByYear.map(year =>({
+       ...year,
+       months: year.months.map(month => ({
+        ...month,
+        goals: lista.filter(goal=> {
+          const date = new Date(goal.fechaInicio);
+          return (date.getMonth() + 1) === month.order
+        })
+        .sort((a,b)=> b.order - a.order)
+        .map(({nombreMeta: name, porcentajeAlcanzado: percentage}) => ({name, percentage}))
+       }))
+      }))
+    })
     .catch((err) => console.log("error", err));
 }
 
