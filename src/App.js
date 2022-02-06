@@ -17,6 +17,10 @@ import ProductList from './Product/ProductList/ProductList';
 import ProductDetail from './Product/ProductDetail/ProductDetail';
 import PendingApprovals from './Users/PendingApprovals/PendingApprovals';
 import ChartsContainer from './Charts/ChartsContainer';
+import OrderUserList from './ManageOrdersUser/OrderUser/OrderUserList';
+import ManageOrdersUserContainer from './ManageOrdersUser/ManageOrdersUserContainer';
+import ManageOrdersDeliveryContainer from './ManageOrdersDelivery/ManageOrdersDeliveryContainer';
+import OrderDeliveryList from './ManageOrdersDelivery/OrderDelivery/OrderDeliveryList';
 
 function App() {
 
@@ -45,11 +49,19 @@ function App() {
           <Route path="listOrders" element={<OrderCardList />}></Route>
           <Route path="detail/:detailId" element={<DetailOrder />}></Route>
           <Route path="inventory" element={<InventoryList />}></Route>
-          <Route path="inventoryDetail/:inventoryId" element={<Movements />}></Route>
+          <Route path="inventoryDetail/:inventoryId/:add" element={<Movements />}></Route>
           <Route path="products" element={<ProductList />}></Route>
           <Route path="productDetail/:productId" element={<ProductDetail />}></Route>
           <Route path="pendingApprovals" element={<PendingApprovals />}></Route>
           <Route path="registerUser/:isAdminCreator" element={<UserRegister />}></Route>
+        </Route>
+        <Route path="manageOrdersUser" element={ <ManageOrdersUserContainer /> }>
+          <Route path="listOrders" element={<OrderUserList />}> </Route>
+          <Route path="detail/:detailId" element={<DetailOrder />}></Route>
+        </Route>
+        <Route path="manageOrdersDelivery" element={ <ManageOrdersDeliveryContainer /> }>
+          <Route path="listOrders" element={<OrderDeliveryList />}> </Route>
+          <Route path="detail/:detailId" element={<DetailOrder />}></Route>
         </Route>
       </Routes>
       <Outlet />
