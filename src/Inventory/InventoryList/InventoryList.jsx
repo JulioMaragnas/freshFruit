@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import "./InventoryList.css";
 import { Table, Tag, Space } from "antd";
-import { PlusOutlined, PlusSquareOutlined, MinusSquareOutlined, CloseSquareOutlined, EyeOutlined } from "@ant-design/icons";
+import { PlusOutlined, PlusSquareOutlined,MinusSquareOutlined, CloseSquareOutlined, EyeOutlined } from "@ant-design/icons";
 import { getListInventory, movementProduct } from '../../requestInventory';
 import ModalMovementDetail from '../MovementDetail/MovementDetail';
 ;
@@ -30,13 +30,14 @@ function InventoryList(params) {
   }, []);
   
   const handleEditInventory = (inventoryId)=>{
-    navigate(`../inventoryDetail/${inventoryId}`)
+    navigate(`../inventoryDetail/${inventoryId}/false`)
   }
   const handleMovement = (inventoryId)=>{
-    async function inactivateInventory(id) {
-      const res = await movementProduct(id)
-    }
-    inactivateInventory();
+    navigate(`../inventoryDetail/${inventoryId}/true`)
+    // async function inactivateInventory(id) {
+    //   const res = await movementProduct(id)
+    // }
+    // inactivateInventory();
   }
   
   const handleShowDetail = (id)=>{
@@ -70,13 +71,13 @@ function InventoryList(params) {
       render: (text, record)=> `$${text}`
     },
     {
-      title: 'Action',
+      title: 'Acciones',
       key: 'action',
       render: (text, record) => (
         <Space size="middle">
-          <a key="inactivate" onClick={()=> handleShowDetail(record.id)}> <EyeOutlined /> </a>
-          <a key="edit" onClick={()=> handleEditInventory(record.id)}> <MinusSquareOutlined /> </a>
-          <a key="inactivate" onClick={()=> handleMovement(record.id)}> <CloseSquareOutlined /> </a>
+          <a key="inactivate" onClick={()=> handleShowDetail(record.id)} title="algoo "> <EyeOutlined /> </a>
+          <a key="edit" onClick={()=> handleEditInventory(record.id)}> <PlusSquareOutlined /> </a>
+          <a key="inactivate" onClick={()=> handleMovement(record.id)}> <MinusSquareOutlined /> </a>
         </Space>
       ),
     },
