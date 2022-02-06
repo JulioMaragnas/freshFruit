@@ -25,7 +25,7 @@ function Navbar(props) {
     const islogged = JSON.parse(sessionStorage.getItem('userlogged')) || false;
     !islogged && navigate('/login');
     islogged && navigate('/infoClient/0')
-  }
+  } 
 
   return (
     <nav className="navbar">
@@ -51,12 +51,12 @@ function Navbar(props) {
               <Menu.Item key="1">
                 <a onClick={handleGetProfile}> Perfil </a>
               </Menu.Item>
-              <Menu.Item key="2">
+              { cart.logged && <Menu.Item key="2">
                 <a> Mis compras </a> 
-              </Menu.Item>
-              <Menu.Item key="3">
+              </Menu.Item>}
+              { cart.logged &&  <Menu.Item key="3">
                 <a onClick={logoff}> Cerrar Sesi&oacute;n </a>
-              </Menu.Item>
+              </Menu.Item>}
             </Menu>
             } placement="bottomLeft">
               <img className="navbar_img--header" src={user} alt="" />

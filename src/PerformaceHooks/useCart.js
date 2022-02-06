@@ -13,7 +13,7 @@ const CartProvider = (props)=>{
         }
         init()
       },[])
-    const [cart, setCart] = useState({ products: [], total:0 });
+    const [cart, setCart] = useState({ products: [], total:0, logged: false, role: 'ADMIN' });
     return <CartContext.Provider value={[cart, setCart]} >
         {props.children}
     </CartContext.Provider>

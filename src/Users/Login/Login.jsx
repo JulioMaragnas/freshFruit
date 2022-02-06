@@ -1,15 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Form, Input, Button, message } from "antd";
 import "./Login.css";
 import profileIcon from "../../Assets/profileIcon.png";
 import { login, getUserInfo } from '../../requestUser';
 import TermsAndConditions from '../TermsAndConditions/TermsAndConditionsModal';
+import { CartContext } from '../../PerformaceHooks/useCart';
+;
+
 
 function Login() {
   const [form] = Form.useForm();
   const navigate = useNavigate();
   const [visible, setVisible] = useState(false);
+  const [cart, setCart] = useContext(CartContext);
   
   const onFinish = async (userInfo) => {
     const res = await login(userInfo);
@@ -20,6 +24,7 @@ function Login() {
     const {roles: { codigo }} = await getUserInfo();
     codigo === 'CLIENTE' && navigate('/')
     codigo === 'ADMIN' && navigate('../manageOrders')
+    setCart({...cart, logged: true, role: codigo })
     
   };
 

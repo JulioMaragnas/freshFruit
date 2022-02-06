@@ -5,11 +5,14 @@ import profileIcon from '../../Assets/profileIcon.png';
 import { Menu } from "antd";
 import { InfoCircleFilled, AppstoreOutlined } from "@ant-design/icons";
 import { StatePurchaseContext } from "../../PerformaceHooks/useStatePurchase";
+import { CartContext } from '../../PerformaceHooks/useCart';
+;
+
 
 function MenuOrders() {
   const navigate = useNavigate();
-  const [purchaseStateId, setPurchaseStateId] =
-    useContext(StatePurchaseContext);
+  const [purchaseStateId, setPurchaseStateId] = useContext(StatePurchaseContext);
+  const [cart, setCart] = useContext(CartContext);
   const handleSetStateId = (stateId) => {
     setPurchaseStateId(stateId);
     navigate("listOrders");
@@ -41,7 +44,7 @@ function MenuOrders() {
           defaultSelectedKeys={["p1"]}
           mode="inline"
         >
-          <Menu.SubMenu
+          { cart.role === 'ADMIN' && (<Menu.SubMenu
             key="purchase"
             title="Administración de compras"
             style={{
@@ -66,7 +69,7 @@ function MenuOrders() {
             <Menu.Item key="p5" icon={<InfoCircleFilled />}>
               <span onClick={() => handleSetStateId(6)}>Pedidos rechazados y/o devueltos</span>
             </Menu.Item>
-          </Menu.SubMenu>
+          </Menu.SubMenu>)}
           <Menu.SubMenu
             key="inventory"
             title="Administración de inventario"
