@@ -86,7 +86,7 @@ async function createNewClient(newClient) {
 async function createNewUser(newUser) {
   const params = HeaderParameters("POST", newUser);
   return fetch(
-    `http://localhost:8090/freshfruitusuarios/api/usuarios/`,
+    `http://freshfruitusers-env.eba-tma2vuyz.us-east-1.elasticbeanstalk.com/usuarios/`,
     params
   )
     .then((res) => res.text())
