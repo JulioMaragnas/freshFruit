@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import {
   getInventoryById,
   getListProducts,
@@ -11,11 +11,13 @@ import { RollbackOutlined } from "@ant-design/icons";
 
 function Movements(props) {
   const [form] = Form.useForm();
-  const { inventoryId } = useParams();
+  const { inventoryId , add} = useParams();
   const [image, setImage] = useState("");
   const [movement, setMovement] = useState({});
   const [products, setProducts] = useState([]);
   const { Option } = Select;
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function init() {
@@ -25,7 +27,7 @@ function Movements(props) {
       const { nombre, imagen } = productos || {};
       const res = await getListProducts();
       setMovement({ id, idproducto, nombre, imagen, existencias });
-      form.setFieldsValue({ idproducto, existencias });
+      form.setFieldsValue({ idproducto });
       setImage(imagen);
       setProducts(res);
     }
@@ -42,7 +44,8 @@ function Movements(props) {
     },
   };
 
-  const handleOnFinish = ({ idproducto, existencias }) => {
+  const handleOnFinish = async ({ idproducto, existencias }) => {
+    
     let payload = {
       idproducto,
       existencias,
@@ -51,8 +54,9 @@ function Movements(props) {
     if (inventoryId != 0) {
       payload.id = inventoryId;
     }
-    const res = movementProduct(payload);
+    const res = await movementProduct(payload);
     message.success("Se ha creado el inventario exitosamente");
+    navigate(`../inventory`)
   };
 
   const handleSelectChange = (idProduct) => {
@@ -71,7 +75,7 @@ function Movements(props) {
       <div className="movements_container">
         <h2 className="movements_title--center">
           {" "}
-          {inventoryId != 0 ? "Modificar inventario" : "Crear inventario"}{" "}
+          {inventoryId != 0 ? "Agregar inventario" : "Crear inventario"}{" "}
         </h2>
         <div className="movements_form">
           <div className="w-100 mb-10 display-flex-row movements_image--header">
@@ -112,8 +116,8 @@ function Movements(props) {
               </Select>
             </Form.Item>
             <Form.Item
-              label="Existencias"
-              name="existencias"
+              label={inventoryId != 0 ? "Cantidad de existencias a adicionar" : "Existencias"}
+              name="existencias" 
               rules={[
                 {
                   required: true,
