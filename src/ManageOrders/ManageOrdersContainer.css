@@ -25,3 +25,9 @@
     border-radius: 20px;       /* roundness of the scroll thumb */
     border: 3px solid #fff8ea;  /* creates padding around scroll thumb */
   }
+  
+.no-data{
+    text-align: center;
+    opacity: 70%;
+    margin-top: 30px;
+}

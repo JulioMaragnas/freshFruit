@@ -84,10 +84,11 @@ async function createNewClient(newClient) {
     .catch((err) => console.log("error", err));
 }
 
-async function createNewUser(newUser) {
+async function createNewUser(newUser, registerType) {
+  const type = registerType == 1 ? 'insertarAdmin' : 'insertarRepartidor';
   const params = HeaderParameters("POST", newUser);
   return fetch(
-    `http://freshfruitusers-env.eba-tma2vuyz.us-east-1.elasticbeanstalk.com/usuarios/`,
+    `http://freshfruitusers-env.eba-tma2vuyz.us-east-1.elasticbeanstalk.com/usuarios/${type}`,
     params
   )
     .then((res) => res.text())
@@ -140,89 +141,57 @@ async function getGoalsByUser() {
   )
     .then((res) => res.json())
     .then(lista => {
-      const years = lista.map(goal => {
-        const dateGoal = new Date(goal.fechaInicio);
-        return dateGoal.getFullYear()
-      })
-      .filter((year, index, self)=> self.indexOf(year) === index);
-      
-      const goalsByYear = years.map(year => {
-        const months = lista.filter(x => {
-          const date = new Date(x.fechaInicio);
-          return date.getFullYear() === year;
+        const years = lista.map(goal => {
+          const dateGoal = new Date(goal.fechaInicio);
+          return dateGoal.getFullYear()
         })
-        .map(month => {
-          const date = new Date(month.fechaInicio)
-          return OrderMonths.find(m => m.order === (date.getMonth() + 1))
+        .filter((year, index, self)=> self.indexOf(year) === index);
+        
+        const goalsByYear = years.map(year => {
+          const months = lista.filter(x => {
+            const date = new Date(x.fechaInicio);
+            return date.getFullYear() === year;
+          })
+          .map(month => {
+            const date = new Date(month.fechaInicio)
+            return OrderMonths().find(m => m.order === (date.getMonth() + 1))
+          });
+          const resultMonths = [...new Map(months.map(item => [item['code'], item])).values()];
+          return ({
+            year,
+            months : resultMonths
+          })        
         });
-        const resultMonths = [...new Map(months.map(item => [item['code'], item])).values()];
-        return ({
-          year,
-          months : resultMonths
-        })        
-      });
-      
-      return goalsByYear.map(year =>({
-       ...year,
-       months: year.months.map(month => ({
-        ...month,
-        goals: lista.filter(goal=> {
-          const date = new Date(goal.fechaInicio);
-          return (date.getMonth() + 1) === month.order
-        })
-        .sort((a,b)=> b.order - a.order)
-        .map(({nombreMeta: name, porcentajeAlcanzado: percentage}) => ({name, percentage}))
-       }))
-      }))
+        return goalsByYear.map(year =>({
+         ...year,
+         months: year.months.map(month => ({
+          ...month,
+          goals: lista.filter(goal=> {
+            const date = new Date(goal.fechaInicio);
+            return (date.getMonth() + 1) === month.order
+          })
+          .sort((a,b)=> b.order - a.order)
+          .map(({nombreMeta: name, cantidadAlcanzada, cantidadAlcanzar}) => ({name, percentage: Math.floor((cantidadAlcanzada * 100)/cantidadAlcanzar)}))
+         }))
+        }))
     })
     .catch((err) => console.log("error", err));
 }
 
 async function getDelivers() {
-  return [
-    {
-      id: 1,
-      idestado: 0,
-      idrol: 0,
-      nombre: "Deliver 1",
-    },
-    {
-      id: 2,
-      idestado: 0,
-      idrol: 0,
-      nombre: "Deliver 2",
-    },
-    {
-      id: 3,
-      idestado: 0,
-      idrol: 0,
-      nombre: "Deliver 3",
-    },
-    {
-      id: 4,
-      idestado: 0,
-      idrol: 0,
-      nombre: "Deliver 4",
-    },
-    {
-      id: 5,
-      idestado: 0,
-      idrol: 0,
-      nombre: "Deliver 5",
-    },
-    {
-      id: 6,
-      idestado: 0,
-      idrol: 0,
-      nombre: "Deliver 6",
-    },
-    {
-      id: 7,
-      idestado: 0,
-      idrol: 0,
-      nombre: "Deliver 7",
-    }
-  ]
+  const deliversSS = JSON.parse(sessionStorage.getItem('delivers')) || [];
+  if(deliversSS && deliversSS.length) return deliversSS
+  const params = HeaderParameters("GET");
+  return fetch(
+    `http://freshfruitusers-env.eba-tma2vuyz.us-east-1.elasticbeanstalk.com/usuarios/obtenerListaRepartidores`,
+    params
+  )
+    .then((res) => res.json())
+    .then((lista) => {
+      sessionStorage.setItem('delivers', JSON.stringify(lista));
+      return lista
+    })
+    .catch((err) => console.log("error", err));
 }
 
 export {

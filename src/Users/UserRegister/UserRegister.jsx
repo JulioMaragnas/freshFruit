@@ -43,7 +43,7 @@ function UserRegister() {
     }
     
     if (isAdminCreator != 0) {
-      const res = await createNewUser(newUser);
+      const res = await createNewUser(newUser, registerType);
       res && message.success("El registro se ha creado exitosamente", 2);
       res && navigation("pendingApprovals");
     }

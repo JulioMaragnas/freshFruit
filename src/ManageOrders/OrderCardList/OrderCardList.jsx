@@ -27,6 +27,9 @@ function OrderCardList() {
   
   return (
     <div className="w-100 order-list">
+      { 
+        !orders.length && <h2 className="no-data"> En el momento no hay pedidos en este estado </h2>
+      }
       {
         orders.map(order => (<OrderCard order={order} setPurchaseState={setPurchaseStateId} purchaseState={purchaseStateId} key={order.id} />))
       }

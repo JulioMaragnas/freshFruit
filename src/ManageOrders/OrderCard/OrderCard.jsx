@@ -36,7 +36,8 @@ function OrderCard({order, setPurchaseState, purchaseState}) {
     
     const handleRoute = (purchaseOrderId)=> navigate(`../detail/${purchaseOrderId}`);
     const setNextStateOrder = (idusuariorepartidor = null)=>{
-        const { idMotivo, nextState } = getNextStateId(order.estado.codigo)
+        debugger
+        const { id: idMotivo, nextState } = getNextStateId(order.estado.codigo)
         const payload ={
             idVenta: order.id,
             idmetausuario: null,
@@ -44,7 +45,6 @@ function OrderCard({order, setPurchaseState, purchaseState}) {
             idMotivo
         }
         checkStatePurchase(payload, nextState);
-        debugger
         setPurchaseState(purchaseState + 1)
         setPurchaseState((purchaseState -1) === 0 ? 1 : purchaseState -1);
     }
@@ -66,7 +66,8 @@ function OrderCard({order, setPurchaseState, purchaseState}) {
         const swStateId ={
             ['CREADO']: ()=> findId('motivo 1', 'EN_PROCESO'),
             ['EN_PROCESO']: ()=> findId('motivo 1', 'DESPACHADO'),
-            ['DESPACHADO']: ()=> findId('motivo 1', 'DESPACHADO')
+            ['DESPACHADO']: ()=> findId('motivo 1', 'ENTREGADO'),
+            ['ENTREGADO']: ()=> findId('motivo 1', 'ENTREGADO'),
         }
         if (swStateId[stateCode]) return swStateId[stateCode]();
     }
@@ -78,7 +79,6 @@ function OrderCard({order, setPurchaseState, purchaseState}) {
     }
     
     const handleModalOk = ()=>{
-        debugger
         setIsDeliversVisible(false);
         setNextStateOrder(idDeliverSelected)
     }

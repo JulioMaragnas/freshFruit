@@ -34,8 +34,7 @@ function PendingApprovals(){
     {
       title: "Direcci\xF3n de entrega",
       dataIndex: "valorproduccionunitario",
-      key: "valorproduccionunitario",
-      render: (text, record) => `$${text || 0}`
+      key: "valorproduccionunitario"
     },
     {
       title: 'Acciones',

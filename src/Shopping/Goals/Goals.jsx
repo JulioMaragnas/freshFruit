@@ -17,7 +17,7 @@ function Goals(props) {
 
   return (
     <div className="page">
-      {!!goalsUser.length && <div className="timeline">
+      {goalsUser.length && <div className="timeline">
         {
           goalsUser
           .sort((a,b)=> b.year - a.year)
