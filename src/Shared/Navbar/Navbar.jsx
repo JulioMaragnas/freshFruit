@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext , useEffect} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { CartContext } from "../../PerformaceHooks/useCart";
 import { Menu, Dropdown, message, Space } from "antd";
@@ -8,9 +8,24 @@ import user from "../../Assets/userFFS.svg";
 import carIcon from "../../Assets/shopping-cart.svg";
 
 function Navbar(props) {
+
   const navigate = useNavigate();
   const [cart, setCart] = useContext(CartContext);
   
+  useEffect(() => {
+    const userLogged = JSON.parse(sessionStorage.getItem("userlogged"));
+
+    if(userLogged){
+       const { roles: {codigo}} = JSON.parse(sessionStorage.getItem("userInfo"));
+       setCart({...cart, role: codigo,logged: true })
+    }else{
+      setCart({...cart, logged: false})
+    }
+   
+
+  }, []);
+
+
   const handleRoute = () => {
     cart && cart.products.length && navigate("shoppingCart");
     !(cart && cart.products.length) && message.info("El carrito est\xE1 vac\xEDo", 0.6);
@@ -18,13 +33,20 @@ function Navbar(props) {
   
   const logoff = ()=>{
     sessionStorage.setItem('userlogged', false);
+    sessionStorage.removeItem('userInfo');
+    setCart({...cart, logged: false });
     navigate('/login')
   }
   
   const handleGetProfile = ()=>{
-    const islogged = JSON.parse(sessionStorage.getItem('userlogged')) || false;
-    !islogged && navigate('/login');
-    islogged && navigate('/infoClient/0')
+    !cart.logged && navigate('/login');
+    cart.logged && navigate('/infoClient/0')
+  } 
+
+  const handleMainPage = ()=>{
+    cart.role == "ADMIN" && navigate('/manageOrders/charts');
+    cart.role == "CLIENTE" && navigate('/manageOrdersUser/listOrders');
+    cart.role == "REPARTIDOR" && navigate('/manageOrdersDelivery/listOrders');
   } 
 
   return (
@@ -49,14 +71,14 @@ function Navbar(props) {
             <Dropdown overlay={
               <Menu>
               <Menu.Item key="1">
-                <a onClick={handleGetProfile}> Perfil </a>
+                <a onClick={handleGetProfile}> {cart.logged ? "Perfil" : "Iniciar sesión"} </a>
               </Menu.Item>
-              { cart.logged && <Menu.Item key="2">
-                <a> Mis compras </a> 
-              </Menu.Item>}
-              { cart.logged &&  <Menu.Item key="3">
+              { cart.logged &&<><Menu.Item key="2">
+                <a onClick={handleMainPage}> {cart.role ==  "ADMIN" ? "Dashboard" : cart.role ==  "CLIENTE" ? "Mis compras" : "Mis órdenes" } </a> 
+              </Menu.Item>
+              <Menu.Item key="3">
                 <a onClick={logoff}> Cerrar Sesi&oacute;n </a>
-              </Menu.Item>}
+              </Menu.Item></>}
             </Menu>
             } placement="bottomLeft">
               <img className="navbar_img--header" src={user} alt="" />
