@@ -37,6 +37,8 @@ async function checkStatePurchase(purchase, nextState = 'EN_PROCESO') {
     ['EN_PROCESO']: ()=> request('/ventas/marcarEnProceso/', purchase),
     ['DESPACHADO']: ()=> request('/ventas/marcarDespachado/', purchase),
     ['RECHAZADO']: ()=> request('/ventas/marcarRechazado/', purchase),
+    ['ENTREGADO']: ()=> request('/ventas/marcarEntregado/', purchase),
+    ['DEVUELTO']: ()=> request('/ventas/marcarDevuelto/', purchase),
   }
     
   return swState[nextState]()
@@ -55,9 +57,29 @@ async function getDetailPurchase(detailId) {
   
 }
 
+async function getPurchaseByUserId(userId) {
+  const params = HeaderParameters("GET");
+  return fetch(`http://freshfruitsales-env.eba-f32yfvma.us-east-1.elasticbeanstalk.com/ventas/obtenerListaVentasPorUsuario/${userId}?paginaActual=0&paginacion=10000`, params)
+    .then(data => data.json())
+    .then(({lista}) => lista)
+    .catch((err) => []);
+}
+
+async function getPurchaseByDeliveryId(deliveryId) {
+  const params = HeaderParameters("GET");
+  return fetch(`http://freshfruitsales-env.eba-f32yfvma.us-east-1.elasticbeanstalk.com/ventas/obtenerVentasPorRepartidor/${deliveryId}?paginaActual=0&paginacion=10000`, params)
+    .then(data => data.json())
+    .then(({lista}) => lista)
+    .catch((err) => []);
+}
+
+
+
 export { 
   createPurchase,
   getPurchaseByStateId,
   getDetailPurchase,
-  checkStatePurchase
+  checkStatePurchase,
+  getPurchaseByUserId,
+  getPurchaseByDeliveryId
 };
