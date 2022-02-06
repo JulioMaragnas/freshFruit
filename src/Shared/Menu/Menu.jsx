@@ -6,10 +6,17 @@ import { Menu } from "antd";
 import { InfoCircleFilled, AppstoreOutlined } from "@ant-design/icons";
 import { StatePurchaseContext } from "../../PerformaceHooks/useStatePurchase";
 import { CartContext } from '../../PerformaceHooks/useCart';
-;
-
 
 function MenuOrders() {
+  const [nameUser, setNameUser] = useState();
+  const [role, setRole] = useState();
+
+  useEffect(() => {
+    const {nombre, roles: {codigo}} = JSON.parse(sessionStorage.getItem("userInfo"));
+    setNameUser(nombre);
+    setRole(codigo);
+  }, []);
+
   const navigate = useNavigate();
   const [purchaseStateId, setPurchaseStateId] = useContext(StatePurchaseContext);
   const [cart, setCart] = useContext(CartContext);
@@ -34,7 +41,7 @@ function MenuOrders() {
       <div className="display-flex-row menu_header">
         <div className="menu_user-logged">
           <h5>Nombre de usuario</h5>
-          <h2> Jenny Castano </h2>
+          <h2> {nameUser} </h2>
         </div>
         <img className="menu_icon-profile" src={profileIcon} alt="" />
       </div>
