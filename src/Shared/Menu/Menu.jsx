@@ -30,6 +30,7 @@ function MenuOrders() {
       products: ()=> navigate('products'),
       master:()=> navigate('master'),
       pendingApprovals: ()=> navigate('pendingApprovals'),
+      userList: ()=> navigate('userList'),
       ['registerUser/1']: ()=> navigate('registerUser/1'),
       charts: ()=> navigate('charts'),
       goals: ()=> navigate('goals'),
@@ -107,6 +108,9 @@ function MenuOrders() {
             </Menu.Item>
             <Menu.Item key="u2" icon={<InfoCircleFilled />}>
               <span onClick={()=> handleMasters('registerUser/1')}> Crear usuarios </span>
+            </Menu.Item>
+            <Menu.Item key="u3" icon={<InfoCircleFilled />}>
+              <span onClick={()=> handleMasters('userList')}> Usuarios </span>
             </Menu.Item>
           </Menu.SubMenu>
           <Menu.SubMenu
