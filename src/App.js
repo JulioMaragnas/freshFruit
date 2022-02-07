@@ -23,6 +23,7 @@ import ManageOrdersDeliveryContainer from './ManageOrdersDelivery/ManageOrdersDe
 import OrderDeliveryList from './ManageOrdersDelivery/OrderDelivery/OrderDeliveryList';
 import GoalsList from './Users/GoalsList/GoalsList';
 import GoalsByUser from './Users/GoalsByUser/GoalsByUser';
+import UserList from './Users/UserList/UserList';
 
 function App() {
 
@@ -55,6 +56,7 @@ function App() {
           <Route path="products" element={<ProductList />}></Route>
           <Route path="productDetail/:productId" element={<ProductDetail />}></Route>
           <Route path="pendingApprovals" element={<PendingApprovals />}></Route>
+          <Route path="userList" element={<UserList />}></Route>
           <Route path="registerUser/:isAdminCreator" element={<UserRegister />}></Route>
           <Route path="goals" element={<GoalsList />}></Route>
           <Route path="goalDetail" element={<GoalsByUser />}></Route>
