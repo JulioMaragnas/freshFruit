@@ -44,8 +44,8 @@ function OrderCard({order, refreshList}) {
             idusuariorepartidor,
             idMotivo
         }
-        checkStatePurchase(payload, nextState);
-        refreshList(order.estado.codigo)
+        checkStatePurchase(payload, nextState).then(()=> refreshList(order.estado.codigo));
+        
     }
     const handleChangeState = ()=>{
         const {estado: {codigo}} = order;
