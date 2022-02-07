@@ -59,7 +59,8 @@ function Movements(props) {
     if (inventoryId != 0) {
       payload.id = inventoryId;
     }
-    const res = await movementProduct(payload);
+    const action = add == 0 ? 'disminuirInventario/' : '';
+    const res = await movementProduct(payload, action);
     message.success("Se ha registrado el movimiento exitosamente");
     navigate(`../inventory`)
   };
@@ -80,7 +81,7 @@ function Movements(props) {
       <div className="movements_container">
         <h2 className="movements_title--center">
           {" "}
-          {inventoryId != 0 ? "Agregar inventario" : "Crear inventario"}{" "}
+          {(inventoryId != 0 && add == 1) ? "Agregar inventario" : "Crear movimiento"}
         </h2>
         <div className="movements_form">
           <div className="w-100 mb-10 display-flex-row movements_image--header">
@@ -120,7 +121,7 @@ function Movements(props) {
               </Select>
             </Form.Item>
             <Form.Item
-              label={inventoryId != 0 ? "Cantidad de existencias a adicionar" : "Cantidad de existencias a disminuir"}
+              label={add != 0 ? "Cantidad de existencias a adicionar" : "Cantidad de existencias a disminuir"}
               name="existencias" 
               rules={[
                 {

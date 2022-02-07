@@ -10,10 +10,10 @@ async function getListInventory(param) {
     .catch(err => console.log('err', err))
 }
 
-async function movementProduct(movement){
+async function movementProduct(movement, action){
   const params = HeaderParameters('POST', movement)
 
-  return fetch('http://freshfruitinventary.us-east-1.elasticbeanstalk.com/inventarios/', params)
+  return fetch(`http://freshfruitinventary.us-east-1.elasticbeanstalk.com/inventarios/${action}`, params)
     .then(res => res.json())
     .catch(err => console.log('err', err));
 }

@@ -9,7 +9,6 @@ function ModalMovementDetail({inventoryId, isVisible, handleModal}) {
   
   useEffect(()=>{
     async function init() {
-      debugger
       const reasons = JSON.parse(sessionStorage.getItem('reasons')) || []
       const res = await getListMovementsById(inventoryId)
       const movements = res.map(movement => {
