@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { CheckSquareOutlined } from "@ant-design/icons";
 import { message } from "antd";
 import './CardBilling.css';
 import sendIcon from '../../Assets/sendIcon.svg';
@@ -47,7 +48,7 @@ function CardBilling() {
 			    }
 					<div className="display-flex-row card-billing_button-container">
 						<button className="container_button" onClick={handlePurchase}>
-							<img src={sendIcon} alt="send" />
+							<CheckSquareOutlined />
 		                    <span> Generar pedido </span>
 						</button>
 					</div>

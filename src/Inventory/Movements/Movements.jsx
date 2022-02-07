@@ -15,6 +15,7 @@ function Movements(props) {
   const [image, setImage] = useState("");
   const [movement, setMovement] = useState({});
   const [products, setProducts] = useState([]);
+  const [originalQuantity, setOriginalQuantity] = useState(0);
   const { Option } = Select;
 
   const navigate = useNavigate();
@@ -26,8 +27,9 @@ function Movements(props) {
       );
       const { nombre, imagen } = productos || {};
       const res = await getListProducts();
+      setOriginalQuantity(existencias);
       setMovement({ id, idproducto, nombre, imagen, existencias });
-      form.setFieldsValue({ idproducto });
+      form.setFieldsValue({ idproducto, existencias });
       setImage(imagen);
       setProducts(res);
     }
@@ -45,7 +47,10 @@ function Movements(props) {
   };
 
   const handleOnFinish = async ({ idproducto, existencias }) => {
-    
+    if(add == 0 && existencias > originalQuantity){
+      message.warning(`La cantidad de existencias a disminuir debe ser menor a ${originalQuantity} unidades`);
+      return;
+    }
     let payload = {
       idproducto,
       existencias,
@@ -55,7 +60,7 @@ function Movements(props) {
       payload.id = inventoryId;
     }
     const res = await movementProduct(payload);
-    message.success("Se ha creado el inventario exitosamente");
+    message.success("Se ha registrado el movimiento exitosamente");
     navigate(`../inventory`)
   };
 
@@ -109,14 +114,13 @@ function Movements(props) {
               >
                 {products.map((p) => (
                   <Option key={p.id} value={p.id}>
-                    {" "}
-                    {p.nombre}{" "}
+                    {p.nombre}
                   </Option>
                 ))}
               </Select>
             </Form.Item>
             <Form.Item
-              label={inventoryId != 0 ? "Cantidad de existencias a adicionar" : "Existencias"}
+              label={inventoryId != 0 ? "Cantidad de existencias a adicionar" : "Cantidad de existencias a disminuir"}
               name="existencias" 
               rules={[
                 {

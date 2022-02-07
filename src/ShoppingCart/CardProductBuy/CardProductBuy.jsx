@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import "./CardProductBuy.css";
-import deleteIcon from "../../Assets/deleteIcon.svg";
+import { DeleteOutlined } from "@ant-design/icons";
 import { CartContext } from '../../PerformaceHooks/useCart';
 import { useNavigate } from "react-router-dom";
 import format from 'format-number';
@@ -60,7 +60,7 @@ function CardProductBuy({ product }) {
         <button 
           className="container_button"
           onClick={()=> removeProduct(product.id)}>
-          <img src={deleteIcon} alt="delete" />
+          <DeleteOutlined />
           <span> Eliminar </span>
         </button>
       </div>

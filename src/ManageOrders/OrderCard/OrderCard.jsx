@@ -3,14 +3,15 @@ import { useNavigate } from "react-router-dom";
 import './OrderCard.css';
 import sendIcon from '../../Assets/sendIcon.svg';
 import detailOrderIcon from '../../Assets/detailOrderIcon.svg';
+import cancelIcon from '../../Assets/cancel.svg';
 import { Modal} from 'antd';
-import { ExclamationCircleOutlined } from "@ant-design/icons";
+import { ExclamationCircleOutlined, UnorderedListOutlined, CloseCircleOutlined, CheckSquareOutlined } from "@ant-design/icons";
 import { checkStatePurchase } from '../../requestPurchase';
 import { getDelivers } from '../../requestUser';
 import ModalDeliver from '../../Shared/Modal/Modal';
 
 
-function OrderCard({order, setPurchaseState, purchaseState}) {
+function OrderCard({order, refreshList}) {
     const { confirm:confirmModal  } = Modal;
     const navigate = useNavigate();
     const [buttontitle, setButtontitle] = useState('');
@@ -36,7 +37,6 @@ function OrderCard({order, setPurchaseState, purchaseState}) {
     
     const handleRoute = (purchaseOrderId)=> navigate(`../detail/${purchaseOrderId}`);
     const setNextStateOrder = (idusuariorepartidor = null)=>{
-        debugger
         const { id: idMotivo, nextState } = getNextStateId(order.estado.codigo)
         const payload ={
             idVenta: order.id,
@@ -45,8 +45,7 @@ function OrderCard({order, setPurchaseState, purchaseState}) {
             idMotivo
         }
         checkStatePurchase(payload, nextState);
-        setPurchaseState(purchaseState + 1)
-        setPurchaseState((purchaseState -1) === 0 ? 1 : purchaseState -1);
+        refreshList(order.estado.codigo)
     }
     const handleChangeState = ()=>{
         const {estado: {codigo}} = order;
@@ -68,6 +67,7 @@ function OrderCard({order, setPurchaseState, purchaseState}) {
             ['EN_PROCESO']: ()=> findId('motivo 1', 'DESPACHADO'),
             ['DESPACHADO']: ()=> findId('motivo 1', 'ENTREGADO'),
             ['ENTREGADO']: ()=> findId('motivo 1', 'ENTREGADO'),
+            ['RECHAZADO']: ()=> findId('motivo 1', 'RECHAZADO'),
         }
         if (swStateId[stateCode]) return swStateId[stateCode]();
     }
@@ -87,7 +87,17 @@ function OrderCard({order, setPurchaseState, purchaseState}) {
         setIsDeliversVisible(false);
         setIdDeliverSelected(null);
     }
-    
+    const handleReject = ()=>{
+        const { id: idMotivo, nextState } = getNextStateId('RECHAZADO')
+        const payload ={
+            idVenta: order.id,
+            idmetausuario: null,
+            idusuariorepartidor: null,
+            idMotivo
+        }
+        checkStatePurchase(payload, nextState);
+        refreshList(order.estado.codigo)
+    }
 
     return(
         <section className="w-100 order-card">
@@ -106,11 +116,15 @@ function OrderCard({order, setPurchaseState, purchaseState}) {
                 </div>
                 <div className="display-flex-row order-card_info order-card_info--right">
                     <button onClick={()=> handleRoute(order.id)} className="container_button mr-10">
-                        <img src={detailOrderIcon} alt="ver detalle" />
+                        <UnorderedListOutlined />
                         <span> ver detalle </span>
                     </button>
+                    <button onClick={()=> handleReject(order.id)} className="container_button mr-10">
+                        <CloseCircleOutlined />
+                        <span> Rechazar </span>
+                    </button>
                     <button onClick={handleChangeState} className="container_button">
-                        <img src={sendIcon} alt="ver detalle" />
+                        <CheckSquareOutlined />
                         <span> {buttontitle} </span>
                     </button>
                 </div>

@@ -10,13 +10,14 @@ function UserRegister() {
   const navigation = useNavigate();
   const [form] = Form.useForm();
   const [registerType, setRegisterType] = useState(3);
+  const userlogged = JSON.parse(sessionStorage.getItem('userlogged')) || false;
   
   useEffect(() => {
     async function init(){
       const res = await getUserInfo()
       form.setFieldsValue(res);
     }
-    isAdminCreator == 0 && init();
+    (isAdminCreator == 0 && userlogged) && init();
   }, []);
   
   
@@ -45,7 +46,7 @@ function UserRegister() {
     if (isAdminCreator != 0) {
       const res = await createNewUser(newUser, registerType);
       res && message.success("El registro se ha creado exitosamente", 2);
-      res && navigation("pendingApprovals");
+      res && navigation("/pendingApprovals");
     }
   };
   return (

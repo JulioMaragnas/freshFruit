@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { message } from 'antd';
 import "./CardProduct.css";
-import carIcon from "../../Assets/shopping-cart.svg";
+import { ShoppingCartOutlined } from "@ant-design/icons";
 import { CartContext } from '../../PerformaceHooks/useCart'
 import format from 'format-number'
 
@@ -73,7 +73,7 @@ function CardProduct({ product }) {
           className="card-product_button--add container_button"
           onClick={handleCart}
         >
-          <img src={carIcon} alt="" />
+          <ShoppingCartOutlined />
           <span>Agregar</span>
         </button>
       </div>

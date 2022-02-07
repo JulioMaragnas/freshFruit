@@ -32,6 +32,11 @@ function GoalsList(params) {
       key: "id",
     },
     {
+      title: "Nombre",
+      dataIndex: "nombre",
+      key: "nombre",
+    },
+    {
       title: "Descripcion",
       dataIndex: "descripcion",
       key: "descripcion",

@@ -30,14 +30,10 @@ function InventoryList(params) {
   }, []);
   
   const handleEditInventory = (inventoryId)=>{
-    navigate(`../inventoryDetail/${inventoryId}/false`)
+    navigate(`../inventoryDetail/${inventoryId}/1`)
   }
   const handleMovement = (inventoryId)=>{
-    navigate(`../inventoryDetail/${inventoryId}/true`)
-    // async function inactivateInventory(id) {
-    //   const res = await movementProduct(id)
-    // }
-    // inactivateInventory();
+    navigate(`../inventoryDetail/${inventoryId}/0`)
   }
   
   const handleShowDetail = (id)=>{

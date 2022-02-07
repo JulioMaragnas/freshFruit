@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams  } from 'react-router-dom';
+import { useParams, useNavigate  } from 'react-router-dom';
 import "./ProductDetail.css";
 import { Form, Input, InputNumber, Button, Upload, message } from "antd";
 import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
@@ -12,6 +12,7 @@ function ProductDetail(props) {
   const {productId} = useParams();
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState("");
+  const navigate = useNavigate();
   const validateMessages = {
     required: "${label} es requerido!",
     types: {
@@ -74,13 +75,13 @@ function ProductDetail(props) {
       message.warning("Para crear el producto debes cargar la imagen de referencia");
       return;
     }
-    debugger
     const isUpdate = productId != 0;
     if (isUpdate) {
       product.id = productId
     }
     const res = await createAndUpdateProduct({...product, imagen: imageUrl}, isUpdate);
     res && message.success(`Producto ${productId != 0 ? 'actualizado': 'creado'} correctamente`);
+    res && navigate('../products')
   };
   return (
     <div className="w-100 mt-10 display-flex-row  product-detail">
