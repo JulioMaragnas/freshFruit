@@ -17,6 +17,7 @@ function UserList() {
           ...user, 
           rol: user.roles.descripcion
         }))
+      dataSource.sort((a,b) => (a.id > b.id) ? -11 : ((b.id > a.id) ? 1 : 0));
         setUserList(dataSource);
     }
     init();
