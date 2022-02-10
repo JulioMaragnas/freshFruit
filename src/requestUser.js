@@ -5,7 +5,7 @@ import { OrderMonths } from './Utils/OrderMonths';
 async function getUserInfo() {
   const params = HeaderParameters("GET");
   return fetch(
-    `http://freshfruitusers-env.eba-tma2vuyz.us-east-1.elasticbeanstalk.com/usuarios/obtenerUsuarioSesion`,
+    `http://freshfruituser-env.eba-3spk2cv8.us-east-1.elasticbeanstalk.com/usuarios/obtenerUsuarioSesion`,
     params
   )
     .then((res) => res.json())
@@ -48,7 +48,7 @@ async function login(userInfo){
     body: JSON.stringify(userInfo)
   }
   return fetch(
-    `http://freshfruitusers-env.eba-tma2vuyz.us-east-1.elasticbeanstalk.com/usuarios/login`,
+    `http://freshfruituser-env.eba-3spk2cv8.us-east-1.elasticbeanstalk.com/usuarios/login`,
     params
   )
   .then((res) => res.text())
@@ -69,7 +69,7 @@ async function login(userInfo){
 async function createNewClient(newClient) {
   const params = HeaderParameters("POST", newClient);
   return fetch(
-    `http://freshfruitusers-env.eba-tma2vuyz.us-east-1.elasticbeanstalk.com/usuarios/insertarCliente`,
+    `http://freshfruituser-env.eba-3spk2cv8.us-east-1.elasticbeanstalk.com/usuarios/insertarCliente`,
     params
   )
     .then((res) => res.text())
@@ -88,7 +88,7 @@ async function createNewUser(newUser, registerType) {
   const type = registerType == 1 ? 'insertarAdmin' : 'insertarRepartidor';
   const params = HeaderParameters("POST", newUser);
   return fetch(
-    `http://freshfruitusers-env.eba-tma2vuyz.us-east-1.elasticbeanstalk.com/usuarios/${type}`,
+    `http://freshfruituser-env.eba-3spk2cv8.us-east-1.elasticbeanstalk.com/usuarios/${type}`,
     params
   )
     .then((res) => res.text())
@@ -106,7 +106,7 @@ async function createNewUser(newUser, registerType) {
 async function updateStateClient(action, userId) {
   const params = HeaderParameters("PUT");
   return fetch(
-    `http://freshfruitusers-env.eba-tma2vuyz.us-east-1.elasticbeanstalk.com/usuarios/${action}/${userId}`,
+    `http://freshfruituser-env.eba-3spk2cv8.us-east-1.elasticbeanstalk.com/usuarios/${action}/${userId}`,
     params
   )
     .then((res) => res.text())
@@ -125,7 +125,7 @@ async function updateStateClient(action, userId) {
 async function getPendingApprovals() {
   const params = HeaderParameters("GET");
   return fetch(
-    `http://freshfruitusers-env.eba-tma2vuyz.us-east-1.elasticbeanstalk.com/usuarios/obtenerListaPendientes?paginaActual=0&paginacion=1000`,
+    `http://freshfruituser-env.eba-3spk2cv8.us-east-1.elasticbeanstalk.com/usuarios/obtenerListaPendientes?paginaActual=0&paginacion=1000`,
     params
   )
     .then((res) => res.json())
@@ -136,7 +136,7 @@ async function getPendingApprovals() {
 async function getGoalsByUser() {
   const params = HeaderParameters("GET");
   return fetch(
-    `http://freshfruitusers-env.eba-tma2vuyz.us-east-1.elasticbeanstalk.com/usuarios/obtenerMetasUsuarioSesion`,
+    `http://freshfruituser-env.eba-3spk2cv8.us-east-1.elasticbeanstalk.com/usuarios/obtenerMetasUsuarioSesion`,
     params
   )
     .then((res) => res.json())
@@ -183,7 +183,7 @@ async function getDelivers() {
   if(deliversSS && deliversSS.length) return deliversSS
   const params = HeaderParameters("GET");
   return fetch(
-    `http://freshfruitusers-env.eba-tma2vuyz.us-east-1.elasticbeanstalk.com/usuarios/obtenerListaRepartidores`,
+    `http://freshfruituser-env.eba-3spk2cv8.us-east-1.elasticbeanstalk.com/usuarios/obtenerListaRepartidores`,
     params
   )
     .then((res) => res.json())
