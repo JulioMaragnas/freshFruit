@@ -194,6 +194,17 @@ async function getDelivers() {
     .catch((err) => console.log("error", err));
 }
 
+async function getUserList() {
+  const params = HeaderParameters("GET");
+  return fetch(
+    `http://freshfruitusers-env.eba-tma2vuyz.us-east-1.elasticbeanstalk.com/usuarios/?paginaActual=0&paginacion=1000`,
+    params
+  )
+    .then((res) => res.json())
+    .then(({lista}) => lista)
+    .catch((err) => console.log("error", err));
+}
+
 export {
     getUserInfo,
     getTemporalToken,
@@ -203,5 +214,6 @@ export {
     createNewUser,
     getPendingApprovals,
     getGoalsByUser,
-    getDelivers
+    getDelivers,
+    getUserList
 }
