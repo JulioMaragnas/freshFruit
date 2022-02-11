@@ -14,11 +14,11 @@ function ManageOrdersContainer() {
   
   return (
     <StatePurchaseProvider>
-      <section className="w-100 display-flex-row manage-orders">
-        <div className="manage-orders_menu">
+      <section className="w-100 display-flex-row manage-orders ant-row">
+        <div className="ant-col ant-col-xs-24 ant-col-lg-5 ant-col-xl-5">
           <MenuOrders />
         </div>
-        <div className="manage-orders_view">
+        <div className="ant-col ant-col-xs-24 ant-col-lg-19 ant-col-xl-19">
           <Outlet />
         </div>
       </section>
