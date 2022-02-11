@@ -72,12 +72,12 @@ function ChartsContainer() {
         <InventoryByProducts />
       </div>
       <div className="charts_chart--single shadow ant-col ant-col-xs-24 ant-col-lg-24 ant-col-xl-24">
-        <PurchaseBarChart />
+        
       </div>
     </section>
   );
 }
-
+//<PurchaseBarChart />
 function PurchaseBarChart() {
   ChartJS.register(
     CategoryScale,
@@ -150,11 +150,11 @@ function QuantiySalesByMonth({purchaseByMonth}) {
   };
 
   const data = {
-    labels: purchaseByMonth[0],
+    labels: [],
     datasets: [
       {
         label: "",
-        data: purchaseByMonth[1],
+        data: [],
         borderColor: "rgb(255, 99, 132)",
         backgroundColor: "rgba(255, 99, 132, 0.5)",
       },

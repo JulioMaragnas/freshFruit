@@ -140,14 +140,15 @@ async function getDataForChart() {
 }
 
 function calculatePurchaseByMonth(consolidated) {
-  return consolidated
-    .map(purchase =>({...purchase, ...OrderMonths.find(month => month.toLowerCase().indexOf(purchase.mes.toLowerCase() === 0))}))
-    .sort((ma, mb)=> ma.order - mb.order)
-    .reduce((accum, month)=>{
-      accum[0].push(month.name);
-      accum[1].push(month.numeroVentas)
-      return accum;
-    },[[], []])
+  return [];
+  // return consolidated
+  //   .map(purchase =>({...purchase, ...OrderMonths().find(month => month.toLowerCase().indexOf(purchase.mes.toLowerCase() === 0))}))
+  //   .sort((ma, mb)=> ma.order - mb.order)
+  //   .reduce((accum, month)=>{
+  //     accum[0].push(month.name);
+  //     accum[1].push(month.numeroVentas)
+  //     return accum;
+  //   },[[], []])
 }
 
 
