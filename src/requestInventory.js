@@ -81,74 +81,32 @@ function getListMovementsById(inventoryId) {
 }
 
 async function getDataForChart() {
-  return {
-    encabezado: {
-      totalVentas: 0,
-      ventaMaxPedido: 0,
-      cantPulpasVendidas: 0,
-      totalRedenciones: 0,
-      devoluciones: 0,
-    },
-    ventasMes: [
-      {
-        mes: "Enero",
-        ano: 2022,
-        numeroVentas: 0,
-      },
-      {
-        mes: "Febrero",
-        ano: 2022,
-        numeroVentas: 0,
-      },
-      {
-        mes: "Diciembre",
-        ano: 2021,
-        numeroVentas: 0,
-      },
-    ],
-    frutasMasVendida: [
-      {
-        productos: {
-          descripcion: "Pera",
-          id: 0,
-          imagen: "string",
-          nombre: "string",
-          precio: 0,
-          valorproduccionunitario: 0,
-        },
-        ventas: [
-          { cantidadVendida: 0, mes: "Febrero", ano: 2022 },
-          { cantidadVendida: 0, mes: "Enero", ano: 2022 },
-        ],
-      },
-      {
-        productos: {
-          descripcion: "piña",
-          id: 0,
-          imagen: "string",
-          nombre: "string",
-          precio: 0,
-          valorproduccionunitario: 0,
-        },
-        ventas: [
-          { cantidadVendida: 0, mes: "Febrero", ano: 2022 },
-          { cantidadVendida: 0, mes: "Enero", ano: 2022 },
-        ],
-      },
-    ],
-  };
+  const params = HeaderParameters('GET')
+
+  return fetch(`http://freshfruitparametrization-env.eba-n3ch7jpn.us-east-1.elasticbeanstalk.com/dashboard/`, params)
+  .then(res => res.json())
+  .then((res) => res)
+  .catch(err => console.log('err', err));
 }
 
 function calculatePurchaseByMonth(consolidated) {
-  return [];
-  // return consolidated
-  //   .map(purchase =>({...purchase, ...OrderMonths().find(month => month.toLowerCase().indexOf(purchase.mes.toLowerCase() === 0))}))
-  //   .sort((ma, mb)=> ma.order - mb.order)
-  //   .reduce((accum, month)=>{
-  //     accum[0].push(month.name);
-  //     accum[1].push(month.numeroVentas)
-  //     return accum;
-  //   },[[], []])
+  return consolidated
+    .map(purchase =>{
+      debugger
+      const m = OrderMonths().find(month => {
+        debugger
+        const r = month.name.toLowerCase().indexOf(purchase.mes.toLowerCase() === 0)
+        return purchase.mes.toLowerCase().indexOf(month.name.toLowerCase()) === 0
+      });
+      return {...purchase, ...OrderMonths().find(month => month.name.toLowerCase().indexOf(purchase.mes.toLowerCase() === 0))}
+    })
+    .sort((ma, mb)=> ma.order - mb.order)
+    .reduce((accum, month, index, thisArr)=>{
+      debugger
+      accum[0].push(month.name);
+      accum[1].push(month.numeroVentas)
+      return accum;
+    },[[], []])
 }
 
 

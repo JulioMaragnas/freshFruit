@@ -32,7 +32,6 @@ async function getGoals() {
 }
 
 async function createGoal(goal) {
-  debugger
   const params = HeaderParameters("POST", goal);
   return fetch(
     `http://freshfruitparametrization-env.eba-n3ch7jpn.us-east-1.elasticbeanstalk.com/metas/`,
@@ -49,7 +48,6 @@ async function createGoal(goal) {
     })
     .catch((err) => []);
 }
-
 
 function findErrorCode(code){
   const httpCodes = [400,409];

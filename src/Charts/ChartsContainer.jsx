@@ -19,7 +19,7 @@ import { getDataForChart, getListInventory, calculatePurchaseByMonth } from '../
 function ChartsContainer() {
   const [head, setHead] = useState({});
   const [purchaseByMonth, setPurchaseByMonth] = useState([[],[]]);
-  const [fruitsMoreSold, setFruitsMoreSold] = useState([[],[],[]]);
+  const [bestsSellingFruits, setBestsSellingFruits] = useState([[],[],[]]);
   useEffect(()=>{
     // totalVentas: 0,
     // ventaMaxPedido: 0,
@@ -27,13 +27,39 @@ function ChartsContainer() {
     // totalRedenciones: 0,
     // devoluciones: 0,
     async function init(){
-      const { encabezado, frutasMasVendida, ventasMes } = await getDataForChart();
+      const { 
+        totalVentas,
+        ventaMaximoPedido,
+        cantidadPulpasVendidas,
+        totalOrdenes,
+        totalDevoluciones,
+        listaRanckingPulpas, 
+        listaVentasMes } = await getDataForChart();
       const inventory = await getListInventory();
       
-      setHead(encabezado);
+      setHead({
+        totalVentas,
+        ventaMaximoPedido,
+        cantidadPulpasVendidas,
+        totalOrdenes,
+        totalDevoluciones
+      });
       
-      const [purchaseByMonthLabels, purchaseByMonthValues] = calculatePurchaseByMonth(ventasMes);
-      setPurchaseByMonth([purchaseByMonthLabels, purchaseByMonthValues])
+      const ventasmes = listaVentasMes
+          .sort((ma,mb)=> ma.dia - mb.dia)
+          .reduce((accum, value)=>{
+            const [labels, values] = accum;
+            return [[...labels, `dia ${value.dia}`], [...values, value.totalVentas]]
+          }, [[],[]]);
+          
+      const rankingFrutas = listaRanckingPulpas
+        .reduce((accum, value)=>{
+          const [labels, values] = accum;
+          return [[...labels, `${value.nombre}`], [...values, value.cantidadVentas]]
+        }, [[],[]])
+          
+      setPurchaseByMonth(ventasmes)
+      setBestsSellingFruits(rankingFrutas);
     }
     init()
   }, [])
@@ -49,36 +75,35 @@ function ChartsContainer() {
           </div>
           <div className="charts_card shadow ant-col ant-col-xs-24 ant-col-lg-5 ant-col-xl-5">
             <h1>Venta max por pedido</h1>
-            <p> {myFormat(head.ventaMaxPedido)} </p>
+            <p> {myFormat(head.ventaMaximoPedido)} </p>
           </div>
           <div className="charts_card shadow ant-col ant-col-xs-24 ant-col-lg-5 ant-col-xl-5">
             <h1>Pulpas vendidas</h1>
-            <p> {head.cantPulpasVendidas} <span>und</span></p>
+            <p> {head.cantidadPulpasVendidas} <span>und</span></p>
           </div>
           <div className="charts_card shadow ant-col ant-col-xs-24 ant-col-lg-4 ant-col-xl-4">
             <h1> Redenciones </h1>
-            <p> {head.totalRedenciones} <span>vales</span></p>
+            <p> {head.totalOrdenes} <span>vales</span></p>
           </div>
           <div className="charts_card shadow ant-col ant-col-xs-24 ant-col-lg-4 ant-col-xl-4">
             <h1>Devoluciones</h1>
-            <p> {head.devoluciones} <span>pedidos</span></p>
+            <p> {head.totalDevoluciones} <span>pedidos</span></p>
           </div>
         </div>
       </div>
       <div className="charts_chart--double shadow ant-col ant-col-xs-24 ant-col-lg-24 ant-col-xl-13">
-        <QuantiySalesByMonth />
+        <QuantiySalesByMonth purchaseByMonth={purchaseByMonth}/>
       </div>
       <div className="shadow ant-col ant-col-xs-24 ant-col-lg-24 ant-col-xl-10">
         <InventoryByProducts />
       </div>
       <div className="charts_chart--single shadow ant-col ant-col-xs-24 ant-col-lg-24 ant-col-xl-24">
-        
+        <PurchaseBarChart  bestsSellingFruits={bestsSellingFruits}/>
       </div>
     </section>
   );
 }
-//<PurchaseBarChart />
-function PurchaseBarChart() {
+function PurchaseBarChart({bestsSellingFruits}) {
   ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -95,30 +120,19 @@ function PurchaseBarChart() {
       },
       title: {
         display: true,
-        text: "Comparativo de ventas por mes de las frutas mas vendidas",
+        text: "Comparativo de ventas de pulpas de fruta",
       },
     },
   };
-
-  const labelsPurchases = ["Piña", "Manzana", "Pera", "Mora", "Mango", "Kiwi"];
-
+  
   const data = {
-    labels: labelsPurchases,
+    labels: bestsSellingFruits[0],
     datasets: [
       {
-        label: "Ventas enero",
-        data: labelsPurchases.map(() =>
-          Math.floor(Math.random() * (200 - 0 + 1) + 0)
-        ),
+        label: "",
+        data: bestsSellingFruits[1],
         backgroundColor: "#78FA9E",
-      },
-      {
-        label: "Ventas febrero",
-        data: labelsPurchases.map(() =>
-          Math.floor(Math.random() * (200 - 0 + 1) + 0)
-        ),
-        backgroundColor: "rgba(53, 162, 235, 0.5)",
-      },
+      }
     ],
   };
 
@@ -144,17 +158,17 @@ function QuantiySalesByMonth({purchaseByMonth}) {
       },
       title: {
         display: true,
-        text: "Ventas por mes",
+        text: "Ventas por día",
       },
     },
   };
 
   const data = {
-    labels: [],
+    labels: purchaseByMonth[0],
     datasets: [
       {
         label: "",
-        data: [],
+        data: purchaseByMonth[1],
         borderColor: "rgb(255, 99, 132)",
         backgroundColor: "rgba(255, 99, 132, 0.5)",
       },
