@@ -1,9 +1,9 @@
 import React, { useState, useContext } from "react";
 
-const StatePurchaseContext = React.createContext([2, ()=> (null)]);
+const StatePurchaseContext = React.createContext([14, ()=> (null)]);
 
 const StatePurchaseProvider = (props)=>{
-    const [purchaseStateId, setPurchaseStateId] = useState(2);
+    const [purchaseStateId, setPurchaseStateId] = useState(14);
     return <StatePurchaseContext.Provider value={[purchaseStateId, setPurchaseStateId]} >
         {props.children}
     </StatePurchaseContext.Provider>

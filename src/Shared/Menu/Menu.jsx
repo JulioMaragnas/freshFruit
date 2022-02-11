@@ -63,19 +63,19 @@ function MenuOrders() {
             }}
             icon={<AppstoreOutlined />}
           >
-            <Menu.Item onClick={() => handleSetStateId(2)} key="p1" icon={<InfoCircleFilled />}>
+            <Menu.Item onClick={() => handleSetStateId(14)} key="p1" icon={<InfoCircleFilled />}>
               <span> Pedidos pendientes </span>
             </Menu.Item>
-            <Menu.Item onClick={() => handleSetStateId(1)} key="p2" icon={<InfoCircleFilled />}>
+            <Menu.Item onClick={() => handleSetStateId(13)} key="p2" icon={<InfoCircleFilled />}>
               <span>Pedidos en proceso</span>
             </Menu.Item>
-            <Menu.Item onClick={() => handleSetStateId(4)} key="p3" icon={<InfoCircleFilled />}>
+            <Menu.Item onClick={() => handleSetStateId(16)} key="p3" icon={<InfoCircleFilled />}>
               <span>Pedidos despachados</span>
             </Menu.Item>
-            <Menu.Item onClick={() => handleSetStateId(5)} key="p4" icon={<InfoCircleFilled />}>
+            <Menu.Item onClick={() => handleSetStateId(17)} key="p4" icon={<InfoCircleFilled />}>
               <span>Pedidos entregados</span>
             </Menu.Item>
-            <Menu.Item onClick={() => handleSetStateId(6)} key="p5" icon={<InfoCircleFilled />}>
+            <Menu.Item onClick={() => handleSetStateId(18)} key="p5" icon={<InfoCircleFilled />}>
               <span>Pedidos rechazados y/o devueltos</span>
             </Menu.Item>
           </Menu.SubMenu>)}
