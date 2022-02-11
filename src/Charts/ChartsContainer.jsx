@@ -51,7 +51,7 @@ function ChartsContainer() {
             <h1>Venta max por pedido</h1>
             <p> {myFormat(head.ventaMaxPedido)} </p>
           </div>
-          <div className="charts_card shadow ant-col ant-col-xs-24 ant-col-lg-5 ant-col-xl-5">
+          <div className="charts_card shadow ant-col ant-col-xs-24 ant-col-lg-5 ant-col-xl-4">
             <h1>Pulpas vendidas</h1>
             <p> {head.cantPulpasVendidas} <span>und</span></p>
           </div>
@@ -65,13 +65,13 @@ function ChartsContainer() {
           </div>
         </div>
       </div>
-      <div className="charts_chart--double shadow ant-col ant-col-xs-24 ant-col-lg-24 ant-col-xl-13">
+      <div className="charts_chart--double shadow ant-col ant-col-xs-24 ant-col-lg-24 ant-col-xl-11">
         <QuantiySalesByMonth />
       </div>
-      <div className="shadow ant-col ant-col-xs-24 ant-col-lg-24 ant-col-xl-10">
+      <div className="shadow ant-col ant-col-xs-24 ant-col-lg-24 ant-col-xl-11">
         <InventoryByProducts />
       </div>
-      <div className="charts_chart--single shadow ant-col ant-col-xs-24 ant-col-lg-24 ant-col-xl-24">
+      <div className="charts_chart--single shadow ant-col ant-col-xs-24 ant-col-lg-24 ant-col-xl-23">
         
       </div>
     </section>
