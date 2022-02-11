@@ -21,6 +21,11 @@ function ChartsContainer() {
   const [purchaseByMonth, setPurchaseByMonth] = useState([[],[]]);
   const [fruitsMoreSold, setFruitsMoreSold] = useState([[],[],[]]);
   useEffect(()=>{
+    // totalVentas: 0,
+    // ventaMaxPedido: 0,
+    // cantPulpasVendidas: 0,
+    // totalRedenciones: 0,
+    // devoluciones: 0,
     async function init(){
       const { encabezado, frutasMasVendida, ventasMes } = await getDataForChart();
       const inventory = await getListInventory();
@@ -29,8 +34,6 @@ function ChartsContainer() {
       
       const [purchaseByMonthLabels, purchaseByMonthValues] = calculatePurchaseByMonth(ventasMes);
       setPurchaseByMonth([purchaseByMonthLabels, purchaseByMonthValues])
-      
-      const 
     }
     init()
   }, [])
@@ -42,23 +45,23 @@ function ChartsContainer() {
         <div className="ant-row">
           <div className="charts_card shadow ant-col ant-col-xs-24 ant-col-lg-5 ant-col-xl-5">
             <h1>Total de ventas</h1>
-            <p> {myFormat(19850900)} </p>
+            <p> {myFormat(head.totalVentas)} </p>
           </div>
           <div className="charts_card shadow ant-col ant-col-xs-24 ant-col-lg-5 ant-col-xl-5">
             <h1>Venta max por pedido</h1>
-            <p> {myFormat(290750)} </p>
+            <p> {myFormat(head.ventaMaxPedido)} </p>
           </div>
           <div className="charts_card shadow ant-col ant-col-xs-24 ant-col-lg-5 ant-col-xl-5">
             <h1>Pulpas vendidas</h1>
-            <p> 1830 <span>und</span></p>
+            <p> {head.cantPulpasVendidas} <span>und</span></p>
           </div>
           <div className="charts_card shadow ant-col ant-col-xs-24 ant-col-lg-4 ant-col-xl-4">
             <h1> Redenciones </h1>
-            <p> 50 <span>vales</span></p>
+            <p> {head.totalRedenciones} <span>vales</span></p>
           </div>
           <div className="charts_card shadow ant-col ant-col-xs-24 ant-col-lg-4 ant-col-xl-4">
             <h1>Devoluciones</h1>
-            <p> 1830 <span>pedidos</span></p>
+            <p> {head.devoluciones} <span>pedidos</span></p>
           </div>
         </div>
       </div>
@@ -145,8 +148,6 @@ function QuantiySalesByMonth({purchaseByMonth}) {
       },
     },
   };
-
-  const labels = ["Noviembre", "Diciembre", "Enero", "Febrero"];
 
   const data = {
     labels: purchaseByMonth[0],
