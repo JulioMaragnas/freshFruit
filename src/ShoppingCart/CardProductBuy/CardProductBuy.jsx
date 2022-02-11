@@ -24,7 +24,7 @@ function CardProductBuy({ product }) {
   }
   const {productos: { imagen }} = product;
   return (
-    <div className="card-product-buy">
+    <div className="card-product-buy ant-col ant-col-xs-22 ant-col-lg-6 ant-col-xl-6">
       <img
         className="w-100 image--br-5 card-product-buy_image--full"
         src={`${imagen}`}
