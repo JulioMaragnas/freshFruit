@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -14,8 +14,27 @@ import {
 import { Bar, Line, Doughnut } from "react-chartjs-2";
 import format from 'format-number'
 import "./ChartsContainer.css";
+import { getDataForChart, getListInventory, calculatePurchaseByMonth } from '../requestInventory';
 
 function ChartsContainer() {
+  const [head, setHead] = useState({});
+  const [purchaseByMonth, setPurchaseByMonth] = useState([[],[]]);
+  const [fruitsMoreSold, setFruitsMoreSold] = useState([[],[],[]]);
+  useEffect(()=>{
+    async function init(){
+      const { encabezado, frutasMasVendida, ventasMes } = await getDataForChart();
+      const inventory = await getListInventory();
+      
+      setHead(encabezado);
+      
+      const [purchaseByMonthLabels, purchaseByMonthValues] = calculatePurchaseByMonth(ventasMes);
+      setPurchaseByMonth([purchaseByMonthLabels, purchaseByMonthValues])
+      
+      const 
+    }
+    init()
+  }, [])
+
   var myFormat = format({ prefix: '$' });
   return (
     <section className="w-100 display-flex-row charts ant-row">
@@ -103,7 +122,7 @@ function PurchaseBarChart() {
   return <Bar options={options} data={data} />;
 }
 
-function QuantiySalesByMonth() {
+function QuantiySalesByMonth({purchaseByMonth}) {
   ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -130,11 +149,11 @@ function QuantiySalesByMonth() {
   const labels = ["Noviembre", "Diciembre", "Enero", "Febrero"];
 
   const data = {
-    labels,
+    labels: purchaseByMonth[0],
     datasets: [
       {
         label: "",
-        data: labels.map(() => Math.floor(Math.random() * (30 - 0 + 1) + 0)),
+        data: purchaseByMonth[1],
         borderColor: "rgb(255, 99, 132)",
         backgroundColor: "rgba(255, 99, 132, 0.5)",
       },

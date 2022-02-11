@@ -24,7 +24,7 @@ async function getReasons() {
 async function getGoals() {
   const params = HeaderParameters("GET");
   return fetch(
-    `http://freshfruitparametrization-env.eba-raubnji4.us-east-1.elasticbeanstalk.com/metas/`,
+    `http://freshfruitparametrization-env.eba-n3ch7jpn.us-east-1.elasticbeanstalk.com/metas/`,
     params
   )
     .then((goals) => goals.json())
@@ -35,7 +35,7 @@ async function createGoal(goal) {
   debugger
   const params = HeaderParameters("POST", goal);
   return fetch(
-    `http://freshfruitparametrization-env.eba-raubnji4.us-east-1.elasticbeanstalk.com/metas/`,
+    `http://freshfruitparametrization-env.eba-n3ch7jpn.us-east-1.elasticbeanstalk.com/metas/`,
     params
   )
     .then((res) => res.text())

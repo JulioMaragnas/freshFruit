@@ -1,4 +1,5 @@
 import { HeaderParameters } from './Utils/HeaderParameters';
+import { OrderMonths } from './Utils/OrderMonths';
 import {message } from "antd";
 
 async function getListInventory(param) {
@@ -79,6 +80,76 @@ function getListMovementsById(inventoryId) {
   
 }
 
+async function getDataForChart() {
+  return {
+    encabezado: {
+      totalVentas: 0,
+      ventaMaxPedido: 0,
+      cantPulpasVendidas: 0,
+      totalRedenciones: 0,
+      devoluciones: 0,
+    },
+    ventasMes: [
+      {
+        mes: "Enero",
+        ano: 2022,
+        numeroVentas: 0,
+      },
+      {
+        mes: "Febrero",
+        ano: 2022,
+        numeroVentas: 0,
+      },
+      {
+        mes: "Diciembre",
+        ano: 2021,
+        numeroVentas: 0,
+      },
+    ],
+    frutasMasVendida: [
+      {
+        productos: {
+          descripcion: "Pera",
+          id: 0,
+          imagen: "string",
+          nombre: "string",
+          precio: 0,
+          valorproduccionunitario: 0,
+        },
+        ventas: [
+          { cantidadVendida: 0, mes: "Febrero", ano: 2022 },
+          { cantidadVendida: 0, mes: "Enero", ano: 2022 },
+        ],
+      },
+      {
+        productos: {
+          descripcion: "piña",
+          id: 0,
+          imagen: "string",
+          nombre: "string",
+          precio: 0,
+          valorproduccionunitario: 0,
+        },
+        ventas: [
+          { cantidadVendida: 0, mes: "Febrero", ano: 2022 },
+          { cantidadVendida: 0, mes: "Enero", ano: 2022 },
+        ],
+      },
+    ],
+  };
+}
+
+function calculatePurchaseByMonth(consolidated) {
+  return consolidated
+    .map(purchase =>({...purchase, ...OrderMonths.find(month => month.toLowerCase().indexOf(purchase.mes.toLowerCase() === 0))}))
+    .sort((ma, mb)=> ma.order - mb.order)
+    .reduce((accum, month)=>{
+      accum[0].push(month.name);
+      accum[1].push(month.numeroVentas)
+      return accum;
+    },[[], []])
+}
+
 
 export { 
   getListInventory,
@@ -87,5 +158,7 @@ export {
   getListProducts,
   getProductById,
   createAndUpdateProduct,
-  getListMovementsById
+  getListMovementsById,
+  getDataForChart,
+  calculatePurchaseByMonth
 } 
