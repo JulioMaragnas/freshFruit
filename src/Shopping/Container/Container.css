@@ -12,3 +12,13 @@
     width: 20%;
     height: calc(100% - 50px);
 }
+
+@media (max-width:600px)  {
+    .container_products{
+        width: 100%;
+    }
+
+    .container_goals{
+        display: none;
+    }
+}
