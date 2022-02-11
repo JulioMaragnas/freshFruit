@@ -31,3 +31,17 @@
     opacity: 70%;
     margin-top: 30px;
 }
+
+@media (max-width:600px)  {
+    .manage-orders_menu{
+        width: 100%;
+    }
+
+    .manage-orders_view{
+        width: 100%;
+    }
+
+    .display-flex-row{
+        display: block;
+    }
+}
