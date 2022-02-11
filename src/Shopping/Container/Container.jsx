@@ -22,7 +22,7 @@ function Container(props) {
       <section className="w-100">
         <Banner></Banner>
       </section>
-      <section className="display-flex-row container_products">
+      <section className="display-flex-row container_products ant-row">
       
         {
           listProducts
