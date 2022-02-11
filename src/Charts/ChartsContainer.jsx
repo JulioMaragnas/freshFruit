@@ -94,7 +94,7 @@ function ChartsContainer() {
       <div className="charts_chart--double shadow ant-col ant-col-xs-24 ant-col-lg-24 ant-col-xl-13">
         <QuantiySalesByMonth purchaseByMonth={purchaseByMonth}/>
       </div>
-      <div className="shadow ant-col ant-col-xs-24 ant-col-lg-24 ant-col-xl-11">
+      <div className="shadow ant-col ant-col-xs-24 ant-col-lg-24 ant-col-xl-10">
         <InventoryByProducts />
       </div>
       <div className="charts_chart--single shadow ant-col ant-col-xs-24 ant-col-lg-24 ant-col-xl-24">
