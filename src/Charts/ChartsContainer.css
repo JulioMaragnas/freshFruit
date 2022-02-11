@@ -33,11 +33,19 @@
   font-size: medium;
   font-weight: 100;
 }
+
 .charts_chart--single{
-  width: 33.79%;
+  margin-top: 20px;;
   
 }
 
 .charts_chart--double{
-  width: 64%;
+  margin-right: 40px;
+}
+
+@media (max-width:600px)  {
+  .charts_chart--double{
+    margin-right: 0px;
+    margin-bottom: 20px;
+  }
 }
