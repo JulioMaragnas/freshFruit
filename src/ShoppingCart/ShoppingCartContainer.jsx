@@ -19,11 +19,13 @@ function ShoppingCartContainer(params) {
     setCart({...cart, total})
   },[])
   return (
-    <section className="w-100 display-flex-row shopping-container">
-      <div className="display-flex-row shopping-container_product-container">
-        { cart.products.map(p => (<CardProductBuy  product={p} key={p.id} />)) }
+    <section className="w-100 display-flex-row shopping-container ant-row">
+      <div className="display-flex-row shopping-container_product-container ant-col ant-col-xs-24 ant-col-lg-18 ant-col-xl-18">
+        <div className="ant-row">
+          { cart.products.map(p => (<CardProductBuy  product={p} key={p.id} />)) }
+        </div>
       </div>
-      <div className="shopping-container_billing">
+      <div className="shopping-container_billing ant-col ant-col-xs-24 ant-col-lg-6 ant-col-xl-6">
         <CardBilling />
         {userlogged && <ProgressBar />}
       </div>
