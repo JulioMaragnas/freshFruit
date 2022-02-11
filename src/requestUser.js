@@ -197,7 +197,7 @@ async function getDelivers() {
 async function getUserList() {
   const params = HeaderParameters("GET");
   return fetch(
-    `http://freshfruitusers-env.eba-tma2vuyz.us-east-1.elasticbeanstalk.com/usuarios/?paginaActual=0&paginacion=1000`,
+    `http://freshfruituser-env.eba-3spk2cv8.us-east-1.elasticbeanstalk.com/usuarios/?paginaActual=0&paginacion=1000`,
     params
   )
     .then((res) => res.json())
