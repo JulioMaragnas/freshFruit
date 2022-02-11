@@ -18,36 +18,38 @@ import "./ChartsContainer.css";
 function ChartsContainer() {
   var myFormat = format({ prefix: '$' });
   return (
-    <section className="w-100 display-flex-row charts">
-      <div className="w-100 mb-10 display-flex-row charts_chart charts_chart--cards">
-        <div className="charts_card shadow">
-          <h1>Total de ventas</h1>
-          <p> {myFormat(19850900)} </p>
-        </div>
-        <div className="charts_card shadow">
-          <h1>Venta max por pedido</h1>
-          <p> {myFormat(290750)} </p>
-        </div>
-        <div className="charts_card shadow">
-          <h1>Pulpas vendidas</h1>
-          <p> 1830 <span>und</span></p>
-        </div>
-        <div className="charts_card shadow">
-          <h1> Redenciones </h1>
-          <p> 50 <span>vales</span></p>
-        </div>
-        <div className="charts_card shadow">
-          <h1>Devoluciones</h1>
-          <p> 1830 <span>pedidos</span></p>
+    <section className="w-100 display-flex-row charts ant-row">
+      <div className="w-100 mb-10 ant-col ant-col-xs-24 ant-col-lg-24 ant-col-xl-24">
+        <div className="ant-row">
+          <div className="charts_card shadow ant-col ant-col-xs-24 ant-col-lg-5 ant-col-xl-5">
+            <h1>Total de ventas</h1>
+            <p> {myFormat(19850900)} </p>
+          </div>
+          <div className="charts_card shadow ant-col ant-col-xs-24 ant-col-lg-5 ant-col-xl-5">
+            <h1>Venta max por pedido</h1>
+            <p> {myFormat(290750)} </p>
+          </div>
+          <div className="charts_card shadow ant-col ant-col-xs-24 ant-col-lg-5 ant-col-xl-5">
+            <h1>Pulpas vendidas</h1>
+            <p> 1830 <span>und</span></p>
+          </div>
+          <div className="charts_card shadow ant-col ant-col-xs-24 ant-col-lg-4 ant-col-xl-4">
+            <h1> Redenciones </h1>
+            <p> 50 <span>vales</span></p>
+          </div>
+          <div className="charts_card shadow ant-col ant-col-xs-24 ant-col-lg-4 ant-col-xl-4">
+            <h1>Devoluciones</h1>
+            <p> 1830 <span>pedidos</span></p>
+          </div>
         </div>
       </div>
-      <div className="charts_chart charts_chart--double shadow">
+      <div className="charts_chart--double shadow ant-col ant-col-xs-24 ant-col-lg-24 ant-col-xl-13">
         <QuantiySalesByMonth />
       </div>
-      <div className="charts_chart charts_chart--single shadow">
+      <div className="shadow ant-col ant-col-xs-24 ant-col-lg-24 ant-col-xl-10">
         <InventoryByProducts />
       </div>
-      <div className="charts_chart charts_chart--double shadow">
+      <div className="charts_chart--single shadow ant-col ant-col-xs-24 ant-col-lg-24 ant-col-xl-24">
         <PurchaseBarChart />
       </div>
     </section>
