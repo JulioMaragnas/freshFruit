@@ -39,7 +39,7 @@ function CardProduct({ product }) {
   };
 
   return (
-    <section className="card-product" key={product.id}>
+    <section className="card-product ant-col ant-col-xs-22 ant-col-lg-6 ant-col-xl-6" key={product.id}>
       <img
         className="w-100 image--br-5 card-product_image--height"
         src={`${imagen}`}
